@@ -74,7 +74,7 @@ in {
   programs = {
     home-manager.enable = true;
     git = {
-      enable = true;
+      enable    = true;
       userName  = "SapuSeven";
       userEmail = "sapuseven@gmail.com";
     };
@@ -82,6 +82,7 @@ in {
 
   services = {
     mako.enable = true;
+    udiskie.enable = true;
   };
 
   xresources.properties = {

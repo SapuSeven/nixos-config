@@ -147,6 +147,18 @@
     keepEnv = true; 
     noPass = true;
   }];
+  security.polkit = {
+    enable = true;
+    extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        if ((action.id == "org.freedesktop.udisks2.filesystem-mount-system" ||
+             action.id == "org.freedesktop.udisks2.filesystem-mount") &&
+             subject.isInGroup("wheel")) {
+          return polkit.Result.YES;
+        }
+      });
+    '';
+  };
 
   # Enable display manager.
   services.displayManager.sddm.enable = true;
@@ -167,8 +179,14 @@
     wget
 
     # essentials
+    git
     kitty
     xfce.thunar
+
+    # usb and automount
+    usbutils
+    udiskie
+    udisks
 
     # desktop
     hyprpicker
@@ -201,7 +219,7 @@
     ];
     files = [
       "/etc/machine-id"
-      { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+      #{ file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
     ];
   };
 
@@ -251,6 +269,9 @@
   # };
 
   # List services that you want to enable:
+
+  # Enable automount
+  services.udisks2.enable = true;
 
   # Enable services
   #services.openssh.enable = true;
