@@ -1,0 +1,3 @@
+{ pkgs, ... }: {
+  # Add configuration here
+}
