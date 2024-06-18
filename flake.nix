@@ -17,7 +17,7 @@
     impermanence.url = "github:nix-community/impermanence";
 
     # Styling
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:catppuccin/nix/c4dac42a4fadc49bbd939fb3531673dbb3b0a949"; # Last commit before gtk deprecation
   };
 
   outputs = {
