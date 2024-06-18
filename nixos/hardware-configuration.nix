@@ -8,8 +8,8 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "hid_generic" ];
-  boot.initrd.kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
@@ -22,44 +22,19 @@
   fileSystems."/home/paul" =
     { device = "none";
       fsType = "tmpfs";
-      options = [ "defaults" "size=4G" "mode=777" ]; 
-    };
-
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/be96b8d6-828e-4aa5-9613-52f2763c6514";
-      fsType = "ext4";
+      options = [ "defaults" "size=4G" "mode=777" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/42F9-5F07";
+    { device = "/dev/disk/by-uuid/D4D7-FAD6";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  # Extra data partitions
-  fileSystems."/run/media/paul/Thicc" =
-    { device = "/dev/disk/by-uuid/C808BEE708BED3A2";
-      fsType = "ntfs";
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/78e938be-b640-470b-93f0-6afc8c7051b8";
+      fsType = "ext4";
     };
-
-  fileSystems."/run/media/paul/Speed" =
-    { device = "/dev/disk/by-uuid/77DC81AE32D5864F";
-      fsType = "ntfs";
-    };
-
-  boot.initrd.luks.yubikeySupport = true;
-  boot.initrd.luks.devices = {
-    "luks-fd378e80-1738-49b9-ad0c-d32f1ab67d1f" = {
-      device = "/dev/disk/by-uuid/fd378e80-1738-49b9-ad0c-d32f1ab67d1f";
-      yubikey = {
-        slot = 2;
-        twoFactor = false;
-        storage = {
-          device = "/dev/disk/by-uuid/42F9-5F07";
-        };
-      };
-    };
-  };
 
   swapDevices = [ ];
 
@@ -68,7 +43,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp8s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
