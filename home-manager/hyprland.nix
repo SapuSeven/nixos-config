@@ -24,7 +24,7 @@
         border_size = 2;
         #"col.active_border" = "rgba(962ac3ee) rgba(ff2abbee) 45deg";
         #"col.inactive_border" = "rgba(595959aa)";
-        "col.active_border" = "0xee$accentAlpha)";
+        "col.active_border" = "0xee$accentAlpha";
         "col.inactive_border" = "0xee$surface0Alpha";
 
         layout = "dwindle";
@@ -45,21 +45,26 @@
         };
 
         drop_shadow = "yes";
-        shadow_range = 4;
+        shadow_range = 8;
         shadow_render_power = 3;
-        #"col.shadow" = "rgba(1a1a1aee)";
-        "col.shadow" = "0xee$crustAlpha";
+        "col.shadow" = "0x88$accentAlpha";
+        "col.shadow_inactive" = "0x00000000";
       };
 
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
         pseudotile = "yes"; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds sectio>
         preserve_split = "yes"; # you probably want this
+        smart_split = true;
       };
 
       master = {
         # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
         new_is_master = true;
+      };
+
+      gestures = {
+        workspace_swipe = "on";
       };
 
       animation = [
@@ -86,7 +91,7 @@
         "$mod, Q, killactive,"
 
         # Open menu
-        "$mod, D, exec, wofi"
+        "$mod, D, exec, wofi --show drun"
 
         # Resize windows
         "$mod, space, togglefloating,"

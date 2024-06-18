@@ -200,6 +200,9 @@
     # notifications
     mako
     libnotify
+
+    # audio
+    playerctl
   ];
 
   environment.sessionVariables = {

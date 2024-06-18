@@ -10,6 +10,7 @@
     users.paul = {
       imports = [
         ../home-manager/home.nix
+        ../modules/home
       ];
     };
   };
