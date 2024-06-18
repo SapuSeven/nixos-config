@@ -60,11 +60,20 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      nixos-desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          # > Our main nixos configuration file <
-          ./nixos/configuration.nix
+          ./nixos/host-desktop.nix
+
+          # Add other modules here
+          impermanence.nixosModules.impermanence
+          catppuccin.nixosModules.catppuccin
+        ];
+      };
+      nixos-laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/host-laptop.nix
 
           # Add other modules here
           impermanence.nixosModules.impermanence
