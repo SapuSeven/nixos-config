@@ -66,8 +66,10 @@
         "global,1,3,default"
       ];
 
-      # See https://github.com/hyprwm/Hyprland/issues/2412
-      windowrulev2 = "noinitialfocus,class:^jetbrains-(?!toolbox),floating:1";
+      windowrulev2 = [
+        "noinitialfocus,class:^jetbrains-(?!toolbox),floating:1" # See https://github.com/hyprwm/Hyprland/issues/2412
+        "float,class:udiskie"
+      ];
 
       exec-once = [
         "hyprpaper"
