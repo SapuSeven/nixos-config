@@ -74,9 +74,12 @@ in {
   programs = {
     home-manager.enable = true;
     git = {
-      enable    = true;
-      userName  = "SapuSeven";
+      enable = true;
+      userName = "SapuSeven";
       userEmail = "sapuseven@gmail.com";
+      extraConfig = {
+        safe = { directory = "/etc/nixos/.git"; };
+      };
     };
   };
 
