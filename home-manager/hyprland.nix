@@ -30,6 +30,11 @@
         layout = "dwindle";
       };
 
+      misc = {
+        disable_hyprland_logo = true;
+        background_color = "$base";
+      };
+
       decoration = {
         rounding = 4;
 
