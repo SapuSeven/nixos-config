@@ -7,5 +7,4 @@ https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles
 
 ## TODO - Most important
 - Modularize main config
-- Waybar
 - Zsh
