@@ -57,7 +57,6 @@
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
         pseudotile = "yes"; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds sectio>
         preserve_split = "yes"; # you probably want this
-        smart_split = true;
       };
 
       master = {

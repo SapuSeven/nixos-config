@@ -248,7 +248,11 @@
 
   # Styling
   catppuccin.enable = true;
-  
+
+  # Enable shell
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
   # Enable Hyprland
   programs.hyprland = {
     enable = true;

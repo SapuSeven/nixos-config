@@ -9,6 +9,8 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
+    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +20,10 @@
 
     # Styling
     catppuccin.url = "github:catppuccin/nix/c4dac42a4fadc49bbd939fb3531673dbb3b0a949"; # Last commit before gtk deprecation
+    catppuccin-starship = {
+      url = "github:catppuccin/starship";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -61,7 +67,7 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = { host="desktop"; inherit inputs outputs; };
         modules = [
           ./nixos/host-desktop.nix
 
@@ -71,7 +77,7 @@
         ];
       };
       laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = { host="laptop"; inherit inputs outputs; };
         modules = [
           ./nixos/host-laptop.nix
 
