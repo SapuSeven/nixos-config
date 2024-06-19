@@ -83,7 +83,7 @@
     };
 
     "hyprland/workspaces"= {
-        active-only = true;
+        active-only = false;
         all-outputs = true;
         disable-scroll = true;
         format = "{icon}";
@@ -137,7 +137,7 @@
             default= ["  "];
         };
         scroll-step= 2;
-        on-click= "pamixer -t";
+        on-click= "pavucontrol";
     };
 
     battery = {

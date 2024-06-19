@@ -204,6 +204,7 @@
 
     # audio
     playerctl
+    pavucontrol
   ];
 
   environment.sessionVariables = {
