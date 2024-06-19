@@ -1,11 +1,4 @@
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 let
   wallpaper = pkgs.fetchurl {
