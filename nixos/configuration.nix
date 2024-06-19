@@ -158,6 +158,7 @@
       });
     '';
   };
+  security.pki.certificateFiles = [ ../certs/LAN+Root+CA.crt ];
 
   # Enable display manager.
   services.displayManager.sddm.enable = true;
