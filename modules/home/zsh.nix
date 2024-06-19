@@ -46,9 +46,11 @@
       nix-clean = "doas nix-collect-garbage && doas nix-collect-garbage -d && doas rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage && nix-collect-garbage -d";
 
       # Git
+      g    = "git";
       ga   = "git add";
       gaa  = "git add --all";
       gs   = "git status";
+      gd   = "git diff";
       gb   = "git branch";
       gm   = "git merge";
       gl   = "git pull";
@@ -80,5 +82,6 @@
 
   home.persistence."/nix/persist/home/paul".directories = [
     ".zsh"
+    ".local/share/zoxide"
   ];
 }
