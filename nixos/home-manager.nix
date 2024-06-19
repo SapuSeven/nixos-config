@@ -7,6 +7,7 @@
   # Home manager configuration
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
+    backupFileExtension = "backup";
     users.paul = {
       imports = [
         ../home-manager/home.nix
