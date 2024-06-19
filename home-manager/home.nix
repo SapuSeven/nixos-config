@@ -134,7 +134,7 @@ in {
   qt = {
     enable = true;
     style.name = "kvantum";
-    #platformTheme.name = "gtk";
+    platformTheme.name = "gtk";
   };
 
   home.pointerCursor = {
@@ -151,6 +151,7 @@ in {
       "Files"
       ".gnupg"
       ".ssh"
+      ".config/keepassxc"
     ];
     files = [ ".zsh_history" ];
   };

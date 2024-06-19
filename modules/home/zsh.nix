@@ -6,6 +6,17 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    history = {
+      expireDuplicatesFirst = true;
+      extended = true;
+      path = "$HOME/.zsh/history";
+    };
+
+    initExtra = ''
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
+    '';
+
     sessionVariables = {
       EZA_ICON_SPACING = 2;
     };
@@ -66,4 +77,8 @@
   home.packages = (with pkgs; [
     eza   # ls replacement
   ]);
+
+  home.persistence."/nix/persist/home/paul".directories = [
+    ".zsh"
+  ];
 }
