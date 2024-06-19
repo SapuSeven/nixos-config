@@ -7,15 +7,17 @@
       "$mod" = "SUPER";
 
       monitor = [
+        "eDP-1,preferred,0x0,1.25"
         "DP-1,highres,1920x0,1.875"
         "HDMI-A-1,preferred,0x0,1"
         "DP-2,preferred,3968x0,1,transform,1"
       ];
 
       workspace = [
+        "1, monitor:eDP-1, default:true"
         "1, monitor:DP-1, default:true"
-        "workspace=2, monitor:HDMI-A-1"
-        "workspace=3, monitor:DP-2"
+        "2, monitor:HDMI-A-1"
+        "3, monitor:DP-2"
       ];
 
       general = {
