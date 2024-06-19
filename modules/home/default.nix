@@ -1,5 +1,6 @@
 { ... }:
 {
   imports =
-    [(import ./wofi.nix)];
+       [(import ./waybar)]     # status bar
+    ++ [(import ./wofi.nix)];  # launcher
 }

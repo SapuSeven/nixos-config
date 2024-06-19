@@ -1,0 +1,132 @@
+{ pkgs, ... }:
+let
+  theme = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/catppuccin/waybar/main/themes/mocha.css";
+    sha256 = "05yx7v4j9k1s1xanlak7yngqfwvxvylwxc2fhjcfha68rjbhbqx6";
+  };
+in 
+{
+  programs.waybar.style = ''
+    * {
+        border: none;
+        font-family: "monospace";
+    }
+
+    window#waybar {
+      background-color: alpha(@base, 0.7);
+      border-top: solid alpha(@surface1, 0.7) 2;
+    }
+
+    window .modules-center {
+      font-weight: bold;
+      /*background-color: alpha(@surface1, 0.7);*/
+      color: @peach;
+      border-radius: 1em;
+      padding: 0 20px;
+      margin: 5px 0;
+    }
+
+    #workspaces {
+      margin-left: 10px;
+    }
+
+    #workspaces button.active {
+      color: @mauve;
+    }
+
+    #workspaces button {
+      color: @text;
+    }
+
+    #custom-separator {
+      color: @green;
+    }
+
+    #custom-separator_dot {
+      color: @green;
+    }
+
+    #clock.time {
+      color: @flamingo;
+    }
+
+    #clock.week {
+      color: @sapphire;
+    }
+
+    #clock.month {
+      color: @sapphire;
+    }
+
+    #clock.calendar {
+      color: @mauve;
+    }
+
+    #custom-power {
+      color: @red;
+      background-color: alpha(@surface1, 0.7);
+      border-radius: 15 0 0 15;
+      padding: 0 15px 0 10px;
+      margin: 5px 0;
+    }
+
+    #cpu, #memory, #disk, #temperature, #pulseaudio, #battery, #network, #bluetooth, #misc {
+      color: @text;
+      margin: 0 15px;
+    }
+
+    #cpu.high {
+      color: @red;
+    }
+
+    #memory {
+      margin: 0 5px;
+    }
+
+    #memory.high {
+      color: @red;
+    }
+
+    #temperature {
+      margin: 0 5px;
+    }
+
+    #temperature.critical {
+      color: @red;
+    }
+
+    #battery.low {
+      color: @red;
+    }
+
+    #battery.high {
+      color: @green;
+    }
+
+    #backlight {
+      margin: 0 5px;
+    }
+
+    #pulseaudio.bluetooth {
+      color: @sapphire;
+    }
+
+    #pulseaudio.muted {
+      color: @surface2;
+    }
+
+    #network, #idle_inhibitor {
+      padding: 0 3px 0 0;
+    }
+
+    /* Groups */
+    #system, #connectivity {
+      background-color: alpha(@surface1, 0.7);
+      border-radius: 1em;
+      margin: 5px 2px;
+    }
+    #tray {
+      padding: 0 10px;
+    }
+  '';
+}

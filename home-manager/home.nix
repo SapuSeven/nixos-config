@@ -30,7 +30,6 @@ in {
     ./hyprland.nix
     ./hyprlock.nix
     ./hyprpaper.nix
-    ./waybar.nix
     ./kitty.nix
   ];
 
