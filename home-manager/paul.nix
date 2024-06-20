@@ -35,18 +35,8 @@ in {
     homeDirectory = "/home/paul";
   };
 
-  # Enable home-manager and git
-  programs = {
-    home-manager.enable = true;
-    git = {
-      enable = true;
-      userName = "SapuSeven";
-      userEmail = "sapuseven@gmail.com";
-      extraConfig = {
-        safe = { directory = "/etc/nixos/.git"; };
-      };
-    };
-  };
+  # Enable home-manager
+  programs.home-manager.enable = true;
 
   services = {
     mako = {

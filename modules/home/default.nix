@@ -2,7 +2,8 @@
 {
   imports =
        [(import ./firefox.nix)]  # browser
-    ++ [(import ./hypr)]         # hypr-stuff
+    ++ [(import ./git.nix)]      # vcs
+    ++ [(import ./hypr)]         # hypr*
     ++ [(import ./kitty.nix)]    # terminal
     ++ [(import ./packages.nix)] # other packages
     ++ [(import ./starship.nix)] # shell prompt
