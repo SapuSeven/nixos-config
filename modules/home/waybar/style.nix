@@ -72,15 +72,12 @@ in
 
     #cpu, #memory, #disk, #temperature, #pulseaudio, #battery, #network, #bluetooth, #misc {
       color: @text;
-      margin: 0 15px;
+      margin: 0;
+      padding: 0 7px;
     }
 
     #cpu.high {
       color: @red;
-    }
-
-    #memory {
-      margin: 0 5px;
     }
 
     #memory.high {
@@ -101,6 +98,10 @@ in
 
     #battery.high {
       color: @green;
+    }
+
+    #battery.charging {
+      color: @yellow;
     }
 
     #backlight {
@@ -124,6 +125,7 @@ in
       background-color: alpha(@surface1, 0.7);
       border-radius: 1em;
       margin: 5px 2px;
+      padding: 0 10px;
     }
     #tray {
       padding: 0 10px;

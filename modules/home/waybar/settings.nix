@@ -98,15 +98,15 @@
     };
 
     memory = {
-        format= " {}%";
-        format-alt= " {used} GiB"; # 󰟜
-        interval= 2;
+        format = " {}%";
+        format-alt = " {used} GiB"; # 󰟜
+        interval = 2;
     };
 
     cpu = {
-        format= " {usage}%";
-        format-alt= " {avg_frequency} GHz";
-        interval= 2;
+        format = " {usage}%";
+        format-alt = " {avg_frequency} GHz";
+        interval = 2;
     };
 
     disk = {
@@ -116,13 +116,14 @@
     };
 
     network = {
-        format-wifi = "  ({signalStrength}%){essid}";
+        format-wifi = "{icon} {essid}"; # 
         format-ethernet = "󰀂";
-        tooltip-format = "Connected on {ifname} via {gwaddr}";
-        tooltip-format-wifi = "SSID: {essid}({signalStrength}%), {frequency} MHz\nInterface: {ifname}\nIP: {ipaddr}\nGW: {gwaddr}\n\n<span color='#a6da95'>{bandwidthUpBits}</span>\t<span color='#ee99a0'>{bandwidthDownBits}</span>\t<span color='#c6a0f6'>󰹹{bandwidthTotalBits}</span>";
+        format-icons = [ "󰤟" "󰤢" "󰤥" "󰤨" ];
+        tooltip-format = "Interface: {ifname}\nIP: {ipaddr}\nGW: {gwaddr}\n\n<span color='#a6da95'>{bandwidthUpBits}</span>\t<span color='#ee99a0'>{bandwidthDownBits}</span>\t<span color='#c6a0f6'>󰹹{bandwidthTotalBits}</span>";
+        tooltip-format-wifi = "SSID: {essid} ({signalStrength}%), {frequency} MHz\nInterface: {ifname}\nIP: {ipaddr}\nGW: {gwaddr}\n\n<span color='#a6da95'>{bandwidthUpBits}</span>\t<span color='#ee99a0'>{bandwidthDownBits}</span>\t<span color='#c6a0f6'>󰹹{bandwidthTotalBits}</span>";
         tooltip-format-disconnected = "<span color='#ed8796'>disconnected</span>";
         format-linked = "{ifname} (No IP)";
-        format-disconnected = "󰖪";
+        format-disconnected = "󰤭"; # 󰖪
     };
 
     tray = {
@@ -131,13 +132,11 @@
     };
 
     pulseaudio = {
-        format= "{icon}{volume}%";
-        format-muted= "󰖁 {volume}%";
-        format-icons= {
-            default= ["  "];
-        };
-        scroll-step= 2;
-        on-click= "pavucontrol";
+        format = "{icon} {volume}%";
+        format-muted = "󰖁 {volume}%";
+        format-icons = [ "󰕿" "󰖀" "󰕾" ];
+        scroll-step = 2;
+        on-click = "pavucontrol";
     };
 
     battery = {
