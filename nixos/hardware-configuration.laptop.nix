@@ -36,6 +36,12 @@
       fsType = "ext4";
     };
 
+  boot.initrd.luks.devices = {
+    "nix" = {
+      device = "/dev/disk/by-uuid/d404465b-4b9f-405b-8497-40c8b78a976b";
+    };
+  };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

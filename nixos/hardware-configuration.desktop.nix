@@ -49,7 +49,7 @@
 
   boot.initrd.luks.yubikeySupport = true;
   boot.initrd.luks.devices = {
-    "luks-fd378e80-1738-49b9-ad0c-d32f1ab67d1f" = {
+    "nix" = {
       device = "/dev/disk/by-uuid/fd378e80-1738-49b9-ad0c-d32f1ab67d1f";
       yubikey = {
         slot = 2;
