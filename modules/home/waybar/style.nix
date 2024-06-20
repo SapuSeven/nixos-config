@@ -19,7 +19,7 @@ in
 
     window .modules-center {
       font-weight: bold;
-      /*background-color: alpha(@surface1, 0.7);*/
+      background-color: alpha(@surface1, 0.7);
       color: @peach;
       border-radius: 1em;
       padding: 0 20px;
