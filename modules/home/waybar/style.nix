@@ -92,10 +92,6 @@ in
       color: @red;
     }
 
-    #battery {
-      color: @sky;
-    }
-
     #battery.low {
       color: @red;
     }
@@ -105,10 +101,6 @@ in
     }
 
     #battery.charging {
-      color: @yellow;
-    }
-
-    #backlight {
       color: @yellow;
     }
 
