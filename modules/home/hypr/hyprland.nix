@@ -24,8 +24,6 @@
         gaps_in = 2;
         gaps_out = 8;
         border_size = 2;
-        #"col.active_border" = "rgba(962ac3ee) rgba(ff2abbee) 45deg";
-        #"col.inactive_border" = "rgba(595959aa)";
         "col.active_border" = "0xee$accentAlpha";
         "col.inactive_border" = "0xee$surface0Alpha";
 
@@ -34,7 +32,15 @@
 
       misc = {
         disable_hyprland_logo = true;
+        disable_splash_rendering = true;
         background_color = "$base";
+      };
+
+      input = {
+        touchpad = {
+          scroll_factor = 0.5;
+          natural_scroll = true;
+        };
       };
 
       decoration = {
