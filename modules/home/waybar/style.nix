@@ -70,7 +70,7 @@ in
       margin: 5px 0;
     }
 
-    #cpu, #memory, #disk, #temperature, #pulseaudio, #battery, #network, #bluetooth, #misc {
+    #cpu, #memory, #disk, #temperature, #pulseaudio, #backlight, #battery, #network, #bluetooth, #misc {
       color: @text;
       margin: 0;
       padding: 0 7px;
@@ -92,6 +92,10 @@ in
       color: @red;
     }
 
+    #battery {
+      color: @sky;
+    }
+
     #battery.low {
       color: @red;
     }
@@ -105,7 +109,7 @@ in
     }
 
     #backlight {
-      margin: 0 5px;
+      color: @yellow;
     }
 
     #pulseaudio.bluetooth {

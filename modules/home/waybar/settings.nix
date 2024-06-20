@@ -135,8 +135,17 @@
         format = "{icon} {volume}%";
         format-muted = "󰖁 {volume}%";
         format-icons = [ "󰕿" "󰖀" "󰕾" ];
+        smooth-scrolling-threshold = 1;
         scroll-step = 2;
+        reverse-scrolling = true;
         on-click = "pavucontrol";
+    };
+
+    backlight = {
+        smooth-scrolling-threshold = 1;
+        scroll-step = 5;
+        reverse-scrolling = true;
+        format = " {percent}%";
     };
 
     battery = {
@@ -195,6 +204,7 @@
         "disk"
         #"temperature"
         "pulseaudio" 
+        "backlight"
         "battery"
       ];
     };
