@@ -16,6 +16,7 @@ in
     package = pkgs.hyprpaper;
     settings = {
       splash = true;
+      splash_offset = 4.0;
       preload = "${wallpaper}";
       wallpaper = ",${wallpaper}";
     };
