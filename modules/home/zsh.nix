@@ -42,7 +42,7 @@
       nix-shell = "nix-shell --run zsh";
       nix-switch = "doas nixos-rebuild switch --flake /etc/nixos#${host}";
       nix-switchu = "doas nixos-rebuild switch --upgrade --flake /etc/nixos#${host}";
-      nix-flake-update = "doas nix flake update /etc/nixos#${host}";
+      nix-flake-update = "nix flake update /etc/nixos#";
       nix-clean = "doas nix-collect-garbage && doas nix-collect-garbage -d && doas rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage && nix-collect-garbage -d";
 
       # Git
