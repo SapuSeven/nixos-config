@@ -7,4 +7,5 @@ https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles
 
 ## TODO - Most important
 - Modularize main config
-- Zsh
+- Display dim and timeout (extra short when locked) including idle inhibitor
+- Brightness control waybar
