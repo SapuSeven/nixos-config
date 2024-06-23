@@ -80,18 +80,6 @@
         margin: 0px;
         padding: 8px;
         background: none;
-        animation: slideIn 0.3s ease-in-out both;
-      }
-
-      /* Slide In */
-      @keyframes slideIn {
-        0% {
-           opacity: 0;
-        }
-
-        100% {
-           opacity: 1;
-        }
       }
 
       /* Inner Box */
@@ -100,18 +88,6 @@
         padding: 0px;
         border: none;
         background: none;
-        animation: fadeIn 0.3s ease-in-out both;
-      }
-
-      /* Fade In */
-      @keyframes fadeIn {
-        0% {
-           opacity: 0;
-        }
-
-        100% {
-           opacity: 1;
-        }
       }
 
       /* Outer Box */
@@ -140,7 +116,6 @@
         border-radius: 0.5em;
         color: @text;
         background-color: @base;
-        animation: fadeIn 0.3s ease-in-out both;
       }
 
       #input image {
@@ -157,7 +132,6 @@
         margin: 4px;
         border: none;
         color: @text;
-        animation: fadeIn 0.3s ease-in-out both;
       }
 
       #entry {

@@ -106,6 +106,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Enable gvfs for MTP mount
+  services.gvfs.enable = true;
+
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -195,7 +198,7 @@
     hyprlock
     hypridle
     hyprpaper
-    waybar
+    #waybar
     wofi
 
     # notifications
