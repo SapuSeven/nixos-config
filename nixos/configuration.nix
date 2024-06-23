@@ -198,7 +198,6 @@
     hyprlock
     hypridle
     hyprpaper
-    #waybar
     wofi
 
     # notifications
@@ -208,10 +207,14 @@
     # audio
     playerctl
     pavucontrol
+
+    # misc
+    wluma
   ];
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    WLR_DRM_NO_MODIFIERS = "1";
   };
 
   environment.persistence."/nix/persist/system" = {
@@ -221,6 +224,7 @@
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
+      "/var/lib/systemd/backlight" # Persistent backlight brightness
       "/etc/nixos"
       "/etc/NetworkManager/system-connections"
       { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
@@ -261,8 +265,6 @@
     enable = true;
     xwayland.enable = true;
   };
-
-  programs.waybar.enable = true;
 
   programs.fuse.userAllowOther = true;
 

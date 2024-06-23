@@ -2,7 +2,7 @@
 {
   programs.waybar = {
     enable = true;
-    systemd.enable = false;
+    systemd.enable = true;
     package = pkgs.waybar.overrideAttrs (oa: {
       mesonFlags = (oa.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
     });
