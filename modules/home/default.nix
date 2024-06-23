@@ -10,5 +10,6 @@
     ++ [(import ./theme.nix)]    # theme
     ++ [(import ./waybar)]       # status bar
     ++ [(import ./wofi.nix)]     # launcher
+    ++ [(import ./wluma.nix)]    # backlight brightness control
     ++ [(import ./zsh.nix)];     # shell
 }
