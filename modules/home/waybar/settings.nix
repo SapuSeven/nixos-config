@@ -12,16 +12,16 @@
     modules-center = [
         "clock#time"
         "custom/separator"
-        "clock#week"
-        "custom/separator_dot"
-        "clock#month"
-        "custom/separator"
+        #"clock#week"
+        #"custom/separator_dot"
+        #"clock#month"
+        #"custom/separator"
         "clock#calendar"
     ];
     modules-right = [
-        "tray" 
         "group/connectivity"
         "group/system"
+        "tray" 
         "group/misc"
         "custom/power"
     ];
