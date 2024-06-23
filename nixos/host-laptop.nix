@@ -5,5 +5,6 @@
     [
       ./configuration.nix
       ./hardware-configuration.laptop.nix
+      ../modules/core
     ];
 }
