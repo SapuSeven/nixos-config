@@ -4,6 +4,10 @@
     enable = true;
     catppuccin.enable = true;
     settings = {
+      debug = {
+        disable_logs = false;
+      };
+
       "$mod" = "SUPER";
 
       monitor = [

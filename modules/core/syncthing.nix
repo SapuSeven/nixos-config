@@ -1,5 +1,8 @@
 { ... }:
 {
+  # Not clean... but it's easier to define the global config here
+  # until https://github.com/nix-community/home-manager/issues/4049 is resolved
+
   # Syncthing will be running on localhost:8384
   services.syncthing = {
     enable = true;
@@ -16,7 +19,7 @@
 #    };
   };
 
-  environment.persistence."/nix/persist".users.paul.directories = [
+  home-manager.users.paul.home.persistence."/nix/persist/home/paul".files = [
     ".config/syncthing"
   ];
 }
