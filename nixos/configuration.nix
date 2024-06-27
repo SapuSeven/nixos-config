@@ -185,7 +185,6 @@
     git
     kitty
     xfce.thunar
-    keepassxc
 
     # usb and automount
     usbutils
