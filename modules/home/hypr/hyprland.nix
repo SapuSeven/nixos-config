@@ -17,6 +17,10 @@
         "DP-2,preferred,3968x0,1,transform,1"
       ];
 
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
       workspace = [
         "1, monitor:eDP-1, default:true"
         "1, monitor:DP-1, default:true"
