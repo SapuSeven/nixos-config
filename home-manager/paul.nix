@@ -59,6 +59,7 @@ in {
       ".ssh"
       ".config/keepassxc"
       ".config/syncthing"
+      ".config/TeamSpeak"
     ];
     files = [ ".zsh_history" ];
   };
