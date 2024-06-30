@@ -18,8 +18,4 @@
 #      };
 #    };
   };
-
-  home-manager.users.paul.home.persistence."/nix/persist/home/paul".files = [
-    ".config/syncthing"
-  ];
 }

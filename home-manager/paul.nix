@@ -57,6 +57,8 @@ in {
       "Files"
       ".gnupg"
       ".ssh"
+      ".config/keepassxc"
+      ".config/syncthing"
     ];
     files = [ ".zsh_history" ];
   };
