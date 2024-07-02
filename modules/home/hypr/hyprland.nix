@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, host, ...}:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -10,8 +10,9 @@
 
       "$mod" = "SUPER";
 
-      monitor = [
+      monitor = if host=="laptop" then [
         "eDP-1,preferred,0x0,1.25"
+      ] else [
         "DP-1,highres,1920x0,1.875"
         "HDMI-A-1,preferred,0x0,1"
         "DP-2,preferred,3968x0,1,transform,1"
@@ -21,8 +22,9 @@
         force_zero_scaling = true;
       };
 
-      workspace = [
+      workspace = if host=="laptop" then [
         "1, monitor:eDP-1, default:true"
+      ] else [
         "1, monitor:DP-1, default:true"
         "2, monitor:HDMI-A-1"
         "3, monitor:DP-2"
