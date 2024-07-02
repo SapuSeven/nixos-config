@@ -58,9 +58,9 @@ in {
       ".gnupg"
       ".ssh"
       ".config/keepassxc"
-      ".config/pulse"
       ".config/syncthing"
       ".config/TeamSpeak"
+      ".local/state/wireplumber"
     ];
     files = [ ".zsh_history" ];
   };
