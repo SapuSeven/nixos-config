@@ -2,6 +2,7 @@
 {
   networking.wg-quick.interfaces = { #if builtins.pathExists "/root/.wg" then {
     wg0 = {
+      autostart = false;
       address = [ "192.168.2.104/24" ];
       dns = [ "192.168.2.1" ];
 
@@ -18,6 +19,8 @@
       ];
     };
   }; #else builtins.trace "Wireguard is disabled because /root/.wg dir with private keys is missing." {};
+
+  #systemd.services.wg-quick-wg0.wantedBy = lib.mkForce [];
 
   environment.persistence."/nix/persist/system".directories = [
     "/root/.wg"
