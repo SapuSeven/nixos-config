@@ -56,6 +56,6 @@
   };
 
   home.persistence."/nix/persist/home/paul".directories = [
-    ".mozilla"
+    ".mozilla/firefox/default"
   ];
 }
