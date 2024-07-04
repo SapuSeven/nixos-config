@@ -6,6 +6,7 @@
     ++ [(import ./hypr)]            # hypr*
     ++ [(import ./keepassxc.nix)]   # password manager
     ++ [(import ./kitty.nix)]       # terminal
+    ++ [(import ./kicad.nix)]       # kicad eda
     ++ [(import ./orcaslicer.nix)]  # slicer
     ++ [(import ./packages.nix)]    # other packages
     ++ [(import ./starship.nix)]    # shell prompt

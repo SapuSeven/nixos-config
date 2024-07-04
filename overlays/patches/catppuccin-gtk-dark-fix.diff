@@ -1,0 +1,10 @@
+--- /home/paul/.config/gtk-4.0/gtk-dark.css	1970-01-01 01:00:01.000000000 +0100
++++ /home/paul/.config/gtk-4.0/gtk-dark-2.css	2024-06-28 23:16:30.938511133 +0200
+@@ -784,7 +784,6 @@
+ row.spin spinbutton > button.image-button.down:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque):dir(ltr):last-child,
+ row.spin spinbutton > button.image-button.down:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque):dir(rtl):first-child, headerbar popover.background button:not(.suggested-action):not(.destructive-action):not(.flat), .toolbar .linked button, button {
+   transition: all 75ms cubic-bezier(0, 0, 0.2, 1), background-size 300ms cubic-bezier(0, 0, 0.2, 1), background-image 1200ms cubic-bezier(0, 0, 0.2, 1), outline 300ms cubic-bezier(0, 0, 0.2, 1);
+-  background-color: rgba(255, 255, 255, 0.08);
+   background-image: radial-gradient(circle, transparent 10%, transparent 0%);
+   background-repeat: no-repeat;
+   background-position: center;
