@@ -10,6 +10,7 @@
     ++ [(import ./packages.nix)]    # other packages
     ++ [(import ./starship.nix)]    # shell prompt
     ++ [(import ./theme.nix)]       # theme
+    ++ [(import ./vscode.nix)]      # code editor
     ++ [(import ./waybar)]          # status bar
     ++ [(import ./wofi.nix)]        # launcher
     ++ [(import ./wluma.nix)]       # backlight brightness control
