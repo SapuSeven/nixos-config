@@ -164,7 +164,10 @@
   security.pki.certificateFiles = [ ../certs/LAN+Root+CA.crt ];
 
   # Enable display manager.
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    package = pkgs.kdePackages.sddm;
+  };
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "paul";
 

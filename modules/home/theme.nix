@@ -1,4 +1,31 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
+let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.overworld.home.catppuccin;
+  gradiencePreset = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/GradienceTeam/Community/next/official/catppuccin-mocha.json";
+    hash = "sha256-4/RVQF6irDueswEXWtmn2CCmyN7VQtQPrDAeg45cTPk=";
+  };
+  gradienceBuild = pkgs.stdenv.mkDerivation {
+    name = "gradience-build";
+    phases = [
+      "buildPhase"
+      "installPhase"
+    ];
+    nativeBuildInputs = [ pkgs.gradience ];
+    buildPhase = ''
+      shopt -s nullglob
+      export HOME=$TMPDIR
+      mkdir -p $HOME/.config/presets
+      gradience-cli apply -p ${gradiencePreset} --gtk both
+    '';
+    installPhase = ''
+      mkdir -p $out
+      cp -r .config/gtk-4.0 $out/
+      cp -r .config/gtk-3.0 $out/
+    '';
+  };
+in
 {
   catppuccin.enable = true;
 
@@ -8,49 +35,40 @@
     "Xft.dpi" = 192;
   };
 
-  gtk.enable = true;
-  gtk.catppuccin.enable = true;
-#  gtk = {
-#    enable = true;
-#    theme = {
-#      name = "Colloid-Purple-Dark";
-#      package = pkgs.colloid-gtk-theme.override {
-#        themeVariants = [ "purple" ];
-#        colorVariants = [ "dark" ];
-#        tweaks = [ "black" ];
-#        #tweaks = [ "catppuccin" ];
-#      };
-#    };
+  gtk.catppuccin.enable = false;
+  gtk.catppuccin.icon.enable = true;
+  gtk = {
+    enable = true;
 
-#    iconTheme = {
-#      package = (pkgs.papirus-icon-theme.override {
-#        color = "violet";
-#      });
-#      name = "Papirus-Dark";
-#    };
+    theme = {
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
+    };
 
-#    cursorTheme = {
-#      package = pkgs.bibata-cursors;
-#      name = "Bibata-Modern-Ice";
-#    };
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+    };
 
-#    gtk3.extraConfig = {
-#      Settings = ''
-#        gtk-application-prefer-dark-theme=1
-#      '';
-#    };
+    gtk3 = {
+      extraCss = builtins.readFile "${gradienceBuild}/gtk-3.0/gtk.css";
+      extraConfig = {
+        gtk-application-prefer-dark-theme = 1;
+      };
+    };
 
-#    gtk4.extraConfig = {
-#      Settings = ''
-#        gtk-application-prefer-dark-theme=1
-#      '';
-#    };
-#  };
+    gtk4 = {
+      extraCss = builtins.readFile "${gradienceBuild}/gtk-4.0/gtk.css";
+      extraConfig = {
+        gtk-application-prefer-dark-theme = 1;
+      };
+    };
+  };
 
   qt = {
     enable = true;
     style.name = "kvantum";
-    platformTheme.name = "gtk";
+    platformTheme.name = "kvantum";
   };
 
   home.pointerCursor = {

@@ -19,7 +19,8 @@
     impermanence.url = "github:nix-community/impermanence";
 
     # Styling
-    catppuccin.url = "github:catppuccin/nix/c4dac42a4fadc49bbd939fb3531673dbb3b0a949"; # Last commit before gtk deprecation
+    #catppuccin.url = "github:catppuccin/nix/c4dac42a4fadc49bbd939fb3531673dbb3b0a949"; # Last commit before gtk deprecation
+    catppuccin.url = "github:catppuccin/nix"; # Last commit before gtk deprecation
     catppuccin-starship = {
       url = "github:catppuccin/starship";
       flake = false;
