@@ -7,7 +7,7 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
-    catppuccin = prev.catppuccin.overrideAttrs (old: {
+    catppuccin = prev.catppuccin.overrideAttrs (old: rec {
       patches = (old.patches or []) ++ [
         ./patches/catppuccin-gtk-dark-fix.diff
       ];
