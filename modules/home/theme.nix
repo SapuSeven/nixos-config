@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, host, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.overworld.home.catppuccin;
@@ -32,7 +32,13 @@ in
   xresources.properties = {
     "Xft.antialias" = 1;
     "Xft.autohint" = 0;
-    "Xft.dpi" = 192;
+    "Xft.dpi" = if host=="laptop" then 120 else 192;
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      scaling-factor = "1.25";
+    };
   };
 
   gtk.catppuccin.enable = false;

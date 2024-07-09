@@ -93,6 +93,10 @@
         "float,class:udiskie"
       ];
 
+      exec = [
+        "xrdb -merge \"$HOME/.Xresources\""
+      ];
+
       exec-once = [
         "hyprpaper"
       ];
