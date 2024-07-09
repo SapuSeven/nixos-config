@@ -2,7 +2,10 @@
 {
   # Setup ADB
   programs.adb.enable = true;
-  users.users.paul.extraGroups = ["adbusers"];
+  users.users.paul.extraGroups = [
+    "adbusers"
+    "kvm"
+  ];
 
   # Android Studio
   environment.systemPackages = with pkgs; [

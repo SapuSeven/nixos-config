@@ -55,12 +55,13 @@ in {
     allowOther = true;
     directories = [
       "Files"
-      ".gnupg"
-      ".ssh"
-      ".config/keepassxc"
-      ".config/syncthing"
-      ".config/TeamSpeak"
-      ".local/state/wireplumber"
+      ".gnupg" # Keyring
+      ".ssh" # SSH keys and hosts
+      ".config/keepassxc" # KeePassXC
+      ".config/syncthing" # Syncthing
+      ".config/TeamSpeak" # TeamSpeak
+      ".config/Google" # Android Studio config
+      ".local/state/wireplumber" # Audio setup
     ];
     files = [ ".zsh_history" ];
   };
