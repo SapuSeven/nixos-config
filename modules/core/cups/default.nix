@@ -25,14 +25,23 @@
   hardware.printers = {
     ensurePrinters = [
       {
-        name = "PM-241-BT";
-        description = "Label Printer";
+        name = "Label-50x30mm";
+        description = "PM-241-BT, 50x30mm labels";
         deviceUri = "usb:///PM-241-BT?serial=Q332G44P0830030";
         model = "Phomemo/PM-241-BT.ppd";
         ppdOptions = {
-          # 50x30 Labels
           PageSize = "Custom.50x30mm";
           GapHeight = "2";
+          Darkness = "3";
+        };
+      }
+      {
+        name = "Label-4x6";
+        description = "PM-241-BT, 4x6in shipping labels";
+        deviceUri = "usb:///PM-241-BT?serial=Q332G44P0830030";
+        model = "Phomemo/PM-241-BT.ppd";
+        ppdOptions = {
+          PageSize = "w288h432";
           Darkness = "3";
         };
       }
