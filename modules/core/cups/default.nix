@@ -1,0 +1,41 @@
+{ pkgs, ... }:
+{
+  # Enable autodiscovery of network printers
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  programs.nix-ld.enable = true;
+
+  # CUPS settings
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      gutenprint
+      hplip
+      brlaser
+      (writeTextDir "share/cups/model/Phomemo/PM-241-BT.ppd" (builtins.readFile drivers/PM-241-BT.ppd))
+      (callPackage ./filters.nix {})
+    ];
+  };
+
+  # Add printers
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "PM-241-BT";
+        description = "Label Printer";
+        deviceUri = "usb:///PM-241-BT?serial=Q332G44P0830030";
+        model = "Phomemo/PM-241-BT.ppd";
+        ppdOptions = {
+          # 50x30 Labels
+          PageSize = "Custom.50x30mm";
+          GapHeight = "2";
+          Darkness = "3";
+        };
+      }
+    ];
+  };
+}

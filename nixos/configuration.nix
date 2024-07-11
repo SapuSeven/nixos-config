@@ -90,9 +90,6 @@
     LC_TIME = "de_AT.UTF-8";
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   # Enable gvfs for MTP mount
   services.gvfs.enable = true;
 
@@ -170,6 +167,7 @@
   environment.systemPackages = with pkgs; [
     # system tools
     wget
+    file
 
     # essentials
     git
