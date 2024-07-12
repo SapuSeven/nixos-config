@@ -16,7 +16,7 @@
       gutenprint
       hplip
       brlaser
-      (writeTextDir "share/cups/model/Phomemo/PM-241-BT.ppd" (builtins.readFile drivers/PM-241-BT.ppd))
+      (callPackage ./drivers.nix {})
       (callPackage ./filters.nix {})
     ];
   };
@@ -30,7 +30,7 @@
         deviceUri = "usb:///PM-241-BT?serial=Q332G44P0830030";
         model = "Phomemo/PM-241-BT.ppd";
         ppdOptions = {
-          PageSize = "Custom.50x30mm";
+          PageSize = "w142h85";
           GapHeight = "2";
           Darkness = "3";
         };
