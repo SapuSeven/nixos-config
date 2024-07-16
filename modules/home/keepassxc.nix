@@ -2,7 +2,15 @@
 {
   home = {
     packages = with pkgs; [
-      keepassxc
+      (symlinkJoin {
+        name = "keepassxc";
+        paths = [ keepassxc ];
+        buildInputs = [ makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/keepassxc \
+            --run "touch ~/.mozilla/native-messaging-hosts/org.keepassxc.keepassxc_browser.json" # This enables the connection to the KeePassXC Firefox extension
+        '';
+      })
     ];
 
     persistence."/nix/persist/home/paul".files = [ ".cache/keepassxc/keepassxc.ini" ];
