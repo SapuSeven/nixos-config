@@ -18,7 +18,7 @@
     };
 
     persistence."/nix/persist/home/paul".directories = [
-      "${config.xdg.configHome}/kicad"
+      ".config/kicad"
       ".local/share/kicad"
     ];
   };
