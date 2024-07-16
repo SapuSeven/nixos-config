@@ -2,9 +2,9 @@
 {
   home.packages = (with pkgs; [
     xfce.thunar
-    teamspeak5_client
-
     python3
+  ]) ++ (with pkgs.stable; [
+    teamspeak5_client
   ]);
 
   xdg = {
