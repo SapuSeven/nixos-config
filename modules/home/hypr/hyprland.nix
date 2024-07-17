@@ -51,6 +51,8 @@
           scroll_factor = 0.5;
           natural_scroll = true;
         };
+        sensitivity = -0.5;
+        numlock_by_default = true;
       };
 
       decoration = {
