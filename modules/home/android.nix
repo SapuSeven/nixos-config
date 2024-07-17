@@ -5,6 +5,9 @@
       android-studio
     ];
 
-    persistence."/nix/persist/home/paul".directories = [ ".android" ];
+    persistence."/nix/persist/home/paul".directories = [
+      ".android"
+      ".config/Google"
+    ];
   };
 }
