@@ -1,7 +1,8 @@
 { ... }:
 {
   imports =
-       [(import ./firefox.nix)]     # browser
+       [(import ./android.nix)]     # android development
+    ++ [(import ./firefox.nix)]     # browser
     ++ [(import ./git.nix)]         # vcs
     ++ [(import ./hypr)]            # hypr*
     ++ [(import ./keepassxc.nix)]   # password manager

@@ -6,9 +6,4 @@
     "adbusers"
     "kvm"
   ];
-
-  # Android Studio
-  environment.systemPackages = with pkgs; [
-    android-studio
-  ];
 }
