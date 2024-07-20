@@ -3,6 +3,7 @@
   imports =
        [(import ./android.nix)]     # android development
     ++ [(import ./firefox.nix)]     # browser
+    ++ [(import ./games)]           # games
     ++ [(import ./git.nix)]         # vcs
     ++ [(import ./hypr)]            # hypr*
     ++ [(import ./keepassxc.nix)]   # password manager
