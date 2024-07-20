@@ -1,11 +1,9 @@
 { inputs, pkgs, ... }: 
 {
-  home.packages = (with pkgs; [
+  home.packages = with pkgs; [
     xfce.thunar
     python3
-  ]) ++ (with pkgs.stable; [
-    teamspeak5_client
-  ]);
+  ];
 
   xdg = {
     mimeApps = {

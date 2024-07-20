@@ -12,6 +12,7 @@
     ++ [(import ./orcaslicer.nix)]  # slicer
     ++ [(import ./packages.nix)]    # other packages
     ++ [(import ./starship.nix)]    # shell prompt
+    ++ [(import ./teamspeak.nix)]   # teamspeak
     ++ [(import ./theme.nix)]       # theme
     ++ [(import ./vscode.nix)]      # code editor
     ++ [(import ./waybar)]          # status bar
