@@ -7,6 +7,8 @@
 
     persistence."/nix/persist/home/paul".directories = [
       ".android"
+      ".gradle"
+      ".cache/Google"
       ".config/Google"
     ];
   };
