@@ -6,6 +6,7 @@
     ++ [(import ./games)]           # games
     ++ [(import ./git.nix)]         # vcs
     ++ [(import ./hypr)]            # hypr*
+    ++ [(import ./inkscape)]        # svg drawings
     ++ [(import ./keepassxc.nix)]   # password manager
     ++ [(import ./kitty.nix)]       # terminal
     ++ [(import ./kicad.nix)]       # kicad eda
