@@ -32,7 +32,10 @@
       "editor.lineHeight" = 1.5;
       "workbench.colorTheme" = "Catppuccin Mocha";
       "workbench.iconTheme" = "catppuccin-mocha";
+      "workbench.startupEditor" = "none";
       "security.workspace.trust.enabled" = false;
+      "platformio-ide.autoOpenPlatformIOIniFile" = false;
+      "platformio-ide.disablePIOHomeStartup" = true;
     };
   };
 
