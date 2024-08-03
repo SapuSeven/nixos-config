@@ -1,16 +1,8 @@
 { inputs, pkgs, ... }: 
 {
   home.packages = with pkgs; [
-    xfce.thunar
+    qimgv           # image viewer
+
     python3
   ];
-
-  xdg = {
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "inode/directory" = "thunar.desktop";
-      };
-    };
-  };
 }
