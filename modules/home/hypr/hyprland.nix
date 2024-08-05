@@ -51,7 +51,7 @@
           scroll_factor = 0.5;
           natural_scroll = true;
         };
-        sensitivity = -0.5;
+        #sensitivity = -0.5; TODO move this to device-specific config
         numlock_by_default = true;
       };
 
@@ -156,6 +156,10 @@
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPrev, exec, playerctl previous"
 
+        # Screen brightness controls
+        ", XF86MonBrightnessUp, exec, brightnessctl s 10%+"
+        ", XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+
         # Touchpad controls
         #", XF86TouchpadToggle, exec, touchpad-toggle.sh"
 
@@ -194,10 +198,6 @@
         # Media controls
         #", XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +2%"
         #", XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -2%"
-
-        # Screen brightness controls
-        #", XF86MonBrightnessUp, exec, brightnessctl s +10%"
-        #", XF86MonBrightnessDown, exec, brightnessctl s 10%-"
       ];
     };
   };

@@ -3,7 +3,8 @@
   home.packages = with pkgs; [
     xfce.thunar
     python3
-  ];
+    brightnessctl
+  ]);
 
   xdg = {
     mimeApps = {
