@@ -1,6 +1,6 @@
-{ ... }:
+{ host, lib, ... }:
 {
-  imports = [
+  imports = lib.optionals (host=="desktop") [
     (import ./ftb-app.nix)
   ];
 }
