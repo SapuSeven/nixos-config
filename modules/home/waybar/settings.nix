@@ -210,7 +210,7 @@
         return-type = "json";
         exec = "echo '{ \"text\":\"󰐥\", \"tooltip\": \"logout menu\" }'";
         interval = "once";
-        on-click = "bash -c wlogout_uniqe";
+        on-click = "bash -c wlogout";
     };
 
     "group/system" = {

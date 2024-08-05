@@ -19,6 +19,7 @@
     ++ [(import ./vscode.nix)]      # code editor
     ++ [(import ./waybar)]          # status bar
     ++ [(import ./wofi.nix)]        # launcher
+    ++ [(import ./wlogout)]         # logout menu
     ++ [(import ./wluma.nix)]       # backlight brightness control
     ++ [(import ./zsh.nix)];        # shell
 }
