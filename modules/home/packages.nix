@@ -4,7 +4,7 @@
     xfce.thunar
     python3
     brightnessctl
-  ]);
+  ];
 
   xdg = {
     mimeApps = {
