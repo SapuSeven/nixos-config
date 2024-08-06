@@ -1,7 +1,7 @@
-{ ... }:
+{ host, lib, ... }:
 {
-  imports =
-       [(import ./ftb-app.nix)]
-    ++ [(import ./minecraft.nix)]
-  ;
+  imports = lib.optionals (host=="desktop") [
+    (import ./ftb-app.nix)
+    (import ./minecraft.nix)
+  ];
 }

@@ -1,10 +1,4 @@
 { pkgs, ... }:
-let
-  theme = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/catppuccin/waybar/main/themes/mocha.css";
-    sha256 = "05yx7v4j9k1s1xanlak7yngqfwvxvylwxc2fhjcfha68rjbhbqx6";
-  };
-in 
 {
   programs.waybar.style = ''
     * {

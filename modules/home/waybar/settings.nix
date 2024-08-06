@@ -120,7 +120,7 @@
         format-wifi = "{icon} {essid}"; # 
         format-ethernet = "󰀂 ";
         format-icons = [ "󰤟" "󰤢" "󰤥" "󰤨" ];
-        tooltip-format = "Interface: {ifname}\nIP: {ipaddr}\nGW: {gwaddr}\n\n<span color='#a6da95'> {bandwidthUpBits}</span>\t<span color='#ee99a0'> {bandwidthDownBits}</span>\t<span color='#c6a0f6'>󰹹 {bandwidthTotalBits}</span>";
+        tooltip-format = "Interface: {ifname}\nIP: {ipaddr}\nGW: {gwaddr}\n\n<span color='#a6da95'> {bandwidthDownBits}</span>\t<span color='#ee99a0'> {bandwidthUpBits}</span>\t<span color='#c6a0f6'>󰹹 {bandwidthTotalBits}</span>";
         tooltip-format-wifi = "SSID: {essid} ({signalStrength}%), {frequency} MHz\nInterface: {ifname}\nIP: {ipaddr}\nGW: {gwaddr}\n\n<span color='#a6da95'> {bandwidthUpBits}</span>\t<span color='#ee99a0'> {bandwidthDownBits}</span>\t<span color='#c6a0f6'>󰹹 {bandwidthTotalBits}</span>";
         tooltip-format-disconnected = "<span color='#ed8796'>disconnected</span>";
         format-linked = "{ifname} (No IP)";
@@ -210,7 +210,7 @@
         return-type = "json";
         exec = "echo '{ \"text\":\"󰐥\", \"tooltip\": \"logout menu\" }'";
         interval = "once";
-        on-click = "bash -c wlogout_uniqe";
+        on-click = "bash -c wlogout";
     };
 
     "group/system" = {
