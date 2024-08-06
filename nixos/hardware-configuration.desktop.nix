@@ -70,6 +70,9 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp8s0.useDHCP = lib.mkDefault true;
 
+  # Used to ensure ZFS pools aren't imported accidentally on a wrong machine
+  networking.hostId = "a42774ed";
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

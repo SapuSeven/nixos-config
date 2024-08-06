@@ -60,9 +60,9 @@
   boot.loader.systemd-boot.consoleMode = "max";
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs" "zfs" ];
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -165,6 +165,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    zfs
+
     # system tools
     wget
     file
@@ -228,6 +230,7 @@
       noto-fonts-emoji
       jetbrains-mono
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      corefonts # Microsoft Fonts
     ];
     fontconfig = {
       defaultFonts = {
