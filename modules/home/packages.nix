@@ -4,5 +4,8 @@
     qimgv           # image viewer
 
     python3
+    #ondsel
+    stable.freecad
+    mqtt-explorer
   ];
 }
