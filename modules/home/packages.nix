@@ -2,9 +2,9 @@
 {
   home.packages = with pkgs; [
     qimgv           # image viewer
-    xfce.thunar
-    brightnessctl
+    mpv             # video player
 
+    brightnessctl
     python3
     #ondsel
     stable.freecad
