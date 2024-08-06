@@ -27,6 +27,7 @@
         # General
         "intl.accept_languages" = "en-US,en";
         "browser.startup.page" = 3; # Resume previous session on startup
+        "browser.fullscreen.autohide" = false; # More comfortable fullscreen for tiling WMs
         "browser.aboutConfig.showWarning" = false; # I know what I'm doing
         "browser.download.useDownloadDir" = false; # Ask where to save stuff
         "browser.translations.neverTranslateLanguages" = "de"; # No need
