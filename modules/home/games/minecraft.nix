@@ -8,6 +8,19 @@ in
       prismlauncher
     ];
 
+    persistence."/nix/persist/home/paul" = {
+      directories = [
+        ".local/share/PrismLauncher/assets"
+        ".local/share/PrismLauncher/icons"
+        ".local/share/PrismLauncher/libraries"
+        ".local/share/PrismLauncher/meta"
+        ".local/share/PrismLauncher/mods"
+      ];
+      files = [
+        ".local/share/PrismLauncher/accounts.json"
+      ];
+    };
+
     file.".local/share/PrismLauncher/prismlauncher.cfg".text = ''
 [General]
 ConfigVersion=1.2
@@ -24,7 +37,7 @@ MenuBarInsteadOfToolBar=false
 
 ; Memory
 MinMemAlloc=512
-MaxMemAlloc=4096
+MaxMemAlloc=6142
 
 ; Paths
 JavaPath=${jdk}/bin/java
