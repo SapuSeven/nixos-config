@@ -5,6 +5,7 @@
     ++ [(import ./bluetooth.nix)]  # bluetooth
     ++ [(import ./cups)]           # printing
     ++ [(import ./dlna.nix)]       # media sharing
+    ++ [(import ./files.nix)]      # file management
     ++ [(import ./syncthing.nix)]  # file sync (global service)
     ++ [(import ./udev.nix)]       # udev rules
     ++ [(import ./wayland.nix)]    # de+wm

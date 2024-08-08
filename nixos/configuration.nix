@@ -90,9 +90,6 @@
     LC_TIME = "de_AT.UTF-8";
   };
 
-  # Enable gvfs for MTP mount
-  services.gvfs.enable = true;
-
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
