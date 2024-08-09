@@ -1,5 +1,10 @@
 { pkgs, host, ...}:
 {
+  home.packages = with pkgs; [
+    cliphist
+    wl-clipboard
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     catppuccin.enable = true;
@@ -101,6 +106,7 @@
 
       exec-once = [
         "hyprpaper"
+        "wl-paste --watch cliphist store"
       ];
 
       bind = [
@@ -170,6 +176,9 @@
         "Ctrl, Space, exec, makoctl dismiss"
         "Ctrl Shift, Space, exec, makoctl dismiss -a"
         "Ctrl, Less, exec, makoctl restore"
+
+        # Clipboard
+        "$mod, V, exec, cliphist list | wofi -S dmenu | cliphist decode | wl-copy"
       ]
       ++ (
         # workspaces
