@@ -2,6 +2,7 @@
 {
   imports =
        [(import ./android.nix)]     # android development
+    ++ [(import ./editor.nix)]      # text editor
     ++ [(import ./files.nix)]       # file management
     ++ [(import ./firefox.nix)]     # browser
     ++ [(import ./games)]           # games

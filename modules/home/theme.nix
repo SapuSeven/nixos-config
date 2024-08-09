@@ -35,16 +35,23 @@ in
     "Xft.dpi" = if host=="laptop" then 120 else 192;
   };
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      scaling-factor = "1.25";
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+        scaling-factor = "1.25";
+      };
     };
   };
 
-  gtk.catppuccin.enable = false;
-  gtk.catppuccin.icon.enable = true;
   gtk = {
     enable = true;
+
+    catppuccin = {
+      enable = false;
+      icon.enable = true;
+    };
 
     theme = {
       name = "adw-gtk3-dark";
