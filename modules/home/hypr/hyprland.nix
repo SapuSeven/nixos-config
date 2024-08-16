@@ -1,8 +1,9 @@
 { pkgs, host, ...}:
 {
   home.packages = with pkgs; [
-    cliphist
     wl-clipboard
+    cliphist
+    xclip
   ];
 
   wayland.windowManager.hyprland = {
@@ -56,7 +57,7 @@
           scroll_factor = 0.5;
           natural_scroll = true;
         };
-        #sensitivity = -0.5; TODO move this to device-specific config
+        sensitivity = -0.3; #TODO move this to device-specific config
         numlock_by_default = true;
       };
 
@@ -106,7 +107,9 @@
 
       exec-once = [
         "hyprpaper"
-        "wl-paste --watch cliphist store"
+        "wl-paste --type text --watch cliphist store"
+        "wl-paste --type image --watch cliphist store"
+        "wl-paste --type text --watch xclip -selection clipboard" # Workaround for pasting in some apps running via Wine
       ];
 
       bind = [
