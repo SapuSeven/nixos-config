@@ -10,6 +10,7 @@
       ".gradle"
       ".cache/Google"
       ".config/Google"
+      ".local/share/Google"
     ];
   };
 }
