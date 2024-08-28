@@ -15,6 +15,14 @@
     initExtra = ''
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
+
+      function print_info() {
+        if [[ -e .info ]]; then
+          echo -n '\n\033[0;36m 󰄾 '
+          cat .info
+        fi
+      }
+      add-zsh-hook chpwd print_info
     '';
 
     sessionVariables = {
@@ -44,7 +52,7 @@
       nix-switchu = "doas nixos-rebuild switch --upgrade --flake /etc/nixos#${host}";
       nix-test = "doas nixos-rebuild test --flake /etc/nixos#${host}";
       nix-flake-update = "nix flake update /etc/nixos#";
-      nix-clean = "doas nix-collect-garbage && doas nix-collect-garbage -d && doas rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage && nix-collect-garbage -d";
+      nix-clean = "doas nix-collect-garbage && doas nix-collect-garbage -d";
 
       # Git
       g    = "git";
