@@ -109,7 +109,6 @@
         "hyprpaper"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
-        "wl-paste --type text --watch xclip -selection clipboard" # Workaround for pasting in some apps running via Wine
       ];
 
       bind = [
