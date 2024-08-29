@@ -8,6 +8,6 @@
     python3
     #ondsel
     stable.freecad
-    mqtt-explorer
+    #mqtt-explorer
   ];
 }
