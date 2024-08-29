@@ -5,13 +5,7 @@ More inspiration:
 https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles
 -> cool volume change popup
 
-## Update packages
-
-```
-nix flake lock --update-input nixpkgs
-```
-
-## TODO
+## TODO - Most important
 - Modularize main config
 - Display dim and timeout (extra short when locked) including idle inhibitor
 - Brightness control waybar
