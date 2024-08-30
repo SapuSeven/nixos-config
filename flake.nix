@@ -75,9 +75,6 @@
         modules = [
           ./nixos/host-desktop.nix
 
-          # Add other modules here
-          impermanence.nixosModules.impermanence
-
           # TODO: How can this be put in a separate module?
           {
             # TODO: Don't hard-code system
@@ -88,6 +85,8 @@
             age.identityPaths = ["/home/paul/.ssh/id_ed25519"];
           }
 
+          # Add other modules here
+          impermanence.nixosModules.impermanence
           catppuccin.nixosModules.catppuccin
         ];
       };
@@ -99,9 +98,18 @@
         modules = [
           ./nixos/host-laptop.nix
 
+          # TODO: How can this be put in a separate module?
+          {
+            # TODO: Don't hard-code system
+            environment.systemPackages = [agenix.packages."x86_64-linux".default];
+          }
+          agenix.nixosModules.default
+          {
+            age.identityPaths = ["/home/paul/.ssh/id_ed25519"];
+          }
+
           # Add other modules here
           impermanence.nixosModules.impermanence
-          agenix.nixosModules.default
           catppuccin.nixosModules.catppuccin
         ];
       };
