@@ -1,9 +1,10 @@
-{...}: {
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+{config,...}: {
+  age.secrets.users-paul.file = ../../../secrets/users-paul.age;
+
   users.users.paul = {
     isNormalUser = true;
     description = "Paul";
-    initialHashedPassword = "***REMOVED***";
+    hashedPasswordFile = config.age.secrets.users-paul.path;
     extraGroups = ["networkmanager" "wheel"];
   };
 
