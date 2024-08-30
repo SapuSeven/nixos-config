@@ -5,15 +5,17 @@
 }: {
   imports =
     [(import ./adb.nix)] # android development
+    ++ [(import ./audio.nix)] # audio devices
     ++ [(import ./bluetooth.nix)] # bluetooth
     ++ [(import ./cups)] # printing
     ++ [(import ./dlna.nix)] # media sharing
+    ++ [(import ./dm.nix)] # display manager
     ++ [(import ./files.nix)] # file management
-    ++ [(import ./graphics.nix)] # graphics configuration
+    ++ [(import ./packages.nix)] # system backup
     ++ [(import ./restic.nix)] # system backup
     ++ [(import ./samba.nix)] # file shares
+    ++ [(import ./system)] # system settings
     ++ [(import ./syncthing.nix)] # file sync (global service)
-    ++ [(import ./udev.nix)] # udev rules
     ++ [(import ./wayland.nix)] # de+wm
     ++ [(import ./wireguard.nix)] # vpn client
     ++ lib.optionals (host == "desktop") [

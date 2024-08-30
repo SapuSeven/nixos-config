@@ -70,6 +70,13 @@
         numlock_by_default = true;
       };
 
+      device = [
+        {
+          name = "syna32a5:00-06cb:ce17-touchpad";
+          sensitivity = 0.2;
+        }
+      ];
+
       decoration = {
         rounding = 4;
 

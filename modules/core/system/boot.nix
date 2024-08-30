@@ -17,4 +17,6 @@
         else 16;
     };
   };
+
+  boot.supportedFilesystems = ["ntfs" "zfs"];
 }
