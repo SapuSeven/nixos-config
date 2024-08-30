@@ -15,6 +15,9 @@
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
 
+    # Secrets
+    agenix.url = "github:ryantm/agenix";
+
     # Styling
     #catppuccin.url = "github:catppuccin/nix/c4dac42a4fadc49bbd939fb3531673dbb3b0a949"; # Last commit before gtk deprecation
     catppuccin.url = "github:catppuccin/nix";
@@ -28,6 +31,7 @@
     self,
     nixpkgs,
     home-manager,
+    agenix,
     catppuccin,
     impermanence,
     ...
@@ -36,7 +40,6 @@
     # Supported systems for your flake packages, shell, etc.
     systems = [
       "aarch64-linux"
-      "i686-linux"
       "x86_64-linux"
       "aarch64-darwin"
       "x86_64-darwin"
@@ -71,6 +74,16 @@
 
           # Add other modules here
           impermanence.nixosModules.impermanence
+
+          # TODO: How can this be put in a separate module?
+          {
+            # TODO: Don't hard-code system
+            environment.systemPackages = [ agenix.packages."x86_64-linux".default ];
+          }
+          agenix.nixosModules.default {
+            age.identityPaths = [ "/home/paul/.ssh/id_ed25519" ];
+          }
+
           catppuccin.nixosModules.catppuccin
         ];
       };
@@ -81,6 +94,7 @@
 
           # Add other modules here
           impermanence.nixosModules.impermanence
+          agenix.nixosModules.default
           catppuccin.nixosModules.catppuccin
         ];
       };
