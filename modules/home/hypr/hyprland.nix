@@ -1,5 +1,8 @@
-{ pkgs, host, ...}:
 {
+  pkgs,
+  host,
+  ...
+}: {
   home.packages = with pkgs; [
     wl-clipboard
     cliphist
@@ -16,25 +19,31 @@
 
       "$mod" = "SUPER";
 
-      monitor = if host=="laptop" then [
-        "eDP-1,preferred,0x0,1.25"
-      ] else [
-        "DP-1,highres,1920x0,1.875"
-        "HDMI-A-1,preferred,0x0,1"
-        "DP-2,preferred,3968x0,1,transform,1"
-      ];
+      monitor =
+        if host == "laptop"
+        then [
+          "eDP-1,preferred,0x0,1.25"
+        ]
+        else [
+          "DP-1,highres,1920x0,1.875"
+          "HDMI-A-1,preferred,0x0,1"
+          "DP-2,preferred,3968x0,1,transform,1"
+        ];
 
       xwayland = {
         force_zero_scaling = true;
       };
 
-      workspace = if host=="laptop" then [
-        "1, monitor:eDP-1, default:true"
-      ] else [
-        "1, monitor:DP-1, default:true"
-        "2, monitor:HDMI-A-1"
-        "3, monitor:DP-2"
-      ];
+      workspace =
+        if host == "laptop"
+        then [
+          "1, monitor:eDP-1, default:true"
+        ]
+        else [
+          "1, monitor:DP-1, default:true"
+          "2, monitor:HDMI-A-1"
+          "3, monitor:DP-2"
+        ];
 
       general = {
         gaps_in = 2;
@@ -111,100 +120,101 @@
         "wl-paste --type image --watch cliphist store"
       ];
 
-      bind = [
-        # Program shortcuts
-        "$mod, return, exec, kitty"
-        "$mod, E, exec, thunar"
-        "$mod, F, exec, firefox"
-        "CTRL SHIFT, P, exec, firefox -private-window"
+      bind =
+        [
+          # Program shortcuts
+          "$mod, return, exec, kitty"
+          "$mod, E, exec, thunar"
+          "$mod, F, exec, firefox"
+          "CTRL SHIFT, P, exec, firefox -private-window"
 
-        # Close active window
-        "$mod, Q, killactive,"
+          # Close active window
+          "$mod, Q, killactive,"
 
-        # Open menu
-        "$mod, D, exec, wofi --show drun"
+          # Open menu
+          "$mod, D, exec, wofi --show drun"
 
-        # Resize windows
-        "$mod, space, togglefloating,"
-        "$mod SHIFT, F, fullscreen"
+          # Resize windows
+          "$mod, space, togglefloating,"
+          "$mod SHIFT, F, fullscreen"
 
-        # Move focus with mod + arrow keys
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
+          # Move focus with mod + arrow keys
+          "$mod, left, movefocus, l"
+          "$mod, right, movefocus, r"
+          "$mod, up, movefocus, u"
+          "$mod, down, movefocus, d"
 
-        # Move windows with mod + shift + arrow keys
-        "$mod SHIFT, left, movewindow, l"
-        "$mod SHIFT, right, movewindow, r"
-        "$mod SHIFT, up, movewindow, u"
-        "$mod SHIFT, down, movewindow, d"
+          # Move windows with mod + shift + arrow keys
+          "$mod SHIFT, left, movewindow, l"
+          "$mod SHIFT, right, movewindow, r"
+          "$mod SHIFT, up, movewindow, u"
+          "$mod SHIFT, down, movewindow, d"
 
-        # Scroll through existing workspaces with mod + scroll
-        "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
+          # Scroll through existing workspaces with mod + scroll
+          "$mod, mouse_down, workspace, e+1"
+          "$mod, mouse_up, workspace, e-1"
 
-        # Move workspaces
-        "$mod CTRL, left, movecurrentworkspacetomonitor, l"
-        "$mod CTRL, right, movecurrentworkspacetomonitor, r"
+          # Move workspaces
+          "$mod CTRL, left, movecurrentworkspacetomonitor, l"
+          "$mod CTRL, right, movecurrentworkspacetomonitor, r"
 
-        # Hypr-Utils
-        "$mod, Tab, exec, hyprlock"
+          # Hypr-Utils
+          "$mod, Tab, exec, hyprlock"
 
-        # Exit hyprland
-        "$mod SHIFT, E, exit"
+          # Exit hyprland
+          "$mod SHIFT, E, exit"
 
-        # Media controls
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioStop, exec, playerctl stop"
-        ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPrev, exec, playerctl previous"
+          # Media controls
+          ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+          ", XF86AudioPlay, exec, playerctl play-pause"
+          ", XF86AudioStop, exec, playerctl stop"
+          ", XF86AudioNext, exec, playerctl next"
+          ", XF86AudioPrev, exec, playerctl previous"
 
-        # Screen brightness controls
-        ", XF86MonBrightnessUp, exec, brightnessctl s 10%+"
-        ", XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+          # Screen brightness controls
+          ", XF86MonBrightnessUp, exec, brightnessctl s 10%+"
+          ", XF86MonBrightnessDown, exec, brightnessctl s 10%-"
 
-        # Touchpad controls
-        #", XF86TouchpadToggle, exec, touchpad-toggle.sh"
+          # Touchpad controls
+          #", XF86TouchpadToggle, exec, touchpad-toggle.sh"
 
-        # Power button
-        ", XF86PowerOff, exec, powermenu"
+          # Power button
+          ", XF86PowerOff, exec, powermenu"
 
-        # Mako
-        "Ctrl, Space, exec, makoctl dismiss"
-        "Ctrl Shift, Space, exec, makoctl dismiss -a"
-        "Ctrl, Less, exec, makoctl restore"
+          # Mako
+          "Ctrl, Space, exec, makoctl dismiss"
+          "Ctrl Shift, Space, exec, makoctl dismiss -a"
+          "Ctrl, Less, exec, makoctl restore"
 
-        # Clipboard
-        "$mod, V, exec, cliphist list | wofi -S dmenu | cliphist decode | wl-copy"
-      ]
-      ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-        builtins.concatLists (builtins.genList (
-            x: let
-              ws = let
-                c = (x + 1) / 10;
-              in
-                builtins.toString (x + 1 - (c * 10));
-            in [
-              "$mod, ${ws}, workspace, ${toString (x + 1)}"
-              "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-            ]
-          )
-          10)
-      );
+          # Clipboard
+          "$mod, V, exec, cliphist list | wofi -S dmenu | cliphist decode | wl-copy"
+        ]
+        ++ (
+          # workspaces
+          # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+          builtins.concatLists (builtins.genList (
+              x: let
+                ws = let
+                  c = (x + 1) / 10;
+                in
+                  builtins.toString (x + 1 - (c * 10));
+              in [
+                "$mod, ${ws}, workspace, ${toString (x + 1)}"
+                "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+              ]
+            )
+            10)
+        );
 
       bindm = [
         # Move/resize windows with mod + LMB/RMB and dragging
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
       ];
-      
+
       bindr = [
         # Media controls
         #", XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +2%"
@@ -213,4 +223,3 @@
     };
   };
 }
-

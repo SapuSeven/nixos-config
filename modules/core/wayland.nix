@@ -1,5 +1,8 @@
-{ inputs, pkgs, ... }:
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -28,7 +31,7 @@
     variant = "";
   };
 
-#  environment.systemPackages = with pkgs; [
-    # xwaylandvideobridge
-#  ];
+  #  environment.systemPackages = with pkgs; [
+  # xwaylandvideobridge
+  #  ];
 }

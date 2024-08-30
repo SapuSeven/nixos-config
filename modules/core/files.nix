@@ -1,5 +1,8 @@
-{ inputs, pkgs, ... }: 
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   programs.thunar.enable = true;
   programs.xfconf.enable = true;
 
@@ -14,10 +17,10 @@
   environment.systemPackages = with pkgs; [
     # Thumbnail support
     webp-pixbuf-loader # .webp
-    ffmpegthumbnailer  # video files
-    freetype           # font files
-    libgsf             # .odf
-    f3d                # .glTF, .stl, .step, .ply, .obj, .fbx, ...
+    ffmpegthumbnailer # video files
+    freetype # font files
+    libgsf # .odf
+    f3d # .glTF, .stl, .step, .ply, .obj, .fbx, ...
 
     # Other utilities
     xarchiver

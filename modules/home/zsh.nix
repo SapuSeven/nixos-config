@@ -1,5 +1,8 @@
-{ pkgs, host, ... }:
 {
+  pkgs,
+  host,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -55,25 +58,25 @@
       nix-clean = "doas nix-collect-garbage && doas nix-collect-garbage -d";
 
       # Git
-      g    = "git";
-      ga   = "git add";
-      gaa  = "git add --all";
-      gs   = "git status";
-      gd   = "git diff";
-      gb   = "git branch";
-      gm   = "git merge";
-      gl   = "git pull";
-      glo  = "git pull origin";
-      gp   = "git push";
-      gpt  = "git push --follow-tags";
-      gpo  = "git push origin";
-      gc   = "git commit";
-      gcm  = "git commit -m";
+      g = "git";
+      ga = "git add";
+      gaa = "git add --all";
+      gs = "git status";
+      gd = "git diff";
+      gb = "git branch";
+      gm = "git merge";
+      gl = "git pull";
+      glo = "git pull origin";
+      gp = "git push";
+      gpt = "git push --follow-tags";
+      gpo = "git push origin";
+      gc = "git commit";
+      gcm = "git commit -m";
       gcam = "git add --all && git commit -m";
       gtag = "git tag -ma";
-      gch  = "git checkout";
+      gch = "git checkout";
       gchb = "git checkout -b";
-      glg  = "git log";
+      glg = "git log";
 
       # python
       piv = "python -m venv .venv";
@@ -86,9 +89,9 @@
     enableZshIntegration = true;
   };
 
-  home.packages = (with pkgs; [
-    eza   # ls replacement
-  ]);
+  home.packages = with pkgs; [
+    eza # ls replacement
+  ];
 
   home.persistence."/nix/persist/home/paul".directories = [
     ".zsh"

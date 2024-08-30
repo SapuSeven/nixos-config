@@ -1,11 +1,14 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   home = {
     packages = with pkgs; [
       (symlinkJoin {
         name = "keepassxc";
-        paths = [ keepassxc ];
-        buildInputs = [ makeWrapper ];
+        paths = [keepassxc];
+        buildInputs = [makeWrapper];
         postBuild = ''
           wrapProgram $out/bin/keepassxc \
             --run "touch ~/.mozilla/native-messaging-hosts/org.keepassxc.keepassxc_browser.json" # This enables the connection to the KeePassXC Firefox extension
@@ -13,33 +16,33 @@
       })
     ];
 
-    persistence."/nix/persist/home/paul".files = [ ".cache/keepassxc/keepassxc.ini" ];
+    persistence."/nix/persist/home/paul".files = [".cache/keepassxc/keepassxc.ini"];
 
     file."${config.xdg.configHome}/keepassxc/keepassxc.ini".text = ''
-	[General]
-	ConfigVersion=2
+      [General]
+      ConfigVersion=2
 
-	[Browser]
-	CustomProxyLocation=
-	Enabled=true
+      [Browser]
+      CustomProxyLocation=
+      Enabled=true
 
-	[GUI]
-	ApplicationTheme=classic
-	MinimizeOnClose=true
-	ShowTrayIcon=true
-	TrayIconAppearance=monochrome-light
+      [GUI]
+      ApplicationTheme=classic
+      MinimizeOnClose=true
+      ShowTrayIcon=true
+      TrayIconAppearance=monochrome-light
 
-	[PasswordGenerator]
-	AdditionalChars=
-	ExcludedChars=
+      [PasswordGenerator]
+      AdditionalChars=
+      ExcludedChars=
 
-	[SSHAgent]
-	Enabled=true
+      [SSHAgent]
+      Enabled=true
 
-	[Security]
-	ClearClipboardTimeout=20
-        EnableCopyOnDoubleClick=true
-	LockDatabaseScreenLock=false
+      [Security]
+      ClearClipboardTimeout=20
+             EnableCopyOnDoubleClick=true
+      LockDatabaseScreenLock=false
     '';
   };
 }

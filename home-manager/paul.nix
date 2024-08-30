@@ -1,5 +1,11 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   impermanence = builtins.fetchTarball {
     url = "https://github.com/nix-community/impermanence/archive/master.tar.gz";
     sha256 = "03bk3lak512nzz1a3kvdjkagyjdslvnp53h043l272wnk056abpc";
@@ -63,7 +69,7 @@ in {
       ".config/Google" # Android Studio config
       ".local/state/wireplumber" # Audio setup
     ];
-    files = [ ".zsh_history" ];
+    files = [".zsh_history"];
   };
 
   # Nicely reload system units when changing configs

@@ -1,8 +1,11 @@
-{ inputs, pkgs, ... }: 
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
-    qimgv           # image viewer
-    mpv             # video player
+    qimgv # image viewer
+    mpv # video player
 
     brightnessctl
     python3

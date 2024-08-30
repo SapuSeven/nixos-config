@@ -3,35 +3,35 @@
   width,
   height,
   unit ? "mm",
-} : {
+}: {
   text = ''
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   width="${toString width}${unit}"
-   height="${toString height}${unit}"
-   viewBox="0 0 ${toString width} ${toString height}"
-   version="1.1"
-   id="svg1"
-   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview1"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="${unit}" />
-  <inkscape:templateinfo>
-    <inkscape:name>${type} ${toString width}x${toString height}${unit}</inkscape:name>
-    <inkscape:author>Paul</inkscape:author>
-    <inkscape:date>2024-07-30</inkscape:date>
-  </inkscape:templateinfo>
-</svg>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <svg
+       width="${toString width}${unit}"
+       height="${toString height}${unit}"
+       viewBox="0 0 ${toString width} ${toString height}"
+       version="1.1"
+       id="svg1"
+       inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+       xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+       xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+       xmlns="http://www.w3.org/2000/svg"
+       xmlns:svg="http://www.w3.org/2000/svg">
+      <sodipodi:namedview
+         id="namedview1"
+         pagecolor="#ffffff"
+         bordercolor="#000000"
+         borderopacity="0.25"
+         inkscape:showpageshadow="2"
+         inkscape:pageopacity="0.0"
+         inkscape:pagecheckerboard="0"
+         inkscape:deskcolor="#d1d1d1"
+         inkscape:document-units="${unit}" />
+      <inkscape:templateinfo>
+        <inkscape:name>${type} ${toString width}x${toString height}${unit}</inkscape:name>
+        <inkscape:author>Paul</inkscape:author>
+        <inkscape:date>2024-07-30</inkscape:date>
+      </inkscape:templateinfo>
+    </svg>
   '';
 }

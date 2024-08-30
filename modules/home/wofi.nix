@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   programs.wofi = {
     enable = true;
     settings = {
@@ -16,7 +15,7 @@
       width = 600;
       columns = 2;
     };
-    style =''
+    style = ''
       @define-color	rosewater  #f5e0dc;
       @define-color	rosewater-rgb  rgb(245, 224, 220);
       @define-color	flamingo  #f2cdcd;

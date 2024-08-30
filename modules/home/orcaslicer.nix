@@ -1,10 +1,9 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home = {
     packages = with pkgs; [
       orca-slicer
     ];
 
-    persistence."/nix/persist/home/paul".directories = [ ".config/OrcaSlicer" ];
+    persistence."/nix/persist/home/paul".directories = [".config/OrcaSlicer"];
   };
 }

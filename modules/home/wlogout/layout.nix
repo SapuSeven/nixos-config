@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   programs.wlogout.layout = [
     {
       label = "lock";

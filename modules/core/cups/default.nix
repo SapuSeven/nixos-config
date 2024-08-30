@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # Enable autodiscovery of network printers
   services.avahi = {
     enable = true;

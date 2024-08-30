@@ -1,10 +1,14 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   age.secrets.restic-persist.file = ../../secrets/restic-persist.age;
 
-#  environment.systemPackages = with pkgs; [
-#    restic
-#  ];
+  #  environment.systemPackages = with pkgs; [
+  #    restic
+  #  ];
 
   users.users.restic = {
     isNormalUser = true;

@@ -68,7 +68,10 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = { host="desktop"; inherit inputs outputs; };
+        specialArgs = {
+          host = "desktop";
+          inherit inputs outputs;
+        };
         modules = [
           ./nixos/host-desktop.nix
 
@@ -78,17 +81,21 @@
           # TODO: How can this be put in a separate module?
           {
             # TODO: Don't hard-code system
-            environment.systemPackages = [ agenix.packages."x86_64-linux".default ];
+            environment.systemPackages = [agenix.packages."x86_64-linux".default];
           }
-          agenix.nixosModules.default {
-            age.identityPaths = [ "/home/paul/.ssh/id_ed25519" ];
+          agenix.nixosModules.default
+          {
+            age.identityPaths = ["/home/paul/.ssh/id_ed25519"];
           }
 
           catppuccin.nixosModules.catppuccin
         ];
       };
       laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = { host="laptop"; inherit inputs outputs; };
+        specialArgs = {
+          host = "laptop";
+          inherit inputs outputs;
+        };
         modules = [
           ./nixos/host-laptop.nix
 

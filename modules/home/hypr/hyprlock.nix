@@ -1,16 +1,17 @@
 # Focus issue after unlocking:
 # https://github.com/hyprwm/hyprlock/issues/347
-
-{ config, pkgs, ... }:
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   inherit (config.catppuccin) sources;
   cfg = config.wayland.windowManager.hyprland.catppuccin;
   wallpaper = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/Gingeh/wallpapers/main/os/nix-black-4k.png";
     sha256 = "7b54417798130689c6dfd8189b10af26e7fea993a2bb1799f4b4e384f401f6f9";
   };
-in
-{
+in {
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -50,7 +51,7 @@ in
           shadow_passes = 2;
         }
 
-        # DATE 
+        # DATE
         {
           monitor = "";
           text = "cmd[update:43200000] echo \"$(date +\"%A, %d %B %Y\")\"";
@@ -64,21 +65,21 @@ in
         }
       ];
 
-#      image = [
-        # USER AVATAR
-#        {
-#          monitor = "";
-#          path = "$HOME/.face";
-#          size = 350;
-#          border_color = "$accent";
-#          rounding = -1;
+      #      image = [
+      # USER AVATAR
+      #        {
+      #          monitor = "";
+      #          path = "$HOME/.face";
+      #          size = 350;
+      #          border_color = "$accent";
+      #          rounding = -1;
 
-#          position = "0, 75";
-#          halign = "center";
-#          valign = "center";
-#          shadow_passes = 2;
-#        }
-#      ];
+      #          position = "0, 75";
+      #          halign = "center";
+      #          valign = "center";
+      #          shadow_passes = 2;
+      #        }
+      #      ];
 
       input-field = [
         # PASSWORD INPUT

@@ -1,5 +1,4 @@
-{ host, ... }:
-{
+{host, ...}: {
   boot.loader = {
     #boot.loader.systemd-boot.enable = true;
     #boot.loader.systemd-boot.consoleMode = "max";
@@ -12,7 +11,10 @@
       efiSupport = true;
       device = "nodev";
       useOSProber = true;
-      fontSize = if (host == "desktop") then 32 else 16;
+      fontSize =
+        if (host == "desktop")
+        then 32
+        else 16;
     };
   };
 }

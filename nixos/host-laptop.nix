@@ -1,10 +1,7 @@
-{ ... }:
-
-{
-  imports =
-    [
-      ./configuration.nix
-      ./hardware-configuration.laptop.nix
-      ../modules/core
-    ];
+{...}: {
+  imports = [
+    ./configuration.nix
+    ./hardware-configuration.laptop.nix
+    ../modules/core
+  ];
 }

@@ -1,5 +1,10 @@
-{ config, pkgs, lib, host, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  host,
+  ...
+}: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.overworld.home.catppuccin;
   gradiencePreset = pkgs.fetchurl {
@@ -12,7 +17,7 @@ let
       "buildPhase"
       "installPhase"
     ];
-    nativeBuildInputs = [ pkgs.gradience ];
+    nativeBuildInputs = [pkgs.gradience];
     buildPhase = ''
       shopt -s nullglob
       export HOME=$TMPDIR
@@ -25,14 +30,16 @@ let
       cp -r .config/gtk-3.0 $out/
     '';
   };
-in
-{
+in {
   catppuccin.enable = true;
 
   xresources.properties = {
     "Xft.antialias" = 1;
     "Xft.autohint" = 0;
-    "Xft.dpi" = if host=="laptop" then 120 else 192;
+    "Xft.dpi" =
+      if host == "laptop"
+      then 120
+      else 192;
   };
 
   dconf = {

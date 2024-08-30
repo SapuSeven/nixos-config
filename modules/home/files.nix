@@ -1,5 +1,8 @@
-{ inputs, pkgs, ... }: 
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   home.persistence."/nix/persist/home/paul".files = [
     ".local/share/recently-used.xbel"
   ];

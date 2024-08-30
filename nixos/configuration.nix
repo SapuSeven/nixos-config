@@ -1,14 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ inputs, outputs, lib, config, pkgs, ... }:
-
 {
-  imports =
-    [
-      ./home-manager.nix
-    ];
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./home-manager.nix
+  ];
 
   nixpkgs = {
     # You can add overlays here
@@ -71,7 +74,7 @@
     };
   };
 
-  boot.supportedFilesystems = [ "ntfs" "zfs" ];
+  boot.supportedFilesystems = ["ntfs" "zfs"];
 
   networking.hostName = "nixos";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -125,9 +128,9 @@
     isNormalUser = true;
     description = "Paul";
     initialHashedPassword = "***REMOVED***";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -136,11 +139,13 @@
   # Security setup
   security.doas.enable = true;
   #security.sudo.enable = false;
-  security.doas.extraRules = [{
-    groups = ["wheel"];
-    keepEnv = true; 
-    noPass = true;
-  }];
+  security.doas.extraRules = [
+    {
+      groups = ["wheel"];
+      keepEnv = true;
+      noPass = true;
+    }
+  ];
   security.polkit = {
     enable = true;
     extraConfig = ''
@@ -153,7 +158,7 @@
       });
     '';
   };
-  security.pki.certificateFiles = [ ../certs/LAN+Root+CA.crt ];
+  security.pki.certificateFiles = [../certs/LAN+Root+CA.crt];
 
   # Enable display manager.
   services.displayManager.sddm = {
@@ -224,7 +229,12 @@
       "/var/lib/systemd/backlight" # Persistent backlight brightness
       "/etc/nixos"
       "/etc/NetworkManager/system-connections"
-      { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+      {
+        directory = "/var/lib/colord";
+        user = "colord";
+        group = "colord";
+        mode = "u=rwx,g=rx,o=";
+      }
     ];
     files = [
       "/etc/machine-id"
@@ -237,14 +247,14 @@
       noto-fonts
       noto-fonts-emoji
       jetbrains-mono
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      (nerdfonts.override {fonts = ["JetBrainsMono"];})
       corefonts # Microsoft Fonts
     ];
     fontconfig = {
       defaultFonts = {
-        monospace = [ "JetBrains Mono" ];
-        sansSerif = [ "Noto Sans" ];
-        serif     = [ "Noto Serif" ];
+        monospace = ["JetBrains Mono"];
+        sansSerif = ["Noto Sans"];
+        serif = ["Noto Serif"];
       };
     };
   };

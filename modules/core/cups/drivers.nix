@@ -1,4 +1,7 @@
-{ stdenv, pkgs }:
+{
+  stdenv,
+  pkgs,
+}:
 stdenv.mkDerivation rec {
   name = "cups-drivers-${version}";
   version = "1.0";

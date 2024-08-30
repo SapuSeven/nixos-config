@@ -1,4 +1,8 @@
-{ stdenv, lib, autoPatchelfHook, cups
+{
+  stdenv,
+  lib,
+  autoPatchelfHook,
+  cups,
 }:
 stdenv.mkDerivation rec {
   name = "cups-filters-${version}";
