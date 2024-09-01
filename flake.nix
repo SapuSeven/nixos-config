@@ -75,13 +75,7 @@
         modules = [
           ./nixos/host-desktop.nix
 
-          # TODO: How can this be put in a separate module?
-          {
-            # TODO: Don't hard-code system
-            environment.systemPackages = [agenix.packages."x86_64-linux".default];
-          }
-
-          # Add other modules here
+          # Other flake modules
           agenix.nixosModules.default
           impermanence.nixosModules.impermanence
           catppuccin.nixosModules.catppuccin
@@ -95,13 +89,7 @@
         modules = [
           ./nixos/host-laptop.nix
 
-          # TODO: How can this be put in a separate module?
-          {
-            # TODO: Don't hard-code system
-            environment.systemPackages = [agenix.packages."x86_64-linux".default];
-          }
-
-          # Add other modules here
+          # Other flake modules
           agenix.nixosModules.default
           impermanence.nixosModules.impermanence
           catppuccin.nixosModules.catppuccin

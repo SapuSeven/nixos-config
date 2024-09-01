@@ -5,6 +5,7 @@
 }: {
   imports =
     [(import ./adb.nix)] # android development
+    ++ [(import ./agenix.nix)] # secrets management
     ++ [(import ./audio.nix)] # audio devices
     ++ [(import ./bluetooth.nix)] # bluetooth
     ++ [(import ./cups)] # printing

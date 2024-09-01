@@ -1,4 +1,4 @@
-{config,...}: {
+{config, ...}: {
   age.secrets.users-paul.file = ../../../secrets/users-paul.age;
 
   users.users.paul = {
