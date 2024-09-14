@@ -124,6 +124,7 @@
       tooltip-format-disconnected = "<span color='#ed8796'>disconnected</span>";
       format-linked = "{ifname} (No IP)";
       format-disconnected = "󰤭 "; # 󰖪
+      on-click = "kitty nmtui";
     };
 
     bluetooth = {
