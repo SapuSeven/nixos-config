@@ -75,7 +75,6 @@
       "/var/lib/systemd/coredump"
       "/var/lib/systemd/backlight" # Persistent backlight brightness
       "/etc/nixos"
-      "/etc/NetworkManager/system-connections"
       {
         directory = "/var/lib/colord";
         user = "colord";
