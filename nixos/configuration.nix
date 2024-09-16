@@ -9,10 +9,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./home-manager.nix
-  ];
-
   nixpkgs = {
     # You can add overlays here
     overlays = [

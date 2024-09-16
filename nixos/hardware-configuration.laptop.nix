@@ -13,9 +13,10 @@
   ];
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod" "sdhci_pci"];
-  boot.initrd.kernelModules = [];
+  #  boot.initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_drm"];
   boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+  #  boot.kernelParams = ["module_blacklist=amdgpu" "ibt=off" "nvidia-drm.fbdev=1"];
+  #  boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
 
   fileSystems."/" = {
     device = "none";

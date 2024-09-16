@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  # Hardware acceleration
+  # Hardware acceleration / OpenGL
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
