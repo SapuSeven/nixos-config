@@ -16,9 +16,5 @@
     };
 
     supportedFilesystems = ["ntfs" "zfs"];
-
-    kernel.sysctl = {
-      "fs.file-max" = 524288;
-    };
   };
 }
