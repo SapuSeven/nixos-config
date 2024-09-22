@@ -12,7 +12,7 @@ in {
     ".local/share/Steam"
   ];
 
-  xdg.desktopEntries = lib.optionals nvidiaOffloadEnabled {
+  xdg.desktopEntries = lib.mkIf nvidiaOffloadEnabled {
     steam = {
       name = "Steam";
       icon = "steam";
