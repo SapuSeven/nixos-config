@@ -5,6 +5,46 @@ More inspiration:
 https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles
 -> cool volume change popup
 
+## Managing Secrets
+Secrets are defined as encrypted files in `./secrets`.
+Every secret has one or more public keys added to it in the configuration file.
+To decrypt the secret, one of the corresponding private keys must be used.
+
+The keypairs are split into 2 groups: user keys and system keys.
+- The user key is mainly used for managing secrets when writing the configuration.
+  A user is associated to a single person and can be shared across multiple systems.
+  Every instance of the same user should also have the same keypair.
+- System keys are unique per system and are used to decrypt secrets for the running system.
+
+### Adding a new secret
+Configure the allowed public keys for the new secret in `secrets/secrets.nix`:
+```
+"mysecret.age".publicKeys = users ++ systems;
+```
+
+Then edit the secret using the following command:
+```sh
+cd secrets
+agenix -e mysecret.age
+```
+
+### Using secrets in .nix config
+````nix
+{
+  age.secrets.mysecret.file = ../../secrets/mysecret.age;
+
+  # Use .path to access the secret as a file
+  secretfile = config.age.secrets.mysecret.path;
+}
+```
+
+### Rekeying secrets
+If any of the public keys change, you need to rekey the secrets:
+```sh
+cd secrets
+agenix -r
+```
+
 ## TODO - Most important
 - Modularize main config
 - Display dim and timeout (extra short when locked) including idle inhibitor

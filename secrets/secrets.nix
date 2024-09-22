@@ -5,7 +5,10 @@ let
   laptop = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGaCfMS3v7tDxKg11ZRZHhxh5sujnUtleeuPJH1F+PpL";
   systems = [desktop laptop];
 in {
+  # Services
   "samba.age".publicKeys = users ++ systems;
   "restic-persist.age".publicKeys = users ++ systems;
+
+  # Users
   "users-paul.age".publicKeys = users ++ systems;
 }

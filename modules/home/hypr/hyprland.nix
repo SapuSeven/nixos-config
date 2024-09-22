@@ -22,7 +22,7 @@
       monitor =
         if host == "laptop"
         then [
-          "eDP-1,preferred,0x0,1.25"
+          "eDP-1,preferred,0x0,1.25,mirror,HDMI-A-1"
         ]
         else [
           "DP-1,highres,1920x0,1.875"
@@ -128,6 +128,7 @@
         "hyprpaper"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
+        "avizo-service"
       ];
 
       bind =

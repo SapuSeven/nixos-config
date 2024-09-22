@@ -2,6 +2,6 @@
   imports = [
     ./configuration.nix
     ./hardware-configuration.laptop.nix
-    ../modules/core
+    #../modules/core
   ];
 }
