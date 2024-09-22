@@ -4,7 +4,10 @@
   config,
   ...
 }: {
-  age.secrets.restic-persist.file = ../../secrets/restic-persist.age;
+  age.secrets.restic-persist = {
+    file = ../../secrets/restic-persist.age;
+    owner = "restic";
+  };
 
   #  environment.systemPackages = with pkgs; [
   #    restic
@@ -18,7 +21,7 @@
     source = "${pkgs.restic.out}/bin/restic";
     owner = "restic";
     group = "users";
-    permissions = "u=rwx,g=,o=";
+    permissions = "u=rwx,g=rwx,o=";
     capabilities = "cap_dac_read_search=+ep";
   };
 
