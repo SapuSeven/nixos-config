@@ -66,7 +66,6 @@
           scroll_factor = 0.5;
           natural_scroll = true;
         };
-        sensitivity = -0.3; #TODO move this to device-specific config
         numlock_by_default = true;
       };
 
@@ -74,6 +73,10 @@
         {
           name = "syna32a5:00-06cb:ce17-touchpad";
           sensitivity = 0.2;
+        }
+        {
+          name = "razer-razer-viper-v3-pro";
+          sensitivity = -0.5;
         }
       ];
 

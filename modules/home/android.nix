@@ -10,7 +10,7 @@
 
     persistence."/nix/persist/home/paul".directories = [
       ".android"
-      ".gradle"
+      #".gradle"
       ".cache/Google"
       ".config/Google"
       ".local/share/Google"

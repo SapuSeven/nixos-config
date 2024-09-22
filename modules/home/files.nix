@@ -12,6 +12,8 @@
       enable = true;
       defaultApplications = {
         "inode/directory" = "thunar.desktop";
+        "text/plain" = "org.gnome.TextEditor.desktop";
+        "application/zip" = "xarchiver.desktop";
       };
     };
   };
