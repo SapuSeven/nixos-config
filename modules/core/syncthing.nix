@@ -9,12 +9,12 @@
     user = "paul";
     dataDir = "/home/paul/Files";
     configDir = "/home/paul/.config/syncthing";
-    #    settings = {
-    #      defaults = {
-    #        folder = {
-    #          path = "~/Files";
-    #        };
-    #      };
+    #settings = {
+    #  defaults = {
+    #    folder = {
+    #       path = "~/Sync";
     #    };
+    #  };
+    #};
   };
 }

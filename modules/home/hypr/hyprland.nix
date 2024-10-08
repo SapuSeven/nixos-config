@@ -193,7 +193,7 @@
           #", XF86TouchpadToggle, exec, touchpad-toggle.sh"
 
           # Power button
-          ", XF86PowerOff, exec, powermenu"
+          ", XF86PowerOff, exec, wlogout"
 
           # Mako
           "Ctrl, Space, exec, makoctl dismiss"
