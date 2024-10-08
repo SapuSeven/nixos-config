@@ -12,5 +12,6 @@
     #ondsel
     stable.freecad
     #mqtt-explorer
+    stm32cubemx
   ];
 }

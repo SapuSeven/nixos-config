@@ -13,7 +13,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Impermanence
-    impermanence.url = "github:nix-community/impermanence/create-needed-for-boot";
+    impermanence.url = "github:nix-community/impermanence";
 
     # Secrets
     agenix.url = "github:ryantm/agenix";
