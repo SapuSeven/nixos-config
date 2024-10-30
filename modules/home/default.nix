@@ -1,7 +1,7 @@
 {...}: {
   imports =
-    [(import ./android.nix)] # android development
-    ++ [(import ./avizo.nix)] # osd
+    [(import ./avizo.nix)] # osd
+    ++ [(import ./development)] # development environments
     ++ [(import ./editor.nix)] # text editor
     ++ [(import ./files.nix)] # file management
     ++ [(import ./firefox.nix)] # browser
