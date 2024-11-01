@@ -1,4 +1,9 @@
-{...}: {
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    doas
+    doas-sudo-shim
+  ];
+
   security = {
     doas = {
       enable = true;
@@ -10,7 +15,7 @@
         }
       ];
     };
-    #sudo.enable = false;
+    sudo.enable = false;
 
     polkit = {
       enable = true;
