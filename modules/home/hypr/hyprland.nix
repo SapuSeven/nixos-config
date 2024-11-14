@@ -71,11 +71,18 @@
 
       device = [
         {
+          # laptop touchpad
           name = "syna32a5:00-06cb:ce17-touchpad";
           sensitivity = 0.2;
         }
         {
-          name = "razer-razer-viper-v3-pro";
+          # wired mode
+          name = "razer-viper-v3-pro";
+          sensitivity = -0.5;
+        }
+        {
+          # wireless mode
+          name = "razer-razer-viper-v3-pro-1";
           sensitivity = -0.5;
         }
       ];
