@@ -22,5 +22,7 @@
     ++ [(import ./wireguard.nix)] # vpn client
     ++ [(import ./steam.nix)]
     ++ lib.optionals (host == "desktop") [
+    ]
+    ++ lib.optionals (host == "laptop") [
     ];
 }

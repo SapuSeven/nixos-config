@@ -52,9 +52,8 @@
       ns = "nix-shell --run zsh";
       nix-shell = "nix-shell --run zsh";
       nix-switch = "nixos-rebuild switch --flake /etc/nixos#${host} --use-remote-sudo";
-      nix-switchu = "nixos-rebuild switch --upgrade --flake /etc/nixos#${host} --use-remote-sudo";
       nix-test = "nixos-rebuild test --flake /etc/nixos#${host} --use-remote-sudo";
-      nix-flake-update = "nix flake update /etc/nixos#";
+      nix-flake-update = "nix flake update --flake /etc/nixos";
       nix-clean = "doas nix-collect-garbage && doas nix-collect-garbage -d";
 
       # Git
