@@ -82,7 +82,7 @@
         }
         {
           # wireless mode
-          name = "razer-razer-viper-v3-pro-1";
+          name = "razer-razer-viper-v3-pro";
           sensitivity = -0.5;
         }
       ];
@@ -96,11 +96,13 @@
           passes = 1;
         };
 
-        drop_shadow = "yes";
-        shadow_range = 8;
-        shadow_render_power = 3;
-        "col.shadow" = "0x88$accentAlpha";
-        "col.shadow_inactive" = "0x00000000";
+        shadow = {
+          enabled = true;
+          range = 8;
+          render_power = 3;
+          color = "0x88$accentAlpha";
+          color_inactive = "0x00000000";
+        };
       };
 
       dwindle = {

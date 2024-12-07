@@ -31,7 +31,11 @@
     '';
   };
 in {
-  catppuccin.enable = true;
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+  };
 
   xresources.properties = {
     "Xft.antialias" = 1;
@@ -66,7 +70,7 @@ in {
     };
 
     cursorTheme = {
-      package = pkgs.bibata-cursors;
+      package = pkgs.stable.bibata-cursors;
       name = "Bibata-Modern-Ice";
     };
 
@@ -94,7 +98,7 @@ in {
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
-    package = pkgs.bibata-cursors;
+    package = pkgs.stable.bibata-cursors;
     name = "Bibata-Modern-Ice";
     size = 24;
   };

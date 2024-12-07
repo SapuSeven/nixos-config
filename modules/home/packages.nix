@@ -9,8 +9,7 @@
 
     brightnessctl
     python3
-    #ondsel
-    stable.freecad
+    freecad-wayland
     #mqtt-explorer
     stm32cubemx
   ];
