@@ -84,6 +84,15 @@
     ];
   };
 
+  # TODO: Move to modular config
+  environment.persistence."/nix/persist".users.paul.directories = [
+    #".android"
+    ".gradle"
+    #".cache/Google"
+    #".config/Google"
+    #".local/share/Google"
+  ];
+
   # Styling
   catppuccin.enable = true;
 
