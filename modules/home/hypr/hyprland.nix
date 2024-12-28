@@ -76,14 +76,16 @@
           sensitivity = 0.2;
         }
         {
-          # wired mode
           name = "razer-viper-v3-pro";
-          sensitivity = -0.5;
+          sensitivity = -0.8;
         }
         {
-          # wireless mode
           name = "razer-razer-viper-v3-pro";
-          sensitivity = -0.5;
+          sensitivity = -0.8;
+        }
+        {
+          name = "razer-razer-viper-v3-pro-mouse";
+          sensitivity = -0.8;
         }
       ];
 
