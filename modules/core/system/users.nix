@@ -5,7 +5,7 @@
     isNormalUser = true;
     description = "Paul";
     hashedPasswordFile = config.age.secrets.users-paul.path;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "dialout"];
   };
 
   users.mutableUsers = false;

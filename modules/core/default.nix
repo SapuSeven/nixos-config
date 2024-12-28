@@ -12,7 +12,7 @@
     ++ [(import ./dlna.nix)] # media sharing
     ++ [(import ./dm.nix)] # display manager
     ++ [(import ./files.nix)] # file management
-    ++ [(import ./packages.nix)] # system backup
+    ++ [(import ./packages.nix)] # misc packages
     ++ [(import ./restic.nix)] # system backup
     ++ [(import ./samba.nix)] # file shares
     ++ [(import ./ssh.nix)] # ssh
