@@ -84,6 +84,10 @@
           sensitivity = -0.8;
         }
         {
+          name = "razer-razer-viper-v3-pro-1";
+          sensitivity = -0.8;
+        }
+        {
           name = "razer-razer-viper-v3-pro-mouse";
           sensitivity = -0.8;
         }
