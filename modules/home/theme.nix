@@ -35,6 +35,13 @@ in {
     enable = true;
     flavor = "mocha";
     accent = "mauve";
+
+    hyprland.enable = true;
+
+    gtk = {
+      enable = false;
+      icon.enable = true;
+    };
   };
 
   xresources.properties = {
@@ -58,11 +65,6 @@ in {
 
   gtk = {
     enable = true;
-
-    catppuccin = {
-      enable = false;
-      icon.enable = true;
-    };
 
     theme = {
       name = "adw-gtk3-dark";

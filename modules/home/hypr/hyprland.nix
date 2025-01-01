@@ -11,7 +11,6 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    catppuccin.enable = true;
     settings = {
       debug = {
         disable_logs = false;
@@ -25,9 +24,9 @@
           "eDP-1,preferred,0x0,1.25,mirror,HDMI-A-1"
         ]
         else [
-          "DP-1,highres,1920x0,1.875"
-          "HDMI-A-1,preferred,0x0,1"
-          "DP-2,preferred,3968x0,1,transform,1"
+          "desc:Dell Inc. DELL S2721QS DVG9M43,highres,1920x0,1.875"
+#          "desc:TODO HDMI-A-1,preferred,0x0,1"
+#          "desc:TODO DP-2,preferred,3968x0,1,transform,1"
         ];
 
       xwayland = {
@@ -77,19 +76,19 @@
         }
         {
           name = "razer-viper-v3-pro";
-          sensitivity = -0.8;
+          sensitivity = -1;
         }
         {
           name = "razer-razer-viper-v3-pro";
-          sensitivity = -0.8;
+          sensitivity = -1;
         }
         {
           name = "razer-razer-viper-v3-pro-1";
-          sensitivity = -0.8;
+          sensitivity = -1;
         }
         {
           name = "razer-razer-viper-v3-pro-mouse";
-          sensitivity = -0.8;
+          sensitivity = -1;
         }
       ];
 
