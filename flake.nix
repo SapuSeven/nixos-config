@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-    # See the 'stable-packages' overlay at 'overlays/default.nix'.
+    # See the '(un)stable-packages' overlay at 'overlays/default.nix'.
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
 
