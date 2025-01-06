@@ -1,11 +1,21 @@
-{lib, host, ...}: {
+{
+  lib,
+  host,
+  ...
+}: {
   networking.wg-quick.interfaces = {
     #if builtins.pathExists "/root/.wg" then {
     wg0 = {
       autostart = false;
 
       dns = ["192.168.2.1"];
-      address = ["192.168.2.${if host == "laptop" then "104" else "105"}/24"];
+      address = [
+        "192.168.2.${
+          if host == "laptop"
+          then "104"
+          else "105"
+        }/24"
+      ];
 
       privateKeyFile = "/root/.wg/lan.privatekey";
 

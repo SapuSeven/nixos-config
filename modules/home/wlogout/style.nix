@@ -1,4 +1,8 @@
-{lib, pkgs, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   src = builtins.fetchGit {
     url = "https://github.com/4w4z4rd/wlogout.git"; # This fork contains improved icons
     rev = "91b009f3351d189616cbd7f61b0a7cbf9fb78e1f";

@@ -12,7 +12,7 @@ in {
     enable = true;
     package = pkgs.hyprpaper;
     settings = {
-#      splash = true; # See https://github.com/hyprwm/hyprpaper/issues/225
+      #      splash = true; # See https://github.com/hyprwm/hyprpaper/issues/225
       splash_offset = 4.0;
       preload = "${wallpaper}";
       wallpaper = ",${wallpaper}";
