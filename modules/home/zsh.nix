@@ -43,6 +43,7 @@
       #icat = "kitten icat";
       #dsize = "du -hs";
       #findw = "grep -rl";
+      grep = "grep --color";
 
       l = "eza -a";
       ll = "eza -la --icons --group";

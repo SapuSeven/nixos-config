@@ -12,6 +12,7 @@
     ++ [(import ./dlna.nix)] # media sharing
     ++ [(import ./dm.nix)] # display manager
     ++ [(import ./files.nix)] # file management
+    ++ [(import ./httptoolkit.nix)] # http sniffer
     ++ [(import ./packages.nix)] # misc packages
     ++ [(import ./restic.nix)] # system backup
     ++ [(import ./samba.nix)] # file shares

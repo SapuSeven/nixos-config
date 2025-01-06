@@ -7,6 +7,7 @@
     ++ [(import ./firefox.nix)] # browser
     ++ [(import ./games)] # games
     ++ [(import ./git.nix)] # vcs
+    ++ [(import ./httptoolkit.nix)] # http sniffer
     ++ [(import ./hypr)] # hypr*
     ++ [(import ./inkscape)] # svg drawings
     ++ [(import ./keepassxc.nix)] # password manager
