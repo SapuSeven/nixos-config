@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   wallpaper = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/Gingeh/wallpapers/main/os/nix-black-4k.png";
+    url = "https://raw.githubusercontent.com/zhichaoh/catppuccin/wallpapers/main/os/nix-black-4k.png";
     sha256 = "7b54417798130689c6dfd8189b10af26e7fea993a2bb1799f4b4e384f401f6f9";
   };
   #wallpaper = pkgs.fetchurl {
@@ -12,7 +12,7 @@ in {
     enable = true;
     package = pkgs.hyprpaper;
     settings = {
-      splash = true;
+#      splash = true; # See https://github.com/hyprwm/hyprpaper/issues/225
       splash_offset = 4.0;
       preload = "${wallpaper}";
       wallpaper = ",${wallpaper}";
