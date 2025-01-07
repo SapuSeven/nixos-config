@@ -7,6 +7,7 @@
     qimgv # image viewer
     mpv # video player
 
+    killall
     brightnessctl
     python3
     freecad-wayland
