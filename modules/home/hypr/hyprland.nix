@@ -74,22 +74,12 @@
           name = "syna32a5:00-06cb:ce17-touchpad";
           sensitivity = 0.2;
         }
-        {
-          name = "razer-viper-v3-pro";
-          sensitivity = -1;
-        }
-        {
-          name = "razer-razer-viper-v3-pro";
-          sensitivity = -1;
-        }
-        {
-          name = "razer-razer-viper-v3-pro-1";
-          sensitivity = -1;
-        }
-        {
-          name = "razer-razer-viper-v3-pro-mouse";
-          sensitivity = -1;
-        }
+      ] ++ map (dev: { name = dev; sensitivity = -1; }) [
+        "razer-viper-v3-pro"
+        "razer-viper-v3-pro-1"
+        "razer-razer-viper-v3-pro"
+        "razer-razer-viper-v3-pro-1"
+        "razer-razer-viper-v3-pro-mouse"
       ];
 
       decoration = {
