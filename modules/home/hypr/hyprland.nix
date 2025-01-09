@@ -61,11 +61,14 @@
       };
 
       input = {
+        kb_layout = "us";
+        kb_options = "compose:ralt";
+        numlock_by_default = true;
+
         touchpad = {
           scroll_factor = 0.5;
           natural_scroll = true;
         };
-        numlock_by_default = true;
       };
 
       device = [
