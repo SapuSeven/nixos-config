@@ -39,9 +39,9 @@
           "1, monitor:eDP-1, default:true"
         ]
         else [
-          "1, monitor:desc:Dell Inc. DELL S2721QS DVG9M43, default:true"
-          "2, monitor:desc:Ancor Communications Inc VG248 H4LMQS170852"
-          "3, monitor:desc:Hewlett Packard LA2205 3CQ9461SLN"
+          "1, monitor:DP-1, default:true"
+          "2, monitor:DP-2"
+          "3, monitor:HDMI-A-1"
         ];
 
       general = {
