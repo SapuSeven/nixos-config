@@ -4,7 +4,6 @@
   ...
 }: let
   android-studio = pkgs.android-studio.override {
-    forceWayland = true;
     tiling_wm = true;
   };
 in {
