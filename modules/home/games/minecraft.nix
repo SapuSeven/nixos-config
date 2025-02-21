@@ -1,5 +1,8 @@
-{pkgs, ...}: let
+{pkgs, host, ...}: let
   jdk = pkgs.openjdk17;
+  dataDir = if host == "desktop"
+        then "/run/media/paul/Thicc/Games/Minecraft/MultiMC"
+        else "/home/paul/Files/Games/Minecraft";
 in {
   home = {
     packages = with pkgs; [
@@ -39,7 +42,7 @@ in {
 
       ; Paths
       JavaPath=${jdk}/bin/java
-      InstanceDir=/run/media/paul/Thicc/Games/Minecraft/MultiMC/instances
+      InstanceDir=${dataDir}/instances
       CentralModsDir=mods
       IconsDir=icons
       DownloadsDir=/home/paul/Downloads
