@@ -13,5 +13,6 @@
     freecad-wayland
     #mqtt-explorer
     stm32cubemx
+    #freedownloadmanager
   ];
 }

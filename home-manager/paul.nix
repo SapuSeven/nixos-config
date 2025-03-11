@@ -8,7 +8,7 @@
 }: let
   impermanence = builtins.fetchTarball {
     url = "https://github.com/nix-community/impermanence/archive/master.tar.gz";
-    sha256 = "1k30ig9b5bx51f0y617yvcn61bgpahf8r0i55mnl3hy6nqjbfw07";
+    sha256 = "04l16szln2x0ajq2x799krb53ykvc6vm44x86ppy1jg9fr82161c";
   };
 in {
   # You can import other home-manager modules here

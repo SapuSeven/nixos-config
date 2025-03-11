@@ -31,5 +31,22 @@
     };
 
     pki.certificateFiles = [../../../certs/LAN+Root+CA.crt];
+
+    pam = {
+      loginLimits = [
+        {
+          domain = "*";
+          item = "nofile";
+          type = "-";
+          value = "32768";
+        }
+        {
+          domain = "*";
+          item = "memlock";
+          type = "-";
+          value = "131072";
+        }
+      ];
+    };
   };
 }

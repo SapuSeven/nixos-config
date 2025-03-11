@@ -9,4 +9,5 @@ pkgs: {
     requests = pkgs.python311Packages.requests;
     freecad = pkgs.stable.freecad;
   };
+  freedownloadmanager = pkgs.callPackage ./freedownloadmanager/fdm.nix {};
 }
