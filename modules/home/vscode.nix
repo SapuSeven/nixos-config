@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -15,8 +15,8 @@
           ms-vscode.cpptools
 
           # Color theme
-          catppuccin.catppuccin-vsc
-          catppuccin.catppuccin-vsc-icons
+          #catppuccin.catppuccin-vsc
+          #catppuccin.catppuccin-vsc-icons
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {

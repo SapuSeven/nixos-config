@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home = {
-    packages = with pkgs.stable; [
+    packages = with pkgs; [
       orca-slicer
     ];
 

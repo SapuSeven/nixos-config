@@ -14,6 +14,10 @@
           ./patches/catppuccin-gtk-dark-fix.diff
         ];
     });
+    
+    kicad = (prev.kicad.override {
+      stable = true;
+    });
 
     # https://github.com/NixOS/nixpkgs/issues/367926
     # Can be deleted after https://nixpk.gs/pr-tracker.html?pr=368470 is merged

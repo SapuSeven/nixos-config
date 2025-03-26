@@ -4,7 +4,7 @@
   ...
 }: {
   home = {
-    packages = with pkgs.stable; [
+    packages = with pkgs; [
       kicad
     ];
 

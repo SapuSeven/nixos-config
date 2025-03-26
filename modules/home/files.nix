@@ -4,7 +4,7 @@
   ...
 }: {
   home.persistence."/nix/persist/home/paul".files = [
-    ".local/share/recently-used.xbel"
+    #".local/share/recently-used.xbel"
   ];
 
   xdg = {
