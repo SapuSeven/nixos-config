@@ -5,6 +5,7 @@
     ++ [(import ./editor.nix)] # text editor
     ++ [(import ./files.nix)] # file management
     ++ [(import ./firefox.nix)] # browser
+    ++ [(import ./freecad.nix)] # 3d modeling
     ++ [(import ./games)] # games
     ++ [(import ./git.nix)] # vcs
     ++ [(import ./httptoolkit.nix)] # http sniffer

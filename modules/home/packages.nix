@@ -10,7 +10,6 @@
     killall
     brightnessctl
     python3
-    freecad-wayland
     #mqtt-explorer
     stm32cubemx
     #freedownloadmanager
