@@ -36,6 +36,7 @@
         "platformio-ide.disablePIOHomeStartup" = true;
         "git.confirmSync" = false;
       };
+    };
   };
 
   home.persistence."/nix/persist/home/paul".directories = [
