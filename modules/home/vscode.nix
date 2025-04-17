@@ -13,10 +13,6 @@
           ms-python.python
           # C/C++
           ms-vscode.cpptools
-
-          # Color theme
-          #catppuccin.catppuccin-vsc
-          #catppuccin.catppuccin-vsc-icons
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
@@ -38,8 +34,8 @@
         "security.workspace.trust.enabled" = false;
         "platformio-ide.autoOpenPlatformIOIniFile" = false;
         "platformio-ide.disablePIOHomeStartup" = true;
+        "git.confirmSync" = false;
       };
-    };
   };
 
   home.persistence."/nix/persist/home/paul".directories = [
