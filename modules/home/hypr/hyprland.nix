@@ -85,8 +85,12 @@
         }) [
           "razer-viper-v3-pro"
           "razer-viper-v3-pro-1"
+          "razer-viper-v3-pro-2"
+          "razer-viper-v3-pro-3"
           "razer-razer-viper-v3-pro"
           "razer-razer-viper-v3-pro-1"
+          "razer-razer-viper-v3-pro-2"
+          "razer-razer-viper-v3-pro-3"
           "razer-razer-viper-v3-pro-mouse"
         ];
 

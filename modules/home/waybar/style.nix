@@ -81,7 +81,7 @@
       margin: 0 5px;
     }
 
-    #temperature.critical {
+    *.critical {
       color: @red;
     }
 

@@ -1,4 +1,16 @@
-{...}: {
+{pkgs, ...}:
+let    
+  hidBattery = pkgs.writeShellScriptBin "hid-battery" ''
+    #!/usr/bin/env bash
+    if [[ "$1" == "viper-v3" ]]; then
+      threshold=15
+      out=$(razer-cli --battery print -d 'Razer Viper V3 Pro (Wired)')
+      [ -z "$out" ] && out=$(razer-cli --battery print -d 'Razer Viper V3 Pro (Wireless)')
+      charge=$(echo "$out" | grep -oP 'charge: \K\d+')
+      [[ $charge -le $threshold ]] && printf '{"text":"%d","class":"critical"}' "$charge"
+    fi
+  '';
+in {
   programs.waybar.settings.mainBar = {
     position = "bottom";
     layer = "top";
@@ -199,11 +211,20 @@
       start-activated = true;
     };
 
+    "custom/hid-battery-alert-mouse" = {
+      exec = "${hidBattery}/bin/hid-battery viper-v3";
+      return-type = "json";
+      interval = 60;
+      format = " 󰍽 {text}%";
+      tooltip-format = "Low mouse battery ({text}%)";
+      hide-empty-text = true;
+    };
+
     "custom/launcher" = {
       format = "";
       on-click = "pkill wofi || wofi --show drun";
       on-click-right = "pkill wofi || wallpaper-picker";
-      tooltip = "false";
+      tooltip = false;
     };
 
     "custom/power" = {
@@ -223,6 +244,7 @@
         "pulseaudio"
         "backlight"
         "battery"
+        "custom/hid-battery-alert-mouse"
       ];
     };
 

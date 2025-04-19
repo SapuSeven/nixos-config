@@ -22,6 +22,7 @@
     ++ [(import ./syncthing.nix)] # file sync
     ++ [(import ./teamspeak.nix)] # teamspeak
     ++ [(import ./theme.nix)] # theme
+    ++ [(import ./deluge.nix)] # torrent client
     ++ [(import ./vscode.nix)] # code editor
     ++ [(import ./waybar)] # status bar
     ++ [(import ./wofi.nix)] # launcher

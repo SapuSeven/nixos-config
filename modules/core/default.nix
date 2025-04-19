@@ -12,6 +12,7 @@
     ++ [(import ./dlna.nix)] # media sharing
     ++ [(import ./dm.nix)] # display manager
     ++ [(import ./files.nix)] # file management
+    ++ [(import ./hid.nix)] # hid compatibility
     ++ [(import ./httptoolkit.nix)] # http sniffer
     ++ [(import ./packages.nix)] # misc packages
     ++ [(import ./restic.nix)] # system backup
@@ -25,5 +26,6 @@
     ++ lib.optionals (host == "desktop") [
     ]
     ++ lib.optionals (host == "laptop") [
+      (import ./batsignal.nix) # battery level monitoring
     ];
 }
