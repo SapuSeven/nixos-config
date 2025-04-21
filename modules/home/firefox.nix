@@ -3,6 +3,11 @@
   programs.firefox = {
     enable = true;
     profiles.default = {
+      search = {
+        force = true;
+        default = "Kagi";
+      };
+
       settings = {
         # General
         "intl.accept_languages" = "en-US,en";
