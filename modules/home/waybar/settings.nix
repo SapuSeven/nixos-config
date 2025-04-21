@@ -6,6 +6,7 @@ let
       threshold=15
       out=$(razer-cli --battery print -d 'Razer Viper V3 Pro (Wired)')
       [ -z "$out" ] && out=$(razer-cli --battery print -d 'Razer Viper V3 Pro (Wireless)')
+      [ -z "$out" ] && exit 1
       charge=$(echo "$out" | grep -oP 'charge: \K\d+')
       [[ $charge -le $threshold ]] && printf '{"text":"%d","class":"critical"}' "$charge"
     fi
