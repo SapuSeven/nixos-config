@@ -26,10 +26,6 @@
     hyprpaper
     wofi
 
-    # notifications
-    mako
-    libnotify
-
     # audio
     playerctl
     pavucontrol

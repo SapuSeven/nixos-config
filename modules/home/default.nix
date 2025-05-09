@@ -15,6 +15,7 @@
     ++ [(import ./kitty.nix)] # terminal
     ++ [(import ./kicad.nix)] # kicad eda
     ++ [(import ./libreoffice.nix)] # office suite
+    ++ [(import ./mako.nix)] # notifications
     ++ [(import ./obsidian.nix)] # notes
     ++ [(import ./orcaslicer.nix)] # slicer
     ++ [(import ./packages.nix)] # other packages
