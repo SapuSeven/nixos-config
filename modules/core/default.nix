@@ -26,6 +26,5 @@
     ++ lib.optionals (host == "desktop") [
     ]
     ++ lib.optionals (host == "laptop") [
-      (import ./batsignal.nix) # battery level monitoring
     ];
 }

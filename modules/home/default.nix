@@ -1,4 +1,4 @@
-{...}: {
+{lib, host, ...}: {
   imports =
     [(import ./avizo.nix)] # osd
     ++ [(import ./development)] # development environments
@@ -28,5 +28,8 @@
     ++ [(import ./wofi.nix)] # launcher
     ++ [(import ./wlogout)] # logout menu
     ++ [(import ./wluma.nix)] # backlight brightness control
-    ++ [(import ./zsh.nix)]; # shell
+    ++ [(import ./zsh.nix)] # shell
+    ++ lib.optionals (host == "laptop") [
+      (import ./batsignal.nix) # battery level monitoring
+    ];
 }
