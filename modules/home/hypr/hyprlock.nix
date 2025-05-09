@@ -5,24 +5,16 @@
   pkgs,
   ...
 }: let
-  inherit (config.catppuccin) sources;
-  cfg = config.wayland.windowManager.hyprland.catppuccin;
   wallpaper = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/Gingeh/wallpapers/main/os/nix-black-4k.png";
     sha256 = "7b54417798130689c6dfd8189b10af26e7fea993a2bb1799f4b4e384f401f6f9";
   };
 in {
+  catppuccin.hyprlock.useDefaultConfig = false; # Theme will still be included - this just removes the default widgets
+
   programs.hyprlock = {
     enable = true;
     settings = {
-      source = [
-        "${sources.hyprland}/themes/${cfg.flavor}.conf"
-        (builtins.toFile "hyprland-${cfg.accent}-accent.conf" ''
-          $accent=''$${cfg.accent}
-          $accentAlpha=''$${cfg.accent}Alpha
-        '')
-      ];
-
       general = {
         disable_loading_bar = true;
         hide_cursor = true;
