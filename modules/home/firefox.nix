@@ -6,6 +6,25 @@
       search = {
         force = true;
         default = "Kagi";
+
+        engines = {
+          #"google".metaData.hidden = true;
+
+          "Kagi" = {
+            icon = "https://kagi.com/favicon.ico";
+            urls = [
+              {
+                template = "https://kagi.com/search";
+                params = [
+                  {
+                    name = "q";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+          };
+        };
       };
 
       settings = {
