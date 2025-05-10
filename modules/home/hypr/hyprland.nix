@@ -2,7 +2,37 @@
   pkgs,
   host,
   ...
-}: {
+}:
+let    
+  scripts = pkgs.writeShellScriptBin "osd" ''
+    #!/usr/bin/env bash
+    if [[ "$1" == "volume" ]]; then
+      volume_threshold() {
+        local volume=$1
+        local LOW_THRESHOLD=0.33
+        local HIGH_THRESHOLD=0.66
+
+        if (( $(echo "$volume < $LOW_THRESHOLD" | ${pkgs.bc}/bin/bc -l) )); then
+          echo "low"
+        elif (( $(echo "$volume >= $LOW_THRESHOLD" | ${pkgs.bc}/bin/bc -l) && $(echo "$volume < $HIGH_THRESHOLD" | ${pkgs.bc}/bin/bc -l) )); then
+          echo "medium"
+        else
+          echo "high"
+        fi
+      }
+
+      volume="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+
+      case "$volume" in
+        *MUTED*) avizo-client --image-resource=volume_muted_dark ;;
+        *)
+          volume="''${volume##* }"
+          avizo-client --image-resource=volume_$(volume_threshold "$volume")_dark --progress ''${volume}
+          ;;
+      esac
+    fi
+  '';
+in {
   home.packages = with pkgs; [
     wl-clipboard
     cliphist
@@ -192,18 +222,12 @@
           "$mod SHIFT, E, exit"
 
           # Media controls
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${scripts}/bin/osd volume"
+          ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ${scripts}/bin/osd volume"
           ", XF86AudioPlay, exec, playerctl play-pause"
           ", XF86AudioStop, exec, playerctl stop"
           ", XF86AudioNext, exec, playerctl next"
           ", XF86AudioPrev, exec, playerctl previous"
-
-          # Screen brightness controls
-          ", XF86MonBrightnessUp, exec, brightnessctl s 10%+"
-          ", XF86MonBrightnessDown, exec, brightnessctl s 10%-"
 
           # Touchpad controls
           #", XF86TouchpadToggle, exec, touchpad-toggle.sh"
@@ -236,16 +260,19 @@
             10)
         );
 
+      # will repeat when held
+      binde = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && ${scripts}/bin/osd volume"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ${scripts}/bin/osd volume"
+        ", XF86MonBrightnessUp, exec, brightnessctl s 10%+ && ${scripts}/bin/osd brightness"
+        ", XF86MonBrightnessDown, exec, brightnessctl s 10%- && ${scripts}/bin/osd brightness"
+      ];
+
+      # mouse binds
       bindm = [
         # Move/resize windows with mod + LMB/RMB and dragging
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
-      ];
-
-      bindr = [
-        # Media controls
-        #", XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +2%"
-        #", XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -2%"
       ];
     };
   };
