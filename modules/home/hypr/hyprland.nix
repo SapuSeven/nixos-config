@@ -6,30 +6,33 @@
 let    
   scripts = pkgs.writeShellScriptBin "osd" ''
     #!/usr/bin/env bash
+    value_threshold() {
+      local LOW_THRESHOLD=0.33
+      local HIGH_THRESHOLD=0.66
+
+      if (( $(echo "$1 < $LOW_THRESHOLD" | ${pkgs.bc}/bin/bc -l) )); then
+        echo "low"
+      elif (( $(echo "$1 >= $LOW_THRESHOLD" | ${pkgs.bc}/bin/bc -l) && $(echo "$1 < $HIGH_THRESHOLD" | ${pkgs.bc}/bin/bc -l) )); then
+        echo "medium"
+      else
+        echo "high"
+      fi
+    }
+
     if [[ "$1" == "volume" ]]; then
-      volume_threshold() {
-        local volume=$1
-        local LOW_THRESHOLD=0.33
-        local HIGH_THRESHOLD=0.66
-
-        if (( $(echo "$volume < $LOW_THRESHOLD" | ${pkgs.bc}/bin/bc -l) )); then
-          echo "low"
-        elif (( $(echo "$volume >= $LOW_THRESHOLD" | ${pkgs.bc}/bin/bc -l) && $(echo "$volume < $HIGH_THRESHOLD" | ${pkgs.bc}/bin/bc -l) )); then
-          echo "medium"
-        else
-          echo "high"
-        fi
-      }
-
       volume="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
 
       case "$volume" in
         *MUTED*) avizo-client --image-resource=volume_muted_dark ;;
         *)
           volume="''${volume##* }"
-          avizo-client --image-resource=volume_$(volume_threshold "$volume")_dark --progress ''${volume}
+          # TODO: Use --image-resource="" and --image-path="*.svg" for custom images
+          avizo-client --image-resource=volume_$(value_threshold "$volume")_dark --progress ''${volume}
           ;;
       esac
+    elif [[ "$1" == "brightness" ]]; then
+      brightness=$(echo "scale=2; $(brightnessctl g) / 255" | ${pkgs.bc}/bin/bc)
+      avizo-client --image-resource=brightness_$(value_threshold "$brightness")_dark --progress ''${brightness}
     fi
   '';
 in {
