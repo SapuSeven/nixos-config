@@ -1,4 +1,8 @@
-{lib, host, ...}: {
+{
+  lib,
+  host,
+  ...
+}: {
   imports =
     [(import ./avizo.nix)] # osd
     ++ [(import ./development)] # development environments

@@ -14,10 +14,10 @@
           ./patches/catppuccin-gtk-dark-fix.diff
         ];
     });
-    
-    kicad = (prev.kicad.override {
+
+    kicad = prev.kicad.override {
       stable = true;
-    });
+    };
   };
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will

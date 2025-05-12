@@ -12,11 +12,6 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "hid_generic"];
-  boot.initrd.kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "dm-thin-pool"];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
-
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
@@ -51,26 +46,36 @@
     fsType = "ntfs";
   };
 
-  boot.initrd.luks.yubikeySupport = true;
-  boot.initrd.luks.devices = {
-    "nix" = {
-      device = "/dev/disk/by-uuid/fd378e80-1738-49b9-ad0c-d32f1ab67d1f";
-      yubikey = {
-        slot = 2;
-        twoFactor = false;
-        storage = {
-          device = "/dev/disk/by-uuid/42F9-5F07";
-        };
-      };
-    };
-  };
-
   swapDevices = [
     {
       device = "/nix/swapfile";
       size = 16 * 1024;
     }
   ];
+
+  boot = {
+    initrd.luks = {
+      yubikeySupport = true;
+      devices = {
+        "nix" = {
+          device = "/dev/disk/by-uuid/fd378e80-1738-49b9-ad0c-d32f1ab67d1f";
+          yubikey = {
+            slot = 2;
+            twoFactor = false;
+            storage = {
+              device = "/dev/disk/by-uuid/42F9-5F07";
+            };
+          };
+        };
+      };
+    };
+
+    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "hid_generic"];
+    initrd.kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "dm-thin-pool"];
+    kernelModules = ["kvm-amd"];
+    kernelParams = ["resume_offset=19505152"];
+    resumeDevice = "/dev/dm-0";
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

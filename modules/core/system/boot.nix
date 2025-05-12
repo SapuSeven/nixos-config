@@ -18,7 +18,6 @@
     supportedFilesystems = ["ntfs" "zfs"];
 
     # Allows hibernation with zfs and swapfile (can potentially lead to data corruption)
-    initrd.systemd.enable = true;
     zfs = {
       forceImportRoot = false;
       allowHibernation = true;

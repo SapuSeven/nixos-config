@@ -2,8 +2,7 @@
   pkgs,
   host,
   ...
-}:
-let    
+}: let
   scripts = pkgs.writeShellScriptBin "osd" ''
     #!/usr/bin/env bash
     value_threshold() {

@@ -1,4 +1,4 @@
-{ pkgs, ...} : {
+{pkgs, ...}: {
   hardware.openrazer.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -7,6 +7,6 @@
   ];
 
   users.users.paul = {
-    extraGroups = [ "openrazer" ];
+    extraGroups = ["openrazer"];
   };
 }

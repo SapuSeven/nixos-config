@@ -11,6 +11,7 @@
     ++ [(import ./fonts.nix)] # fonts
     ++ [(import ./locale.nix)] # locale
     ++ [(import ./security.nix)] # security
+    ++ [(import ./power.nix)] # power and sleep settings
     ++ [(import ./udev.nix)] # udev rules
     ++ lib.optionals (host == "desktop") [
       (import ./graphics/amd.nix)

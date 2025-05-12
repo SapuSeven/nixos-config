@@ -19,6 +19,8 @@
     #kernelParams = ["resume_offset="];
     #kernelParams = ["module_blacklist=amdgpu" "ibt=off" "nvidia-drm.fbdev=1"];
     #  extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+
+    initrd.systemd.enable = true;
   };
 
   fileSystems."/" = {

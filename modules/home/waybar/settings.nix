@@ -1,5 +1,4 @@
-{pkgs, ...}:
-let    
+{pkgs, ...}: let
   hidBattery = pkgs.writeShellScriptBin "hid-battery" ''
     #!/usr/bin/env bash
     if [[ "$1" == "viper-v3" ]]; then

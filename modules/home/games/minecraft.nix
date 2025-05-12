@@ -1,8 +1,13 @@
-{pkgs, host, ...}: let
+{
+  pkgs,
+  host,
+  ...
+}: let
   jdk = pkgs.openjdk17;
-  dataDir = if host == "desktop"
-        then "/run/media/paul/Thicc/Games/Minecraft/MultiMC"
-        else "/home/paul/Files/Games/Minecraft";
+  dataDir =
+    if host == "desktop"
+    then "/run/media/paul/Thicc/Games/Minecraft/MultiMC"
+    else "/home/paul/Files/Games/Minecraft";
 in {
   home = {
     packages = with pkgs; [

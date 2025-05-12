@@ -14,7 +14,7 @@
     settings = {
       defaults = {
         folder = {
-           path = "~/Sync";
+          path = "~/Sync";
         };
       };
     };
