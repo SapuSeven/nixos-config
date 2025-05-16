@@ -7,7 +7,7 @@
 
     window#waybar {
       background-color: alpha(@base, 0.7);
-      border-top: solid alpha(@surface1, 0.7) 2;
+      border-top: solid alpha(@surface1, 0.7) 2px;
     }
 
     window .modules-center {
@@ -16,7 +16,7 @@
       color: @peach;
       border-radius: 1em;
       padding: 0 20px;
-      margin: 5px 0;
+      margin: 5px 6px;
     }
 
     #workspaces {
