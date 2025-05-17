@@ -240,7 +240,7 @@ in {
           # Mako
           "Ctrl, Space, exec, makoctl dismiss"
           "Ctrl Shift, Space, exec, makoctl dismiss -a"
-          "Ctrl Shift, Z, exec, makoctl restore"
+          "Ctrl Shift LAlt, Space, exec, makoctl restore"
 
           # Clipboard
           "$mod, V, exec, cliphist list | wofi -S dmenu | cliphist decode | wl-copy"
