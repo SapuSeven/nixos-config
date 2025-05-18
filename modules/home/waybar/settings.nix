@@ -208,7 +208,7 @@ in {
       };
       tooltip-format-activated = "idle-inhibitor <span color='#a6da95'>on</span>";
       tooltip-format-deactivated = "idle-inhibitor <span color='#ee99a0'>off</span>";
-      start-activated = true;
+      start-activated = false;
     };
 
     "custom/hid-battery-alert-mouse" = {
