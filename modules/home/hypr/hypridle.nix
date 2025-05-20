@@ -1,4 +1,12 @@
+<<<<<<< Updated upstream
 {...}: {
+=======
+{pkgs, ...}: let
+  timeout = 600; # 10min
+  timeoutSuspend = 1800; # 30min
+  suspend = "systemctl suspend-then-hibernate";
+in {
+>>>>>>> Stashed changes
   services.hypridle = {
     enable = true;
     settings = {
@@ -8,26 +16,37 @@
         after_sleep_cmd = "hyprctl dispatch dpms on";
       };
 
-      listener = [
-        {
-          timeout = 300; # 5min
-          on-timeout = "brightnessctl -s set 10";
-          on-resume = "brightnessctl -r";
-        }
-        {
-          timeout = 600; # 10min
-          on-timeout = "loginctl lock-session";
-        }
-        {
-          timeout = 630; # 10.5min
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
-        }
-        {
-          timeout = 1800; # 30min
-          on-timeout = "systemctl suspend-then-hibernate";
-        }
-      ];
+      listener =
+        [
+          {
+            # Dim screen
+            timeout = 300; # 5min
+            on-timeout = "brightnessctl -s set 10";
+            on-resume = "brightnessctl -r";
+          }
+          {
+            # Turn off display
+            inherit timeout;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
+          }
+          {
+            # Lock
+            timeout = timeout + 10;
+            on-timeout = "loginctl lock-session";
+          }
+        ]
+        ++ (
+          if timeoutSuspend != 0
+          then [
+            {
+              # Suspend
+              timeout = timeoutSuspend;
+              on-timeout = suspend;
+            }
+          ]
+          else []
+        );
     };
   };
 }
