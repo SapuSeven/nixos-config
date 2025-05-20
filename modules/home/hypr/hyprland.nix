@@ -96,6 +96,7 @@ in {
         kb_layout = "us";
         kb_options = "compose:ralt";
         numlock_by_default = true;
+        mouse_refocus = false;
 
         touchpad = {
           scroll_factor = 0.5;
@@ -164,7 +165,7 @@ in {
       ];
 
       windowrulev2 = [
-        "noinitialfocus,class:^jetbrains-(?!toolbox),floating:1" # See https://github.com/hyprwm/Hyprland/issues/2412
+        "nofocus,class:^(jetbrains-.*)$,title:^(win[0-9]+)$,floating:1" # Tooltip fix for Jetbrains IDEs - see https://youtrack.jetbrains.com/issue/IJPL-61714/Popups-not-working-correctly-with-Wayland-Hyprland
         "float,class:udiskie"
       ];
 
