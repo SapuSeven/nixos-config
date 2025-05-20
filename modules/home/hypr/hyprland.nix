@@ -165,8 +165,11 @@ in {
       ];
 
       windowrulev2 = [
-        "nofocus,class:^(jetbrains-.*)$,title:^(win[0-9]+)$,floating:1" # Tooltip fix for Jetbrains IDEs - see https://youtrack.jetbrains.com/issue/IJPL-61714/Popups-not-working-correctly-with-Wayland-Hyprland
-        "float,class:udiskie"
+        # Fixes for Jetbrains IDEs - see https://github.com/hyprwm/Hyprland/issues/4257
+        "nofocus, class:^(.*jetbrains.*)$, title:^(win.*)$, floating:1" # Fix tooltips (always have a title of `win<id>`)
+        "nofocus, class:^(.*jetbrains.*)$, title:^\\s$" # fix tab dragging (always have a single space character as their title)
+
+        "float, class:udiskie"
       ];
 
       exec = [
