@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  host,
   ...
 }: {
   age.secrets.restic-persist = {
@@ -33,7 +34,7 @@
       paths = [
         "/nix/persist"
       ];
-      repository = "/mnt/Backup/nixos-desktop/persist";
+      repository = "/mnt/Backup/nixos-$host/persist";
 
       passwordFile = config.age.secrets.restic-persist.path;
       user = "restic";
