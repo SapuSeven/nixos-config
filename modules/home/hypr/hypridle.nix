@@ -1,12 +1,8 @@
-<<<<<<< Updated upstream
-{...}: {
-=======
-{pkgs, ...}: let
+{...}: let
   timeout = 600; # 10min
   timeoutSuspend = 1800; # 30min
   suspend = "systemctl suspend-then-hibernate";
 in {
->>>>>>> Stashed changes
   services.hypridle = {
     enable = true;
     settings = {
