@@ -1,6 +1,6 @@
-{...}: let
-  timeout = 600; # 10min
-  timeoutSuspend = 1800; # 30min
+{host,...}: let
+  timeout = if host == "laptop" then 600 else 1800; # laptop/desktop 10min/30min
+  timeoutSuspend = if host == "laptop" then 1800 else 0; # laptop/desktop 30min/none
   suspend = "systemctl suspend-then-hibernate";
 in {
   services.hypridle = {
