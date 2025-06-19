@@ -4,11 +4,11 @@
   makeDesktopItem,
 }: let
   pname = "ftb-app";
-  version = "1.25.15";
+  version = "1.27.5";
 
   src = fetchurl {
-    url = "https://piston.feed-the-beast.com/app/ftb-app-${version}-x86_64.AppImage";
-    sha256 = "sha256-8pO/Rx9DwuEb0nhp+pkK/Jr1teVzeTeMZoO664Hx7zM=";
+    url = "https://piston.feed-the-beast.com/app/ftb-app-linux-${version}-x86_64.AppImage";
+    sha256 = "sha256-Ja3fE4fELFOOJzFOA52SCGjDHsj/FQwD08eiRTJUD5c=";
   };
 
   desktopItem = makeDesktopItem {

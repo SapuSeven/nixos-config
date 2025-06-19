@@ -32,7 +32,7 @@
   fileSystems."/home/paul" = {
     device = "none";
     fsType = "tmpfs";
-    options = ["defaults" "size=4G" "mode=777"];
+    options = ["defaults" "size=8G" "mode=777"];
   };
 
   fileSystems."/boot" = {

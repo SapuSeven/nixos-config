@@ -15,7 +15,7 @@
       path = "$HOME/.zsh/history";
     };
 
-    initExtra = ''
+    initContent = ''
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
 
@@ -52,8 +52,8 @@
       # Nixos
       ns = "nix-shell --run zsh";
       nix-shell = "nix-shell --run zsh";
-      nix-switch = "nixos-rebuild switch --flake /etc/nixos#${host} --use-remote-sudo";
-      nix-test = "nixos-rebuild test --flake /etc/nixos#${host} --use-remote-sudo";
+      nix-switch = "nixos-rebuild switch --flake /etc/nixos#${host} --sudo";
+      nix-test = "nixos-rebuild test --flake /etc/nixos#${host} --sudo";
       nix-flake-update = "nix flake update --flake /etc/nixos";
       nix-clean = "doas nix-collect-garbage && doas nix-collect-garbage -d";
 
