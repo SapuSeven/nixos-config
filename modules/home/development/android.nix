@@ -3,8 +3,9 @@
   pkgs,
   ...
 }: let
-  android-studio = pkgs.android-studio.override {
+  android-studio = pkgs.androidStudioPackages.beta.override {
     tiling_wm = true;
+    forceWayland = false;
   };
 in {
   home = {
