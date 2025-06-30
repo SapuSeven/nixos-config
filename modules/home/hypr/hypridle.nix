@@ -1,6 +1,7 @@
 {host,...}: let
   timeout = if host == "laptop" then 600 else 1800; # laptop/desktop 10min/30min
   timeoutSuspend = if host == "laptop" then 1800 else 0; # laptop/desktop 30min/none
+  lock = false;
   suspend = "systemctl suspend-then-hibernate";
 in {
   services.hypridle = {
@@ -26,12 +27,18 @@ in {
             on-timeout = "hyprctl dispatch dpms off";
             on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
           }
-          {
-            # Lock
-            timeout = timeout + 10;
-            on-timeout = "loginctl lock-session";
-          }
         ]
+        ++ (
+          if lock
+          then [
+            {
+              # Lock
+              timeout = timeout + 10;
+              on-timeout = "loginctl lock-session";
+            }
+          ]
+          else []
+        )
         ++ (
           if timeoutSuspend != 0
           then [
