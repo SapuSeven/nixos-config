@@ -10,7 +10,7 @@
     overrideFolders = false;
     settings = {
       options = {
-        urAccepted = "-1"; # no usage data sharing
+        urAccepted = -1; # no usage data sharing
       };
       "defaults/folder" = {
         path = "~/Sync";
