@@ -19,7 +19,6 @@
     ++ [(import ./samba.nix)] # file shares
     ++ [(import ./ssh.nix)] # ssh
     ++ [(import ./system)] # system settings
-    ++ [(import ./syncthing.nix)] # file sync (global service)
     ++ [(import ./wayland.nix)] # de+wm
     ++ [(import ./wireguard.nix)] # vpn client
     ++ [(import ./steam.nix)]
