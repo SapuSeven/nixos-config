@@ -2,11 +2,11 @@
   hardware.openrazer = {
     enable = true;
     batteryNotifier = {
-      enabled = true;
+      enable = true;
       percentage = 15;
       frequency = 3600;
     };
-  }
+  };
 
   environment.systemPackages = with pkgs; [
     openrazer-daemon
