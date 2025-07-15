@@ -78,9 +78,17 @@
       gchb = "git checkout -b";
       glg = "git log";
 
-      # python
+      # Python
       piv = "python -m venv .venv";
       psv = "source .venv/bin/activate";
+
+      # Rust
+      rc = "rustc";
+      cn = "cargo new";
+      cb = "cargo build";
+      cbr = "cargo build --release";
+      cr = "cargo run";
+      cc = "cargo check";
     };
   };
 
