@@ -175,7 +175,8 @@ in {
         "nofocus, class:^(.*jetbrains.*)$, title:^\\s$" # fix tab dragging (always have a single space character as their title)
 
         "float, class:udiskie"
-        "float, title:File Operation Progress"
+        "float, class:thunar, title:File Operation Progress"
+        "float, class:thunar, title:^(Rename \".*\")$"
       ];
 
       exec = [
