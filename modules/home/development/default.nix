@@ -1,5 +1,6 @@
 {...}: {
-  imports =
-    [(import ./android.nix)] # android
-    ++ [(import ./intellij.nix)]; # java
+  imports = [
+    (import ./android.nix) # android
+    (import ./jetbrains.nix) # java/rust
+  ];
 }

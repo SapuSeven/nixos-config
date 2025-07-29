@@ -84,11 +84,16 @@
 
       # Rust
       rc = "rustc";
+      ci = "cargo init";
       cn = "cargo new";
       cb = "cargo build";
       cbr = "cargo build --release";
       cr = "cargo run";
       cc = "cargo check";
+      ca = "cargo add";
+      cu = "cargo update";
+      cdoc = "cargo doc";
+      cdo = "cargo doc --open";
     };
   };
 
