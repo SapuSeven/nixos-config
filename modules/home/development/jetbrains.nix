@@ -14,10 +14,12 @@ in {
     packages = with pkgs.jetbrains; [
       (idea-community.override { vmopts = vmopts; })
       (rust-rover.override { vmopts = vmopts; })
+      (pycharm-community.override { vmopts = vmopts; })
     ];
 
     persistence."/nix/persist/home/paul".directories = [
       ".config/JetBrains"
+      ".local/share/JetBrains"
     ];
   };
 }
