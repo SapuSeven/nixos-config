@@ -30,6 +30,7 @@
       cp -r .config/gtk-3.0 $out/
     '';
   };
+  cursor-pkg = pkgs.bibata-cursors;
 in {
   catppuccin = {
     enable = true;
@@ -38,10 +39,10 @@ in {
 
     hyprland.enable = true;
 
-    gtk = {
-      enable = false;
-      icon.enable = true;
-    };
+#    gtk = {
+#      enable = false;
+#      icon.enable = true;
+#    };
   };
 
   xresources.properties = {
@@ -72,7 +73,7 @@ in {
     };
 
     cursorTheme = {
-      package = pkgs.stable.bibata-cursors;
+      package = cursor-pkg;
       name = "Bibata-Modern-Ice";
     };
 
@@ -100,7 +101,7 @@ in {
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
-    package = pkgs.stable.bibata-cursors;
+    package = cursor-pkg;
     name = "Bibata-Modern-Ice";
     size = 24;
   };

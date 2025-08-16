@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home = {
-    packages = with pkgs.stable; [
+    packages = with pkgs; [
       (symlinkJoin {
         name = "TeamSpeak";
         paths = [teamspeak5_client];

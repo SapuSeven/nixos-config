@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   services.udev = {
-    packages = with pkgs.stable; [
+    packages = with pkgs; [
       platformio-core.udev
       qmk-udev-rules
     ];

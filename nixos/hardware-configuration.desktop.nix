@@ -21,7 +21,7 @@
   fileSystems."/home/paul" = {
     device = "none";
     fsType = "tmpfs";
-    options = ["defaults" "size=16G" "mode=777"];
+    options = ["defaults" "size=24G" "mode=777"];
   };
 
   fileSystems."/nix" = {

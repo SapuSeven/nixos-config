@@ -14,6 +14,7 @@
     ++ [(import ./files.nix)] # file management
     ++ [(import ./hid.nix)] # hid compatibility
     ++ [(import ./httptoolkit.nix)] # http sniffer
+    ++ [(import ./nixos.nix)] # nixos-related config
     ++ [(import ./packages.nix)] # misc packages
     ++ [(import ./restic.nix)] # system backup
     ++ [(import ./samba.nix)] # file shares

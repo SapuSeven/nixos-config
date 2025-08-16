@@ -14,16 +14,12 @@
           ./patches/catppuccin-gtk-dark-fix.diff
         ];
     });
-
-    kicad = prev.kicad.override {
-      stable = true;
-    };
   };
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will
-  # be accessible through 'pkgs.stable'
+  # be accessible through 'pkgs.nixpkgs-stable'
   stable-packages = final: _prev: {
-    stable = import inputs.nixpkgs-stable {
+    nixpkgs-stable = import inputs.nixpkgs-stable {
       system = final.system;
       config.allowUnfree = true;
     };

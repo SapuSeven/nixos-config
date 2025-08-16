@@ -1,8 +1,9 @@
 # Loosely based on https://github.com/oddlama/nix-config/blob/main/users/myuser/graphical/firefox.nix
-{pkgs, ...}: {
+{lib, pkgs, ...}: {
   programs.firefox = {
     enable = true;
     profiles.default = {
+      extensions.settings = lib.mkForce {};
       search = {
         force = true;
         default = "Kagi";
