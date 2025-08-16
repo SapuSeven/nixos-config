@@ -39,10 +39,10 @@ in {
 
     hyprland.enable = true;
 
-#    gtk = {
-#      enable = false;
-#      icon.enable = true;
-#    };
+    #    gtk = {
+    #      enable = false;
+    #      icon.enable = true;
+    #    };
   };
 
   xresources.properties = {

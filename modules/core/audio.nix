@@ -21,8 +21,8 @@
   # See https://www.reddit.com/r/Audeze/comments/1f9eolc/maxwell_initial_audio_cutoff_workaround_for_linux/
   systemd.user.services.silent-sound = {
     description = "Silent Sound Service";
-    wantedBy = [ "default.target" ];
-    after = [ "sound.target" ];
+    wantedBy = ["default.target"];
+    after = ["sound.target"];
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.ffmpeg}/bin/ffplay -f lavfi -i anullsrc=channel_layout=2:sample_rate=48000 -nodisp -loglevel quiet";

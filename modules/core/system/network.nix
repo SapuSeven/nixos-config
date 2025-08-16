@@ -1,4 +1,8 @@
-{config, host, ...}: {
+{
+  config,
+  host,
+  ...
+}: {
   networking = {
     networkmanager.enable = true;
     hostName = "nixos-${host}";
