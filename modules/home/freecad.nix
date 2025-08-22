@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home = {
     packages = with pkgs; [
-      freecad-wayland
+      freecad
     ];
 
     persistence."/nix/persist/home/paul".directories = [".config/FreeCAD"];
