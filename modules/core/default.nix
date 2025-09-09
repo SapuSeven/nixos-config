@@ -23,6 +23,7 @@
     ++ [(import ./wayland.nix)] # de+wm
     ++ [(import ./wireguard.nix)] # vpn client
     ++ [(import ./steam.nix)]
+    ++ [(import ./yubikey.nix)]
     ++ lib.optionals (host == "desktop") [
     ]
     ++ lib.optionals (host == "laptop") [

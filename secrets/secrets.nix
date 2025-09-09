@@ -10,5 +10,5 @@ in {
   "restic-persist.age".publicKeys = users ++ systems;
 
   # Users
-  "users-paul.age".publicKeys = users ++ systems;
+  "users-paul.age".publicKeys = [paul] ++ systems; # Login Password
 }

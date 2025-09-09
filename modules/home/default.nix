@@ -16,6 +16,7 @@
     ++ [(import ./hypr)] # hypr*
     ++ [(import ./inkscape)] # svg drawings
     ++ [(import ./keepassxc.nix)] # password manager
+    ++ [(import ./keyring.nix)] # gnome keyring
     ++ [(import ./kitty.nix)] # terminal
     ++ [(import ./kicad.nix)] # kicad eda
     ++ [(import ./libreoffice.nix)] # office suite
@@ -33,6 +34,7 @@
     ++ [(import ./wofi.nix)] # launcher
     ++ [(import ./wlogout)] # logout menu
     ++ [(import ./wluma.nix)] # backlight brightness control
+    ++ [(import ./yubikey.nix)] # yubikey
     ++ [(import ./zsh.nix)] # shell
     ++ lib.optionals (host == "laptop") [
       (import ./batsignal.nix) # battery level monitoring
