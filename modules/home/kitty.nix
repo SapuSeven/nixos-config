@@ -11,4 +11,10 @@
       background_blur = 1;
     };
   };
+
+  home = {
+    file.".config/xfce4/helpers.rc".text = ''
+      TerminalEmulator=${pkgs.kitty}/bin/kitty
+    '';
+  };
 }
