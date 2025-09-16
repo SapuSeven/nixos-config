@@ -20,6 +20,7 @@ in {
       ".config/Google"
       ".config/github-copilot"
       ".local/share/Google"
+      ".m2"
     ];
   };
 
