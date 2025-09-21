@@ -34,21 +34,13 @@
 
     pam = {
       loginLimits = [
-        {
-          domain = "*";
-          item = "nofile";
-          type = "-";
-          value = "32768";
-        }
-        {
-          domain = "*";
-          item = "memlock";
-          type = "-";
-          value = "131072";
-        }
+        { domain = "*"; item = "nofile"; type = "soft"; value = "32768"; }
+        { domain = "*"; item = "nofile"; type = "hard"; value = "32768"; }
       ];
     };
   };
+
+  systemd.user.extraConfig = "DefaultLimitNOFILE=32768";
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "Polkit-Gnome authentication agent";
