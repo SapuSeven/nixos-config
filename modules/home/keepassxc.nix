@@ -2,13 +2,17 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  keepassxc = pkgs.keepassxc.override {
+    withKeePassYubiKey = false;
+  };
+in {
   home = {
-    packages = with pkgs; [
-      (symlinkJoin {
+    packages = [
+      (pkgs.symlinkJoin {
         name = "keepassxc";
         paths = [keepassxc];
-        buildInputs = [makeWrapper];
+        buildInputs = [pkgs.makeWrapper];
         postBuild = ''
           wrapProgram $out/bin/keepassxc \
             --run "touch ~/.mozilla/native-messaging-hosts/org.keepassxc.keepassxc_browser.json" # This enables the connection to the KeePassXC Firefox extension
@@ -41,7 +45,7 @@
 
       [Security]
       ClearClipboardTimeout=20
-             EnableCopyOnDoubleClick=true
+      EnableCopyOnDoubleClick=true
       LockDatabaseScreenLock=false
     '';
   };
