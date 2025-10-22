@@ -8,6 +8,7 @@
     if host == "desktop"
     then ''
       -Dsun.java2d.uiScale=2
+      -Dsun.java2d.metal=false
     ''
     else "";
 in {
@@ -16,6 +17,7 @@ in {
       (idea-community.override {vmopts = vmopts;})
       (rust-rover.override {vmopts = vmopts;})
       (pycharm-community.override {vmopts = vmopts;})
+      (webstorm.override {vmopts = vmopts;})
     ];
 
     persistence."/nix/persist/home/paul".directories = [
