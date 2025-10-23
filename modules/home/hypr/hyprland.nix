@@ -161,12 +161,12 @@ in {
         new_status = "master";
       };
 
-      gestures = {
-        workspace_swipe = "on";
-      };
-
       animation = [
         "global,1,3,default"
+      ];
+
+      gesture = [
+        "3, horizontal, workspace"
       ];
 
       windowrulev2 = [

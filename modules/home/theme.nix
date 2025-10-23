@@ -7,34 +7,46 @@
 }: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.overworld.home.catppuccin;
-  gradiencePreset = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/GradienceTeam/Community/next/official/catppuccin-mocha.json";
-    hash = "sha256-4/RVQF6irDueswEXWtmn2CCmyN7VQtQPrDAeg45cTPk=";
+  flavor = "mocha";
+  accent = "mauve";
+  shade = "dark";
+
+  themeColors = pkgs.fetchFromGitHub {
+    owner  = "claymorwan";
+    repo   = "catppuccin";
+    rev    = "d03125088f4fe9b7ec44aa8d3e2f0c42abcdb7a1";
+    sha256 = "sha256-ELpzK2vx7O/GFwGzdTrYQa7mvGQDxCzJoW3QRkCUcao=";
   };
-  gradienceBuild = pkgs.stdenv.mkDerivation {
-    name = "gradience-build";
-    phases = [
-      "buildPhase"
-      "installPhase"
-    ];
-    nativeBuildInputs = [pkgs.gradience];
-    buildPhase = ''
-      shopt -s nullglob
-      export HOME=$TMPDIR
-      mkdir -p $HOME/.config/presets
-      gradience-cli apply -p ${gradiencePreset} --gtk both
-    '';
-    installPhase = ''
-      mkdir -p $out
-      cp -r .config/gtk-4.0 $out/
-      cp -r .config/gtk-3.0 $out/
-    '';
-  };
+## Gradience has been discontinued
+#  gradiencePreset = pkgs.fetchurl {
+#    url = "https://raw.githubusercontent.com/GradienceTeam/Community/next/official/catppuccin-mocha.json";
+#    hash = "sha256-4/RVQF6irDueswEXWtmn2CCmyN7VQtQPrDAeg45cTPk=";
+#  };
+#  gradienceBuild = pkgs.stdenv.mkDerivation {
+#    name = "gradience-build";
+#    phases = [
+#      "buildPhase"
+#      "installPhase"
+#    ];
+#    nativeBuildInputs = [pkgs.gradience];
+#    buildPhase = ''
+#      shopt -s nullglob
+#      export HOME=$TMPDIR
+#      mkdir -p $HOME/.config/presets
+#      gradience-cli apply -p ${gradiencePreset} --gtk both
+#    '';
+#    installPhase = ''
+#      mkdir -p $out
+#      cp -r .config/gtk-4.0 $out/
+#      cp -r .config/gtk-3.0 $out/
+#    '';
+#  };
+
   cursor-pkg = pkgs.bibata-cursors;
 in {
   catppuccin = {
     enable = true;
-    flavor = "mocha";
+    flavor = flavor;
     accent = "mauve";
 
     hyprland.enable = true;
@@ -78,14 +90,14 @@ in {
     };
 
     gtk3 = {
-      extraCss = builtins.readFile "${gradienceBuild}/gtk-3.0/gtk.css";
-      extraConfig = {
+     extraCss = builtins.readFile "${themeColors}/adw/themes/${flavor}/catppuccin-${flavor}-${accent}.css";
+     extraConfig = {
         gtk-application-prefer-dark-theme = 1;
       };
     };
 
     gtk4 = {
-      extraCss = builtins.readFile "${gradienceBuild}/gtk-4.0/gtk.css";
+      extraCss = builtins.readFile "${themeColors}/adw/themes/${flavor}/catppuccin-${flavor}-${accent}.css";
       extraConfig = {
         gtk-application-prefer-dark-theme = 1;
       };

@@ -1,10 +1,12 @@
 {...}: {
   programs.git = {
     enable = true;
-    userName = "SapuSeven";
-    userEmail = "sapuseven@gmail.com";
-    extraConfig = {
+    settings = {
       safe = {directory = "/etc/nixos/.git";};
+      user = {
+        name = "SapuSeven";
+        email = "sapuseven@gmail.com";
+      };
     };
   };
 }
