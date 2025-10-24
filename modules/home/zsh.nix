@@ -26,6 +26,8 @@
         fi
       }
       add-zsh-hook chpwd print_info
+
+      eval "$(direnv hook zsh)"
     '';
 
     sessionVariables = {
