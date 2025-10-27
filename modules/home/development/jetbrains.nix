@@ -23,6 +23,7 @@ in {
     persistence."/nix/persist/home/paul".directories = [
       ".config/JetBrains"
       ".local/share/JetBrains"
+      ".java/.userPrefs"
     ];
   };
 }
