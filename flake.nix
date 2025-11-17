@@ -7,6 +7,11 @@
     # See the '(un)stable-packages' overlay at 'overlays/default.nix'.
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
+
+    # nix4nvchad
+    nix4nvchad.url = "github:nix-community/nix4nvchad";
+    nix4nvchad.inputs.nixpkgs.follows = "nixpkgs";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
@@ -17,10 +22,19 @@
 
     # Secrets
     agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # system-level software and settings (macOS)
+    darwin.url = "github:lnl7/nix-darwin";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    # declarative homebrew management (macOS)
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     # Styling
     #catppuccin.url = "github:catppuccin/nix/c4dac42a4fadc49bbd939fb3531673dbb3b0a949"; # Last commit before gtk deprecation
     catppuccin.url = "github:catppuccin/nix";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
     catppuccin-starship = {
       url = "github:catppuccin/starship";
       flake = false;
@@ -29,11 +43,13 @@
 
   outputs = {
     self,
+    darwin,
     nixpkgs,
     home-manager,
     agenix,
     catppuccin,
     impermanence,
+    nix-homebrew,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -99,6 +115,19 @@
           catppuccin.nixosModules.catppuccin
         ];
       };
+    };
+
+    darwinConfigurations."paul-bawag" = darwin.lib.darwinSystem {
+      specialArgs = {
+        host = "macbook";
+        inherit inputs outputs;
+      };
+      modules = [
+#        ./nixos/host-macbook.nix
+        ./modules/core
+        ./nixos/home-manager.nix
+      ];
+      #specialArgs = { inherit inputs self primaryUser; };
     };
   };
 }
