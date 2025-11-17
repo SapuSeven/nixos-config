@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  system,
   host,
   pkgs,
   user,
@@ -12,7 +13,7 @@
 
   # Home manager configuration
   home-manager = {
-    extraSpecialArgs = {inherit inputs outputs host;};
+    extraSpecialArgs = {inherit system inputs outputs host;};
     backupFileExtension = "backup";
     users.${user} = {
       imports = [
