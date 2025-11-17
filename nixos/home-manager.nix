@@ -3,6 +3,7 @@
   outputs,
   host,
   pkgs,
+  user,
   ...
 }: {
   imports = [
@@ -13,9 +14,9 @@
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs host;};
     backupFileExtension = "backup";
-    users.paul = {
+    users.${user} = {
       imports = [
-        ../home-manager/paul.nix
+        ../home-manager/${user}.nix
         ../modules/home # Include all modules
       ];
     };

@@ -86,6 +86,7 @@
       desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {
           host = "desktop";
+          user = "paul";
           inherit inputs outputs;
         };
         modules = [
@@ -102,6 +103,7 @@
       laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {
           host = "laptop";
+          user = "paul";
           inherit inputs outputs;
         };
         modules = [
@@ -121,17 +123,17 @@
       macbook = darwin.lib.darwinSystem {
         specialArgs = {
           host = "macbook";
+          user = "paul.kratochwill";
           inherit inputs outputs;
         };
         modules = [
-          ./nixos/host-macbook.nix
+          ./nixos/host-bawag.nix
           ./modules/core
           ./nixos/home-manager.nix
 
           # Other flake modules
           agenix.nixosModules.default
         ];
-        #specialArgs = { inherit inputs self primaryUser; };
       };
     };
   };
