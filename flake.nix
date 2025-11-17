@@ -128,7 +128,7 @@
         };
         modules = [
           ./nixos/host-bawag.nix
-          ./modules/core
+          ./modules/core/darwin.nix
           ./nixos/home-manager.nix
 
           # Other flake modules
