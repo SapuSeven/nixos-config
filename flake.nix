@@ -121,6 +121,7 @@
 
     darwinConfigurations = {
       macbook = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
         specialArgs = {
           host = "macbook";
           user = "paul.kratochwill";
