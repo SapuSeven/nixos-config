@@ -1,4 +1,3 @@
-{inputs, ...}: {
-  # TODO: Don't hard-code system
-  environment.systemPackages = [inputs.agenix.packages."x86_64-linux".default];
+{inputs, pkgs, ...}: {
+  environment.systemPackages = [inputs.agenix.packages.${pkgs.system}.default];
 }

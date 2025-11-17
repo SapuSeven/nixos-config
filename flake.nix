@@ -117,17 +117,22 @@
       };
     };
 
-    darwinConfigurations."paul-bawag" = darwin.lib.darwinSystem {
-      specialArgs = {
-        host = "macbook";
-        inherit inputs outputs;
+    darwinConfigurations = {
+      macbook = darwin.lib.darwinSystem {
+        specialArgs = {
+          host = "macbook";
+          inherit inputs outputs;
+        };
+        modules = [
+          ./nixos/host-macbook.nix
+          ./modules/core
+          ./nixos/home-manager.nix
+
+          # Other flake modules
+          agenix.nixosModules.default
+        ];
+        #specialArgs = { inherit inputs self primaryUser; };
       };
-      modules = [
-#        ./nixos/host-macbook.nix
-        ./modules/core
-        ./nixos/home-manager.nix
-      ];
-      #specialArgs = { inherit inputs self primaryUser; };
     };
   };
 }
