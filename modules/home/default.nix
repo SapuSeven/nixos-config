@@ -7,7 +7,6 @@
     ./persistence.nix
     ./development/common.nix # development environments
     ./git.nix # vcs
-    ./homebrew.nix # macos apps
     ./nvim.nix # text editor
     ./packages.nix # other packages
     ./starship.nix # shell prompt

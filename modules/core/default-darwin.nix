@@ -3,5 +3,6 @@
   networking.hostName = "paul-bawag";
 
   imports = [
+    ./homebrew.nix # macos apps
   ];
 }
