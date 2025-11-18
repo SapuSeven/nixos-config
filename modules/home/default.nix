@@ -1,11 +1,11 @@
 {
+  config,
   lib,
-  pkgs,
   host,
   ...
 }:
 let
-  isDarwin = pkgs.stdenv.isDarwin;
+  isDarwin = config.system.buildPlatform.system == "aarch64-darwin";
 in
 {
   imports = [
