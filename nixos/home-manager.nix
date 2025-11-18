@@ -12,10 +12,10 @@
     extraSpecialArgs = {inherit system inputs outputs host;};
     backupFileExtension = "backup";
     users.${host.user} = {
-      imports =
-        [../home-manager/${host.user}.nix] ++
-        lib.optionals pkgs.stdenv.isLinux [ ../modules/home ] ++
-        lib.optionals pkgs.stdenv.isDarwin [ ../modules/home/default-darwin.nix ];
+      imports = [
+        ../home-manager/${host.user}.nix
+        ../modules/home
+      ];
     };
   } // (lib.optionalAttrs pkgs.stdenv.isLinux {
     users.root = {
