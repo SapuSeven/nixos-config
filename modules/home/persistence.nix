@@ -10,9 +10,7 @@ in
     default = {};
   };
 
-  config = lib.mkIf isImpermanent {
-    #imports = [ inputs.impermanence.homeManager ];
-
+  config = lib.optionalAttrs isImpermanent {
     home.persistence."${persistDir}".directories = config.persistence.directories;
   };
 }
