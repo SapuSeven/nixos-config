@@ -17,11 +17,12 @@
         [../home-manager/${user}.nix] ++
         lib.optionals pkgs.stdenv.isLinux [ ../modules/home ];
     };
-    users.root = lib.optionalAttrs pkgs.stdenv.isLinux {
+  } // (lib.optionalAttrs pkgs.stdenv.isLinux {
+    users.root = {
       imports = [
         ../home-manager/root.nix
         ../modules/home/git.nix # include only Git module for doas nixos-rebuild to work properly
       ];
     };
-  };
+  });
 }
