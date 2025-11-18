@@ -10,6 +10,7 @@ in
   imports = [
     ./persistence.nix
     ./development/common.nix # development environments
+    ./nvim.nix # text editor
     ./starship.nix # shell prompt
     ./zsh.nix # shell
   ] ++ lib.optionals (!isDarwin) [
