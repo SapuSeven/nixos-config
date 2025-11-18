@@ -14,9 +14,13 @@ in
     stateVersion = "25.05";
   };
 
-  # host-specific homebrew casks
+  nix-homebrew = {
+    user = user;
+    enable = true;
+    autoMigrate = true;
+  };
+
   homebrew.casks = [
-    # "slack"
   ];
 
   # BAWAG config

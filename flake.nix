@@ -81,6 +81,7 @@
         ./modules/core/default-darwin.nix
         ./nixos/home-manager.nix
         inputs.home-manager.darwinModules.home-manager
+        inputs.nix-homebrew.darwinModules.nix-homebrew
         inputs.agenix.darwinModules.default
       ];
     in
