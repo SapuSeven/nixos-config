@@ -3,5 +3,7 @@
   host,
   ...
 }: {
-  imports = [];
+  imports = [
+    ./zsh.nix
+  ];
 }
