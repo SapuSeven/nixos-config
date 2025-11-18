@@ -21,6 +21,13 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # homebrew installation manager
+  nix-homebrew = {
+    user = ${host.user};
+    enable = true;
+    autoMigrate = true;
+  };
+
   # macOS-specific settings
   system.primaryUser = host.user;
   users.users.${host.user} = {
