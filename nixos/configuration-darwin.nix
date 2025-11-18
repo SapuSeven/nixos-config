@@ -23,7 +23,7 @@
 
   # homebrew installation manager
   nix-homebrew = {
-    user = ${host.user};
+    user = host.user;
     enable = true;
     autoMigrate = true;
   };
