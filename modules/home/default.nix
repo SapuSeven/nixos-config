@@ -7,6 +7,7 @@
     ./persistence.nix
     ./development/common.nix # development environments
     ./git.nix # vcs
+    ./homebrew.nix # macos apps
     ./nvim.nix # text editor
     ./packages.nix # other packages
     ./starship.nix # shell prompt
@@ -19,7 +20,6 @@
     ./firefox.nix # browser
     ./freecad.nix # 3d modeling
     ./games # games
-    ./homebrew.nix # macos apps
     ./httptoolkit.nix # http sniffer
     ./hypr # hypr*
     ./inkscape # svg drawings
