@@ -10,4 +10,10 @@
       nerd-fonts.jetbrains-mono
     ];
   };
+
+  persistence.directories = {
+    ".config/nvim"
+    ".local/state/nvim"
+    ".local/share/nvim"
+  };
 }
