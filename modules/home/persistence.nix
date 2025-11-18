@@ -5,15 +5,10 @@ let
   persistDir = "/nix/persist/home/${host.user}";
 in
 {
-  options.persistence = {
-    type = with lib.types; submodules {
-      directories = {
-        type = listOf str;
-        default = [];
-        description = "List of paths to persist across reboots.";
-      };
-    };
+  options.persistence = lib.mkOption {
+    type = lib.types.attrsOf (lib.types.listOf lib.types.str);
     description = "Custom persistence configuration for impermanent hosts.";
+    default = {};
   };
 
   config = lib.mkIf isImpermanent {
