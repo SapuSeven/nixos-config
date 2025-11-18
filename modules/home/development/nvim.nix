@@ -1,4 +1,8 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  ...
+}:
 {
   home = {
     packages = with pkgs; [
@@ -8,7 +12,6 @@
   };
 
   imports = [
-    # ... other imports
     inputs.nvf.homeManagerModules.default
   ];
 
@@ -23,35 +26,51 @@
         style = "mocha";
       };
 
+      options = {
+        relativenumber = true;
+        number = true;
+
+        expandtab = true;
+        shiftwidth = 4;
+        softtabstop = 4;
+        autoindent = true;
+        smartcase = true;
+        smartindent = true;
+      };
+
+      keymaps = [
+        {
+          mode = "n";
+          key = ";";
+          action = ":";
+          silent = false;
+        }
+      ];
+
+      lsp = {
+        enable = true;
+        servers = {
+          nixd.enable = true;
+        };
+      };
+
       statusline.lualine.enable = true; # status line
       telescope.enable = true; # fuzzy finder
       autocomplete.nvim-cmp.enable = true; # fancy autocomplete
-
-#      options = {
-#        relativenumber = true;
-#        number = true;
-#      };
+      autopairs.nvim-autopairs.enable = true; # automatic bracket pairs
+      treesitter.enable = true;
 
       languages = {
-        lsp.enable = true;
-        treesitter.enable = true;
-
-        nix = {
-          enable = true;
-          lsp = {
-            enable = true;
-            server = "nixd";
-          };
-        };
+        nix.enable = true;
         ts.enable = true;
         rust.enable = true;
+        python.enable = true;
       };
     };
   };
 
-#  persistence.directories = [
-#    ".config/nvim"
-#    ".local/state/nvim"
-#    ".local/share/nvim"
-#  ];
+  persistence.directories = [
+    ".local/state/nvim"
+    ".local/share/nvim"
+  ];
 }
