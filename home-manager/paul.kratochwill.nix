@@ -20,9 +20,6 @@ in
     autoMigrate = true;
   };
 
-  homebrew.casks = [
-  ];
-
   # BAWAG config
 #  security.pki.certificateFiles = [
 #    ./bawag-certs.pem
