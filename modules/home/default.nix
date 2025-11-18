@@ -2,18 +2,14 @@
   lib,
   host,
   ...
-}:
-let
-  isDarwin = host.system == "aarch64-darwin";
-in
-{
+}: {
   imports = [
     ./persistence.nix
     ./development/common.nix # development environments
     ./nvim.nix # text editor
     ./starship.nix # shell prompt
     ./zsh.nix # shell
-  ] ++ lib.optionals (!isDarwin) [
+  ] ++ lib.optionals (host.name != "macbook") [
     ./avizo.nix # osd
     ./development # development environments
     ./editor.nix # text editor
