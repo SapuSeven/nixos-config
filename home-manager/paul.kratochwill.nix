@@ -17,7 +17,7 @@ in
     inputs.nix4nvchad.homeManagerModule
   ];
 
-  programs.git.settings.user = lib.mkIf (host.name == "macbook") {
+  programs.git.settings.user = {
     name = "Paul Kratochwill";
     email = "paul.kratochwill@bawaggroup.com";
   };
