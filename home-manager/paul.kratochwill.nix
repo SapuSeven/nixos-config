@@ -1,9 +1,10 @@
 {
   pkgs,
   inputs,
+  host,
   ...
 }: let
-  user = "paul.kratochwill";
+  user = host.user;
 in
 {
   # You can import other home-manager modules here
