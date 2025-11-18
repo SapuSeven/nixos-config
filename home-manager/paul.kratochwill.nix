@@ -1,6 +1,6 @@
 {
   pkgs,
-  inputs,
+  user,
   ...
 }: let
   user = "paul.kratochwill";
