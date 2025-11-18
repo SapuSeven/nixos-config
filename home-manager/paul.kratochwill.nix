@@ -8,8 +8,8 @@ in
   networking.hostName = "paul-bawag";
 
   home = {
-    username = ${user};
-    
+    username = user;
+
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "25.05";
   };
