@@ -8,6 +8,7 @@
     ./development/common.nix # development environments
     ./git.nix # vcs
     ./nvim.nix # text editor
+    ./packages.nix # other packages
     ./starship.nix # shell prompt
     ./zsh.nix # shell
   ] ++ lib.optionals (host.name != "macbook") [
@@ -18,6 +19,7 @@
     ./firefox.nix # browser
     ./freecad.nix # 3d modeling
     ./games # games
+    ./homebrew.nix # macos apps
     ./httptoolkit.nix # http sniffer
     ./hypr # hypr*
     ./inkscape # svg drawings
@@ -30,7 +32,6 @@
     #./nicotine.nix # soulseek
     ./obsidian.nix # notes
     ./orcaslicer.nix # slicer
-    ./packages.nix # other packages
     ./syncthing.nix # file sync
     ./teamspeak.nix # teamspeak
     ./theme.nix # theme

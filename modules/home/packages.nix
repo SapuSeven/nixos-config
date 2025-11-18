@@ -1,9 +1,11 @@
 {
+  lib,
   inputs,
   pkgs,
   ...
 }: {
   home.packages = with pkgs; [
+  ] ++ lib.optionals pkgs.stdenv.isLinux [
     qimgv # image viewer
     mpv # video player
 
@@ -13,5 +15,7 @@
     #mqtt-explorer
     stm32cubemx
     #freedownloadmanager
+  ] ++ lib.optionals pkgs.stdenv.isDarwin [
+    az-cli
   ];
 }
