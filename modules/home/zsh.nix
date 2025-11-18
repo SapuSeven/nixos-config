@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   host,
   ...
@@ -60,9 +61,9 @@ in
       nix-shell = "nix-shell --run zsh";
       nix-switch =
         if isDarwin
-        then "sudo darwin-rebuild switch --flake /etc/nix-darwin#${host}"
-        else "nixos-rebuild switch --flake /etc/nixos#${host} --sudo";
-      nix-test = "nixos-rebuild test --flake /etc/nixos#${host} --sudo";
+        then "sudo darwin-rebuild switch --flake /etc/nix-darwin#${host.name}"
+        else "nixos-rebuild switch --flake /etc/nixos#${host.name} --sudo";
+      nix-test = "nixos-rebuild test --flake /etc/nixos#${host.name} --sudo";
       nix-flake-update = "nix flake update --flake /etc/nixos";
       nix-clean = "doas nix-collect-garbage && doas nix-collect-garbage -d";
 
@@ -115,7 +116,7 @@ in
     eza # ls replacement
   ];
 
-  home.persistence."/nix/persist/home/paul".directories = [
+  home.persistence."/nix/persist/home/paul".directories = lib.optionals host.impermanent [
     ".zsh"
     ".local/share/zoxide"
   ];

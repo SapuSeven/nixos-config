@@ -51,17 +51,16 @@
 
       # central host table
       hosts = {
-        desktop  = { system = "x86_64-linux"; user = "paul"; };
-        laptop   = { system = "x86_64-linux"; user = "paul"; };
-        macbook  = { system = "aarch64-darwin"; user = "paul.kratochwill"; };
+        desktop  = { system = "x86_64-linux"; user = "paul"; impermanent = true; };
+        laptop   = { system = "x86_64-linux"; user = "paul"; impermanent = true; };
+        macbook  = { system = "aarch64-darwin"; user = "paul.kratochwill"; impermanent = false; };
       };
 
       # common specialArgs
       mkSpecialArgs = host: {
-        inherit host;
-        user = hosts.${host}.user;
         inherit inputs;
         outputs = self.outputs;
+        host = hosts.${host} // { name = host; };
       };
 
       # shared NixOS modules
@@ -71,9 +70,10 @@
         ./nixos/home-manager.nix
         inputs.home-manager.nixosModules.home-manager
         inputs.agenix.nixosModules.default
-        inputs.impermanence.nixosModules.impermanence
         inputs.catppuccin.nixosModules.catppuccin
-      ];
+      ] ++ (nixpkgs.lib.optionals hosts.${host}.impermanent [
+        inputs.impermanence.nixosModules.impermanence
+      ]);
 
       # shared Darwin modules
       darwinModules = host: [
@@ -83,7 +83,9 @@
         inputs.home-manager.darwinModules.home-manager
         inputs.nix-homebrew.darwinModules.nix-homebrew
         inputs.agenix.darwinModules.default
-      ];
+      ] ++ (nixpkgs.lib.optionals hosts.${host}.impermanent [
+        inputs.impermanence.darwinModules.impermanence
+      ]);
     in
     {
       packages   = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
