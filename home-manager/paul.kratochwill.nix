@@ -16,11 +16,9 @@ in
     inputs.nix4nvchad.homeManagerModule
   ];
 
-  lib.mkIf (host.name == "macbook") {
-    programs.git.settings.user = {
-      name = "Paul Kratochwill";
-      email = "paul.kratochwill@bawaggroup.com";
-    };
+  programs.git.settings.user = lib.mkIf (host.name == "macbook") {
+    name = "Paul Kratochwill";
+    email = "paul.kratochwill@bawaggroup.com";
   };
 
   home = {
