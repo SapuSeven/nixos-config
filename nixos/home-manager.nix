@@ -15,7 +15,8 @@
     users.${user} = {
       imports =
         [../home-manager/${user}.nix] ++
-        lib.optionals pkgs.stdenv.isLinux [ ../modules/home ];
+        lib.optionals pkgs.stdenv.isLinux [ ../modules/home ] ++
+        lib.optionals pkgs.stdenv.isDarwin [ ../modules/home/default-darwin.nix ];
     };
   } // (lib.optionalAttrs pkgs.stdenv.isLinux {
     users.root = {
