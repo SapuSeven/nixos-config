@@ -77,7 +77,7 @@
 
       # shared Darwin modules
       darwinModules = host: [
-        ./nixos/host-bawag.nix
+        ./nixos/host-${host}.nix
         ./modules/core/default-darwin.nix
         ./nixos/home-manager.nix
         inputs.home-manager.darwinModules.home-manager
