@@ -1,6 +1,5 @@
 {
   pkgs,
-  user,
   ...
 }:
 {
@@ -12,7 +11,7 @@
   ];
 
   # host-specific home-manager configuration
-  home-manager.users.${user} = {
+  home-manager.users."paul.kratochwill" = {
     programs = {
       zsh = {
         initContent = ''
