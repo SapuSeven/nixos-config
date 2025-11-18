@@ -5,6 +5,7 @@
   host,
   pkgs,
   user,
+  lib,
   ...
 }: {
   # Home manager configuration
@@ -12,10 +13,9 @@
     extraSpecialArgs = {inherit system inputs outputs host;};
     backupFileExtension = "backup";
     users.${user} = {
-      imports = [
-        ../home-manager/${user}.nix
-        ../modules/home # Include all modules
-      ];
+      imports =
+        [../home-manager/${user}.nix] ++
+        lib.optionals pkgs.stdenv.isLinux [ ../modules/home ];
     };
     users.root = {
       imports = [
