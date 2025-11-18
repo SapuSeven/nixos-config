@@ -9,16 +9,16 @@
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
-    # nix4nvchad
-    nix4nvchad.url = "github:nix-community/nix4nvchad";
-    nix4nvchad.inputs.nixpkgs.follows = "nixpkgs";
-
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
+
+    # nvim
+    nvf.url = "github:NotAShelf/nvf";
+    nvf.inputs.nixpkgs.follows = "nixpkgs";
 
     # Secrets
     agenix.url = "github:ryantm/agenix";
@@ -31,6 +31,10 @@
     # declarative homebrew management (macOS)
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
+    # Lazy Apps
+    lazy-apps.url = "sourcehut:~rycee/lazy-apps";
+    lazy-apps.inputs.nixpkgs.follows = "nixpkgs";
+
     # Styling
     #catppuccin.url = "github:catppuccin/nix/c4dac42a4fadc49bbd939fb3531673dbb3b0a949"; # Last commit before gtk deprecation
     catppuccin.url = "github:catppuccin/nix";
@@ -41,7 +45,7 @@
     };
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, ... } @ inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, nvf, ... } @ inputs:
     let
       systems = [
         "x86_64-linux" "aarch64-linux"
