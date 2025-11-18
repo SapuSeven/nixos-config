@@ -22,7 +22,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # macOS-specific settings
-  system.primaryUser = user;
+  system.primaryUser = host.user;
   users.users.${host.user} = {
     home = "/Users/${host.user}";
     shell = pkgs.zsh;
