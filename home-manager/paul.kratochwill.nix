@@ -17,7 +17,7 @@ in
     inputs.nix4nvchad.homeManagerModule
   ];
 
-  programs.git.settings.user = {
+  programs.git.settings.user = lib.mkForce {
     name = "Paul Kratochwill";
     email = "paul.kratochwill@bawaggroup.com";
   };
