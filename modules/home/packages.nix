@@ -16,6 +16,6 @@
     stm32cubemx
     #freedownloadmanager
   ] ++ lib.optionals pkgs.stdenv.isDarwin [
-    az-cli
+    azure-cli
   ];
 }
