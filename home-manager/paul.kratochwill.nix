@@ -21,7 +21,7 @@ in
       name = "Paul Kratochwill";
       email = "paul.kratochwill@bawaggroup.com";
     };
-  }
+  };
 
   home = {
     username = user;
