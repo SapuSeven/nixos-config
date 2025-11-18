@@ -2,7 +2,7 @@
   pkgs,
   system,
   inputs,
-  user,
+  host,
   ...
 }:
 {
@@ -23,8 +23,8 @@
 
   # macOS-specific settings
   system.primaryUser = user;
-  users.users.${user} = {
-    home = "/Users/${user}";
+  users.users.${host.user} = {
+    home = "/Users/${host.user}";
     shell = pkgs.zsh;
   };
   environment = {

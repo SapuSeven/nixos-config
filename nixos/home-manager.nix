@@ -4,7 +4,6 @@
   system,
   host,
   pkgs,
-  user,
   lib,
   ...
 }: {
@@ -12,9 +11,9 @@
   home-manager = {
     extraSpecialArgs = {inherit system inputs outputs host;};
     backupFileExtension = "backup";
-    users.${user} = {
+    users.${host.user} = {
       imports =
-        [../home-manager/${user}.nix] ++
+        [../home-manager/${host.user}.nix] ++
         lib.optionals pkgs.stdenv.isLinux [ ../modules/home ] ++
         lib.optionals pkgs.stdenv.isDarwin [ ../modules/home/default-darwin.nix ];
     };
