@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-#    ./configuration.nix
+    ./configuration-darwin.nix
     ./hardware-configuration.macbook.nix
   ];
 }

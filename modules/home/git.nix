@@ -7,6 +7,12 @@
         name = "SapuSeven";
         email = "sapuseven@gmail.com";
       };
+      init = {
+        defaultBranch = "main";
+      };
     };
+
+    lfs.enable = true;
+    ignores = [ "**/.DS_STORE" ];
   };
 }

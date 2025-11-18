@@ -1,29 +1,30 @@
 {
   inputs,
   outputs,
+  system,
   host,
   pkgs,
+  lib,
   ...
 }: {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-  ];
-
   # Home manager configuration
   home-manager = {
-    extraSpecialArgs = {inherit inputs outputs host;};
+    extraSpecialArgs = {inherit system inputs outputs host;};
     backupFileExtension = "backup";
-    users.paul = {
-      imports = [
-        ../home-manager/paul.nix
-        ../modules/home # Include all modules
-      ];
-    };
-    users.root = {
-      imports = [
-        ../home-manager/root.nix
-        ../modules/home/git.nix # include only Git module for doas nixos-rebuild to work properly
-      ];
+    users = {
+      ${host.user} = {
+        imports = [
+          ../home-manager/${host.user}.nix
+          ../modules/home
+        ];
+      };
+    } // lib.optionalAttrs pkgs.stdenv.isLinux {
+      root = {
+        imports = [
+          ../home-manager/root.nix
+          ../modules/home/git.nix # include only Git module for doas nixos-rebuild to work properly
+        ];
+      };
     };
   };
 }

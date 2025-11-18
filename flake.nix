@@ -41,93 +41,77 @@
     };
   };
 
-  outputs = {
-    self,
-    darwin,
-    nixpkgs,
-    home-manager,
-    agenix,
-    catppuccin,
-    impermanence,
-    nix-homebrew,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    # Supported systems for your flake packages, shell, etc.
-    systems = [
-      "aarch64-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-    # This is a function that generates an attribute by calling a function you
-    # pass to it, with each system as an argument
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-  in {
-    # Your custom packages
-    # Accessible through 'nix build', 'nix shell', etc
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-    # Formatter for your nix files, available through 'nix fmt'
-    # Other options beside 'alejandra' include 'nixpkgs-fmt'
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+  outputs = { self, darwin, nixpkgs, home-manager, ... } @ inputs:
+    let
+      systems = [
+        "x86_64-linux" "aarch64-linux"
+        "x86_64-darwin" "aarch64-darwin"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    # Your custom packages and modifications, exported as overlays
-    overlays = import ./overlays {inherit inputs;};
-    # Reusable nixos modules you might want to export
-    # These are usually stuff you would upstream into nixpkgs
-    #nixosModules = import ./modules/nixos;
-    # Reusable home-manager modules you might want to export
-    # These are usually stuff you would upstream into home-manager
-    #homeManagerModules = import ./modules/home-manager;
-
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          host = "desktop";
-          inherit inputs outputs;
-        };
-        modules = [
-          ./nixos/host-desktop.nix
-          ./modules/core
-          ./nixos/home-manager.nix
-
-          # Other flake modules
-          agenix.nixosModules.default
-          impermanence.nixosModules.impermanence
-          catppuccin.nixosModules.catppuccin
-        ];
+      # central host table
+      hosts = {
+        desktop  = { system = "x86_64-linux"; user = "paul"; impermanent = true; };
+        laptop   = { system = "x86_64-linux"; user = "paul"; impermanent = true; };
+        macbook  = { system = "aarch64-darwin"; user = "paul.kratochwill"; impermanent = false; };
       };
-      laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          host = "laptop";
-          inherit inputs outputs;
-        };
-        modules = [
-          ./nixos/host-laptop.nix
-          ./modules/core
-          ./nixos/home-manager.nix
 
-          # Other flake modules
-          agenix.nixosModules.default
-          impermanence.nixosModules.impermanence
-          catppuccin.nixosModules.catppuccin
-        ];
+      # common specialArgs
+      mkSpecialArgs = host: {
+        inherit inputs;
+        outputs = self.outputs;
+        host = hosts.${host} // { name = host; };
       };
-    };
 
-    darwinConfigurations."paul-bawag" = darwin.lib.darwinSystem {
-      specialArgs = {
-        host = "macbook";
-        inherit inputs outputs;
-      };
-      modules = [
-#        ./nixos/host-macbook.nix
+      # shared NixOS modules
+      nixosModules = host: [
+        ./nixos/host-${host}.nix
         ./modules/core
         ./nixos/home-manager.nix
-      ];
-      #specialArgs = { inherit inputs self primaryUser; };
+        inputs.home-manager.nixosModules.home-manager
+        inputs.agenix.nixosModules.default
+        inputs.catppuccin.nixosModules.catppuccin
+      ] ++ (nixpkgs.lib.optionals hosts.${host}.impermanent [
+        inputs.impermanence.nixosModules.impermanence
+      ]);
+
+      # shared Darwin modules
+      darwinModules = host: [
+        ./nixos/host-${host}.nix
+        ./modules/core/default-darwin.nix
+        ./nixos/home-manager.nix
+        inputs.home-manager.darwinModules.home-manager
+        inputs.nix-homebrew.darwinModules.nix-homebrew
+        inputs.agenix.darwinModules.default
+      ] ++ (nixpkgs.lib.optionals hosts.${host}.impermanent [
+        inputs.impermanence.darwinModules.impermanence
+      ]);
+    in
+    {
+      packages   = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+      formatter  = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+      overlays   = import ./overlays { inherit inputs; };
+
+      nixosConfigurations = nixpkgs.lib.filterAttrs
+        (n: _: hosts.${n}.system != "aarch64-darwin")
+        (nixpkgs.lib.mapAttrs'
+          (host: cfg: nixpkgs.lib.nameValuePair host
+            (nixpkgs.lib.nixosSystem {
+              system = cfg.system;
+              specialArgs = mkSpecialArgs host;
+              modules = nixosModules host;
+            }))
+          hosts);
+
+      darwinConfigurations = nixpkgs.lib.filterAttrs
+        (n: _: hosts.${n}.system == "aarch64-darwin")
+        (nixpkgs.lib.mapAttrs'
+          (host: cfg: nixpkgs.lib.nameValuePair host
+            (darwin.lib.darwinSystem {
+              system = cfg.system;
+              specialArgs = mkSpecialArgs host;
+              modules = darwinModules host;
+            }))
+          hosts);
     };
-  };
 }

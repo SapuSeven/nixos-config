@@ -6,9 +6,9 @@
     packages = with pkgs; [
       direnv
     ];
-
-    persistence."/nix/persist/home/paul".directories = [
-      ".local/share/direnv"
-    ];
   };
+
+  persistence.directories = [
+    ".local/share/direnv"
+  ];
 }
