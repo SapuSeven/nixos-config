@@ -2,7 +2,7 @@
   pkgs,
   ...
 }: let
-  user = "paul.kratochwill"
+  user = "paul.kratochwill";
 in
 {
   networking.hostName = "paul-bawag";
