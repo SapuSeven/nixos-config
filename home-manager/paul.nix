@@ -22,6 +22,7 @@ in {
     # inputs.nix-colors.homeManagerModules.default
     inputs.catppuccin.homeModules.catppuccin
     inputs.agenix.homeManagerModules.default
+    inputs.nix4nvchad.homeManagerModule
   ];
 
   nixpkgs = {
