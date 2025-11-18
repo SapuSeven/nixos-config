@@ -19,5 +19,4 @@
     ];
     pathsToLink = [ "/Applications" ];
   };
-};
-
+}
