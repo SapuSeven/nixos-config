@@ -2,7 +2,11 @@
   pkgs,
   host,
   ...
-}: {
+}:
+let
+  isDarwin = pkgs.stdenv.isDarwin;
+in
+{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -54,7 +58,10 @@
       # Nixos
       ns = "nix-shell --run zsh";
       nix-shell = "nix-shell --run zsh";
-      nix-switch = "nixos-rebuild switch --flake /etc/nixos#${host} --sudo";
+      nix-switch =
+        if isDarwin
+        then "sudo darwin-rebuild switch --flake /etc/nix-darwin#${host}"
+        else "nixos-rebuild switch --flake /etc/nixos#${host} --sudo";
       nix-test = "nixos-rebuild test --flake /etc/nixos#${host} --sudo";
       nix-flake-update = "nix flake update --flake /etc/nixos";
       nix-clean = "doas nix-collect-garbage && doas nix-collect-garbage -d";
