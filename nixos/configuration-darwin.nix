@@ -4,8 +4,7 @@
   inputs,
   host,
   ...
-}:
-{
+}: {
   # nix config
   nix = {
     settings = {
@@ -38,7 +37,7 @@
     systemPath = [
       "/opt/homebrew/bin"
     ];
-    pathsToLink = [ "/Applications" ];
+    pathsToLink = ["/Applications"];
   };
 
   # touch ID for sudo

@@ -3,11 +3,9 @@
   pkgs,
   host,
   ...
-}:
-let
+}: let
   isDarwin = pkgs.stdenv.isDarwin;
-in
-{
+in {
   programs.zsh = {
     enable = true;
     enableCompletion = true;

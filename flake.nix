@@ -45,77 +45,104 @@
     };
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, nvf, ... } @ inputs:
-    let
-      systems = [
-        "x86_64-linux" "aarch64-linux"
-        "x86_64-darwin" "aarch64-darwin"
-      ];
-      forAllSystems = nixpkgs.lib.genAttrs systems;
+  outputs = {
+    self,
+    darwin,
+    nixpkgs,
+    home-manager,
+    nvf,
+    ...
+  } @ inputs: let
+    systems = [
+      "x86_64-linux"
+      "aarch64-linux"
+      "x86_64-darwin"
+      "aarch64-darwin"
+    ];
+    forAllSystems = nixpkgs.lib.genAttrs systems;
 
-      # central host table
-      hosts = {
-        desktop  = { system = "x86_64-linux"; user = "paul"; impermanent = true; };
-        laptop   = { system = "x86_64-linux"; user = "paul"; impermanent = true; };
-        macbook  = { system = "aarch64-darwin"; user = "paul.kratochwill"; impermanent = false; };
+    # central host table
+    hosts = {
+      desktop = {
+        system = "x86_64-linux";
+        user = "paul";
+        impermanent = true;
       };
-
-      # common specialArgs
-      mkSpecialArgs = host: {
-        inherit inputs;
-        outputs = self.outputs;
-        host = hosts.${host} // { name = host; };
+      laptop = {
+        system = "x86_64-linux";
+        user = "paul";
+        impermanent = true;
       };
+      macbook = {
+        system = "aarch64-darwin";
+        user = "paul.kratochwill";
+        impermanent = false;
+      };
+    };
 
-      # shared NixOS modules
-      nixosModules = host: [
+    # common specialArgs
+    mkSpecialArgs = host: {
+      inherit inputs;
+      outputs = self.outputs;
+      host = hosts.${host} // {name = host;};
+    };
+
+    # shared NixOS modules
+    nixosModules = host:
+      [
         ./nixos/host-${host}.nix
         ./modules/core
         ./nixos/home-manager.nix
         inputs.home-manager.nixosModules.home-manager
         inputs.agenix.nixosModules.default
         inputs.catppuccin.nixosModules.catppuccin
-      ] ++ (nixpkgs.lib.optionals hosts.${host}.impermanent [
+      ]
+      ++ (nixpkgs.lib.optionals hosts.${host}.impermanent [
         inputs.impermanence.nixosModules.impermanence
       ]);
 
-      # shared Darwin modules
-      darwinModules = host: [
+    # shared Darwin modules
+    darwinModules = host:
+      [
         ./nixos/host-${host}.nix
         ./modules/core/default-darwin.nix
         ./nixos/home-manager.nix
         inputs.home-manager.darwinModules.home-manager
         inputs.nix-homebrew.darwinModules.nix-homebrew
         inputs.agenix.darwinModules.default
-      ] ++ (nixpkgs.lib.optionals hosts.${host}.impermanent [
+      ]
+      ++ (nixpkgs.lib.optionals hosts.${host}.impermanent [
         inputs.impermanence.darwinModules.impermanence
       ]);
-    in
-    {
-      packages   = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-      formatter  = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-      overlays   = import ./overlays { inherit inputs; };
+  in {
+    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    overlays = import ./overlays {inherit inputs;};
 
-      nixosConfigurations = nixpkgs.lib.filterAttrs
-        (n: _: hosts.${n}.system != "aarch64-darwin")
-        (nixpkgs.lib.mapAttrs'
-          (host: cfg: nixpkgs.lib.nameValuePair host
-            (nixpkgs.lib.nixosSystem {
-              system = cfg.system;
-              specialArgs = mkSpecialArgs host;
-              modules = nixosModules host;
-            }))
-          hosts);
+    nixosConfigurations =
+      nixpkgs.lib.filterAttrs
+      (n: _: hosts.${n}.system != "aarch64-darwin")
+      (nixpkgs.lib.mapAttrs'
+        (host: cfg:
+          nixpkgs.lib.nameValuePair host
+          (nixpkgs.lib.nixosSystem {
+            system = cfg.system;
+            specialArgs = mkSpecialArgs host;
+            modules = nixosModules host;
+          }))
+        hosts);
 
-      darwinConfigurations = nixpkgs.lib.filterAttrs
-        (n: _: hosts.${n}.system == "aarch64-darwin")
-        (nixpkgs.lib.mapAttrs'
-          (host: cfg: nixpkgs.lib.nameValuePair host
-            (darwin.lib.darwinSystem {
-              system = cfg.system;
-              specialArgs = mkSpecialArgs host;
-              modules = darwinModules host;
-            }))
-          hosts);
-    };
+    darwinConfigurations =
+      nixpkgs.lib.filterAttrs
+      (n: _: hosts.${n}.system == "aarch64-darwin")
+      (nixpkgs.lib.mapAttrs'
+        (host: cfg:
+          nixpkgs.lib.nameValuePair host
+          (darwin.lib.darwinSystem {
+            system = cfg.system;
+            specialArgs = mkSpecialArgs host;
+            modules = darwinModules host;
+          }))
+        hosts);
+  };
 }

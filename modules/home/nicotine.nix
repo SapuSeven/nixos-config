@@ -7,5 +7,5 @@
     persistence."/nix/persist/home/paul".directories = [
       ".config/nicotine"
     ];
-  };  
+  };
 }

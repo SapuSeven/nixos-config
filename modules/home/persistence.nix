@@ -1,9 +1,14 @@
-{ config, lib, pkgs, inputs, host, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  host,
+  ...
+}: let
   isImpermanent = host.impermanent or false;
   persistDir = "/nix/persist/home/${host.user}";
-in
-{
+in {
   options.persistence = lib.mkOption {
     type = lib.types.attrsOf (lib.types.listOf lib.types.str);
     description = "Custom persistence configuration for impermanent hosts.";

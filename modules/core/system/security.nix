@@ -34,8 +34,18 @@
 
     pam = {
       loginLimits = [
-        { domain = "*"; item = "nofile"; type = "soft"; value = "32768"; }
-        { domain = "*"; item = "nofile"; type = "hard"; value = "32768"; }
+        {
+          domain = "*";
+          item = "nofile";
+          type = "soft";
+          value = "32768";
+        }
+        {
+          domain = "*";
+          item = "nofile";
+          type = "hard";
+          value = "32768";
+        }
       ];
     };
   };

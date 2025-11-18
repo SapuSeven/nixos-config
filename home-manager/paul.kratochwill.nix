@@ -6,8 +6,7 @@
   ...
 }: let
   user = host.user;
-in
-{
+in {
   programs.git.settings.user = lib.mkForce {
     name = "Paul Kratochwill";
     email = "paul.kratochwill@bawaggroup.com";

@@ -1,14 +1,14 @@
 {pkgs, ...}: {
   services.udev = {
-    packages = [ pkgs.yubikey-personalization ];
+    packages = [pkgs.yubikey-personalization];
 
     # Lock screen when unplugging yubikey
     extraRules = ''
-        ACTION=="remove",\
-         ENV{ID_BUS}=="usb",\
-         ENV{ID_VENDOR_ID}=="1050",\
-         ENV{ID_VENDOR}=="Yubico",\
-         RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+      ACTION=="remove",\
+       ENV{ID_BUS}=="usb",\
+       ENV{ID_VENDOR_ID}=="1050",\
+       ENV{ID_VENDOR}=="Yubico",\
+       RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
     '';
   };
 
