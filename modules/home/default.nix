@@ -6,6 +6,7 @@
   imports = [
     ./persistence.nix
     ./development/common.nix # development environments
+    ./git.nix # vcs
     ./nvim.nix # text editor
     ./starship.nix # shell prompt
     ./zsh.nix # shell
@@ -17,7 +18,6 @@
     ./firefox.nix # browser
     ./freecad.nix # 3d modeling
     ./games # games
-    ./git.nix # vcs
     ./httptoolkit.nix # http sniffer
     ./hypr # hypr*
     ./inkscape # svg drawings
