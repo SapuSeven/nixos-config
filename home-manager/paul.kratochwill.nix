@@ -1,11 +1,15 @@
 {
   pkgs,
+  inputs,
   ...
 }: let
   user = "paul.kratochwill";
 in
 {
-  networking.hostName = "paul-bawag";
+  imports = [
+    inputs.home-manager.darwinModules.home-manager
+    inputs.nix-homebrew.darwinModules.nix-homebrew
+  ];
 
   home = {
     username = user;
