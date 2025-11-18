@@ -7,10 +7,6 @@
   user,
   ...
 }: {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-  ];
-
   # Home manager configuration
   home-manager = {
     extraSpecialArgs = {inherit system inputs outputs host;};
