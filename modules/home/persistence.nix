@@ -1,6 +1,5 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, host, ... }:
 let
-  host = config.host;
   isImpermanent = host.impermanent or false;
   persistDir = "/nix/persist/home/${host.user}";
 in
