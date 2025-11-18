@@ -4,7 +4,8 @@
   ...
 }: {
   imports =
-    [(import ./avizo.nix)] # osd
+    [(import ./persistence.nix)]
+    ++ [(import ./avizo.nix)] # osd
     ++ [(import ./development)] # development environments
     ++ [(import ./editor.nix)] # text editor
     ++ [(import ./files.nix)] # file management

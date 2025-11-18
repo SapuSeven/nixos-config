@@ -116,7 +116,7 @@ in
     eza # ls replacement
   ];
 
-  home.persistence."/nix/persist/home/paul".directories = lib.optionals host.impermanent [
+  persistence.directories = [
     ".zsh"
     ".local/share/zoxide"
   ];
