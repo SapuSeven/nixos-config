@@ -66,6 +66,9 @@
         rust.enable = true;
         python.enable = true;
       };
+
+      viAlias = true;
+      vimAlias = true;
     };
   };
 

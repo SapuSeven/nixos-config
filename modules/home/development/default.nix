@@ -1,8 +1,9 @@
-{...}: {
+{lib, host, ...}: {
   imports = [
-    ./android.nix # android
     ./common.nix # non-language-specific
-    ./jetbrains.nix # java/rust
     ./nvim.nix # text editor
+  ] ++ lib.optionals (host.name != "macbook") [
+    ./android.nix # android
+    ./jetbrains.nix # java/rust
   ];
 }

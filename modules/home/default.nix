@@ -6,7 +6,7 @@
   imports =
     [
       ./persistence.nix
-      ./development/common.nix # development environments
+      ./development # development environments
       ./git.nix # vcs
       ./packages.nix # other packages
       ./starship.nix # shell prompt
@@ -14,7 +14,6 @@
     ]
     ++ lib.optionals (host.name != "macbook") [
       ./avizo.nix # osd
-      ./development # development environments
       ./editor.nix # text editor
       ./files.nix # file management
       ./firefox.nix # browser
