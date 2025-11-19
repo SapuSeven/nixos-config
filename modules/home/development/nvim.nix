@@ -35,6 +35,10 @@
         smartcase = true;
         smartindent = true;
       };
+      
+      terminal = {
+        toggleterm.enable = true;
+      };
 
       keymaps = [
         {

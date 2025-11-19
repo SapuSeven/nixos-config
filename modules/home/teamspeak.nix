@@ -3,7 +3,7 @@
     packages = with pkgs; [
       (symlinkJoin {
         name = "TeamSpeak";
-        paths = [teamspeak5_client];
+        paths = [teamspeak6-client];
         buildInputs = [makeWrapper];
         postBuild = ''
           wrapProgram $out/bin/TeamSpeak \

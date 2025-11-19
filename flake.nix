@@ -17,7 +17,7 @@
     impermanence.url = "github:nix-community/impermanence";
 
     # nvim
-    nvf.url = "github:NotAShelf/nvf";
+    nvf.url = "github:NotAShelf/nvf/v0.8";
     nvf.inputs.nixpkgs.follows = "nixpkgs";
 
     # Secrets
