@@ -1,4 +1,6 @@
 {
+  lib,
+  config,
   inputs,
   pkgs,
   ...
@@ -9,6 +11,10 @@
       # fonts
       nerd-fonts.jetbrains-mono
     ];
+  };
+
+  programs.zsh.sessionVariables = lib.mkIf config.programs.zsh.enable {
+    EDITOR = "nvim";
   };
 
   imports = [
