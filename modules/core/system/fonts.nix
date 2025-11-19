@@ -3,13 +3,13 @@
     packages = with pkgs; [
       noto-fonts
       noto-fonts-emoji
-      jetbrains-mono
       nerd-fonts.jetbrains-mono
       corefonts # Microsoft Fonts
     ];
     fontconfig = {
+      enable = true;
       defaultFonts = {
-        monospace = ["JetBrains Mono"];
+        monospace = ["JetBrainsMono Nerd Font"];
         sansSerif = ["Noto Sans"];
         serif = ["Noto Serif"];
       };

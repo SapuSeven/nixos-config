@@ -2,11 +2,11 @@
   programs.kitty = {
     enable = true;
     settings = {
-      # for some reason, using generic font names prevents them from working
-      font_family = "monospace";
-      bold_font = "JetBrains Mono Bold";
-      italic_font = "JetBrains Mono Italic";
-      bold_italic_font = "JetBrains Mono Bold Italic";
+      font_family = "JetBrainsMono Nerd Font";
+      bold_font = "JetBrainsMono Nerd Font Bold";
+      italic_font = "JetBrainsMono Nerd Font Italic";
+      bold_italic_font = "JetBrainsMono Nerd Font Bold Italic";
+      font_features = "JetBrainsMono Nerd Font +liga +calt";
       background_opacity = 0.9;
       background_blur = 1;
     };

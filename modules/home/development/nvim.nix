@@ -5,13 +5,6 @@
   pkgs,
   ...
 }: {
-  home = {
-    packages = with pkgs; [
-      # fonts
-      nerd-fonts.jetbrains-mono
-    ];
-  };
-
   programs.zsh.sessionVariables = lib.mkIf config.programs.zsh.enable {
     EDITOR = "nvim";
   };
@@ -59,8 +52,18 @@
         };
       };
 
+      telescope = {
+        enable = true;
+        extensions = [
+          {
+            name = "fzf";
+            packages = [pkgs.vimPlugins.telescope-fzf-native-nvim];
+            setup = {fzf = {fuzzy = true;};};
+          }
+        ];
+      };
+      
       statusline.lualine.enable = true; # status line
-      telescope.enable = true; # fuzzy finder
       autocomplete.nvim-cmp.enable = true; # fancy autocomplete
       autopairs.nvim-autopairs.enable = true; # automatic bracket pairs
       treesitter.enable = true;
