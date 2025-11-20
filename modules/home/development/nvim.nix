@@ -35,7 +35,7 @@
         smartcase = true;
         smartindent = true;
       };
-      
+
       terminal = {
         toggleterm.enable = true;
       };
@@ -66,7 +66,7 @@
           }
         ];
       };
-      
+
       statusline.lualine.enable = true; # status line
       autocomplete.nvim-cmp.enable = true; # fancy autocomplete
       autopairs.nvim-autopairs.enable = true; # automatic bracket pairs

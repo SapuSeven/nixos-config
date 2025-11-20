@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   android-studio = pkgs.androidStudioPackages.beta.override {
     tiling_wm = true;
     forceWayland = false;

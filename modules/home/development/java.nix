@@ -1,5 +1,5 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
+  jdk = pkgs.jdk21;
   cacertsDir = builtins.path {
     path = ../../../certs;
     name = "custom-cacerts";
@@ -7,15 +7,15 @@ let
 
   customTruststore = pkgs.stdenv.mkDerivation {
     name = "custom-truststore";
-    buildInputs = [ pkgs.jdk21 ];
-    buildCommand = ''
+    buildInputs = [jdk];
+    buildCommand = let
+      cacerts =
+        if pkgs.stdenv.isDarwin
+        then "${jdk}/lib/security/cacerts"
+        else "${jdk}/lib/openjdk/lib/security/cacerts";
+    in ''
       mkdir -p $out
-
-      ${pkgs.p11-kit.bin}/bin/trust extract \
-        --format=java-cacerts \
-        --purpose=server-auth \
-        $out/cacerts
-
+      cp ${cacerts} $out/cacerts
       chmod +w $out/cacerts
 
       for cert in ${cacertsDir}/*; do
@@ -34,13 +34,11 @@ let
   };
 in {
   home.sessionVariables = {
-    JAVAX_NET_SSL_TRUSTSTORE = "${customTruststore}/cacerts";
-    JAVAX_NET_SSL_TRUSTSTORE_PASSWORD = "changeit";
-    #_JAVA_OPTIONS = "-Djavax.net.ssl.trustStore=${customTruststore}/cacerts -Djavax.net.ssl.trustStorePassword=changeit";
+    _JAVA_OPTIONS = "-Djavax.net.ssl.trustStore=${customTruststore}/cacerts -Djavax.net.ssl.trustStorePassword=changeit";
   };
 
   programs.java = {
     enable = true;
-    package = pkgs.jdk21;
+    package = jdk;
   };
 }
