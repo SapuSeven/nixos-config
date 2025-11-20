@@ -8,14 +8,13 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled>
-      # no need to redefine it in your config for now)
-      #media-session.enable = true;
     };
   };
+
+  services.udev.extraRules = ''
+    # Set volume for Audeze Maxwell Dongle on connect
+    ACTION=="add", SUBSYSTEM=="sound", ATTRS{idVendor}=="3329", ATTRS{idProduct}=="4b19", RUN+="${pkgs.alsa-utils}/bin/amixer -D hw:Dongle set 'PCM,0' 100", RUN+="${pkgs.alsa-utils}/bin/amixer -D hw:Dongle set 'PCM,1' 100"
+  '';
 
   # Silent Sound service to workaround the Maxwell initial audio cut-off
   # See https://www.reddit.com/r/Audeze/comments/1f9eolc/maxwell_initial_audio_cutoff_workaround_for_linux/
