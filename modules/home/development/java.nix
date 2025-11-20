@@ -14,14 +14,14 @@ let
       ${pkgs.p11-kit.bin}/bin/trust extract \
         --format=java-cacerts \
         --purpose=server-auth \
-        $out/cacerts.pkcs12
+        $out/cacerts
 
-      chmod +w $out/cacerts.pkcs12
+      chmod +w $out/cacerts
 
       for cert in ${cacertsDir}/*; do
         if [ -f "$cert" ]; then
           $buildInputs/bin/keytool -importcert \
-            -keystore $out/cacerts.pkcs12 \
+            -keystore $out/cacerts \
             -storetype PKCS12 \
             -storepass changeit \
             -keypass changeit \
