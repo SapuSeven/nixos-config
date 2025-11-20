@@ -11,6 +11,7 @@
       ./lazy-apps.nix # lazy apps
       ./packages.nix # other packages
       ./starship.nix # shell prompt
+      ./syncthing.nix # file sync
       ./zsh.nix # shell
     ]
     ++ lib.optionals (host.name != "macbook") [
@@ -32,7 +33,6 @@
       #./nicotine.nix # soulseek
       ./obsidian.nix # notes
       ./orcaslicer.nix # slicer
-      ./syncthing.nix # file sync
       ./teamspeak.nix # teamspeak
       ./theme.nix # theme
       ./deluge.nix # torrent client

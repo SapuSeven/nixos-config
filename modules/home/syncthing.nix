@@ -1,5 +1,5 @@
-{host, ...}: {
-  home.persistence."/nix/persist/home/paul".directories = [
+{...}: {
+  persistence.directories = [
     "Sync"
     ".local/state/syncthing"
   ];
