@@ -10,16 +10,21 @@ let
     buildInputs = [ pkgs.jdk21 ];
     buildCommand = ''
       mkdir -p $out
-      # Copy the default cacerts as base
-      cp ${pkgs.jdk21}/lib/openjdk/lib/security/cacerts $out/cacerts
-      chmod +w $out/cacerts
 
-      # Import your certificates
+      ${pkgs.p11-kit.bin}/bin/trust extract \
+        --format=java-cacerts \
+        --purpose=server-auth \
+        $out/cacerts.pkcs12
+
+      chmod +w $out/cacerts.pkcs12
+
       for cert in ${cacertsDir}/*; do
         if [ -f "$cert" ]; then
-          keytool -importcert \
-            -keystore $out/cacerts \
+          $buildInputs/bin/keytool -importcert \
+            -keystore $out/cacerts.pkcs12 \
+            -storetype PKCS12 \
             -storepass changeit \
+            -keypass changeit \
             -noprompt \
             -alias "custom-$(basename "$cert" | sed 's/\..*$//')" \
             -file "$cert"
@@ -28,10 +33,10 @@ let
     '';
   };
 in {
-  programs.zsh.sessionVariables = {
+  home.sessionVariables = {
     JAVAX_NET_SSL_TRUSTSTORE = "${customTruststore}/cacerts";
     JAVAX_NET_SSL_TRUSTSTORE_PASSWORD = "changeit";
-    _JAVA_OPTIONS = "-Djavax.net.ssl.trustStore=${customTruststore}/cacerts -Djavax.net.ssl.trustStorePassword=changeit";
+    #_JAVA_OPTIONS = "-Djavax.net.ssl.trustStore=${customTruststore}/cacerts -Djavax.net.ssl.trustStorePassword=changeit";
   };
 
   programs.java = {

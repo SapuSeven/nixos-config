@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: {
-  programs.zsh.sessionVariables = lib.mkIf config.programs.zsh.enable {
+  home.sessionVariables = {
     EDITOR = "nvim";
   };
 
