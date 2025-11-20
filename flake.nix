@@ -32,7 +32,7 @@
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     # Lazy Apps
-    lazy-apps.url = "sourcehut:~rycee/lazy-apps";
+    lazy-apps.url = "github:SapuSeven/nix-lazy-apps";
     lazy-apps.inputs.nixpkgs.follows = "nixpkgs";
 
     # Styling

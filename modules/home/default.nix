@@ -8,6 +8,7 @@
       ./persistence.nix
       ./development # development environments
       ./git.nix # vcs
+      ./lazy-apps.nix # lazy apps
       ./packages.nix # other packages
       ./starship.nix # shell prompt
       ./zsh.nix # shell
