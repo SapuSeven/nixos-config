@@ -4,9 +4,9 @@
   inputs,
   ...
 }: let
-  isDarwin = pkgs.stdenv.isDarwin;
+  isLinux = pkgs.stdenv.isLinux;
 in {
-  home.packages = lib.optionals isDarwin [
+  home.packages = lib.optionals isLinux [
     (inputs.lazy-apps.packages.${pkgs.system}.lazy-app.override {
       pkg = pkgs.blender;
       desktopItem = pkgs.makeDesktopItem {
