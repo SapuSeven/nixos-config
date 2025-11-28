@@ -1,6 +1,4 @@
 {
-  lib,
-  config,
   inputs,
   pkgs,
   ...
@@ -65,6 +63,10 @@
             setup = {fzf = {fuzzy = true;};};
           }
         ];
+      };
+
+      filetree.nvimTree = {
+        enable = false;
       };
 
       statusline.lualine.enable = true; # status line

@@ -33,8 +33,14 @@
     '';
   };
 in {
-  home.sessionVariables = {
-    _JAVA_OPTIONS = "-Djavax.net.ssl.trustStore=${customTruststore}/cacerts -Djavax.net.ssl.trustStorePassword=changeit";
+  imports = [ ./java-props.nix ];
+
+  javaProps = {
+    enable = true;
+    system = {
+      "javax.net.ssl.trustStore" = "${customTruststore}/cacerts";
+      "javax.net.ssl.trustStorePassword" = "changeit";
+    };
   };
 
   programs.java = {
