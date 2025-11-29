@@ -1,11 +1,11 @@
 {
-  config,
+  lib,
   host,
   ...
 }: {
   networking = {
     networkmanager.enable = true;
-    hostName = "nixos-${host.name}";
+    hostName = lib.mkdefault "nixos-${host.name}";
 
     firewall = {
       allowedTCPPorts = [

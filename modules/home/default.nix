@@ -2,7 +2,9 @@
   lib,
   host,
   ...
-}: {
+}: let
+  isLinux = lib.strings.hasInfix "linux" host.system;
+in {
   imports =
     [
       ./persistence.nix
@@ -14,7 +16,7 @@
       ./syncthing.nix # file sync
       ./zsh.nix # shell
     ]
-    ++ lib.optionals (host.name != "macbook") [
+    ++ lib.optionals isLinux [
       ./avizo.nix # osd
       ./editor.nix # text editor
       ./files.nix # file management
@@ -44,6 +46,6 @@
       ./yubikey.nix # yubikey
     ]
     ++ lib.optionals (host.name == "laptop") [
-      (import ./batsignal.nix) # battery level monitoring
+      ./batsignal.nix # battery level monitoring
     ];
 }

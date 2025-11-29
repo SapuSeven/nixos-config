@@ -33,7 +33,7 @@
     '';
   };
 in {
-  imports = [ ./java-props.nix ];
+  imports = [./java-props.nix];
 
   javaProps = {
     enable = true;
