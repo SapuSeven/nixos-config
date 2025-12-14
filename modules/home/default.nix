@@ -44,6 +44,7 @@ in {
       ./wlogout # logout menu
       ./wluma.nix # backlight brightness control
       ./yubikey.nix # yubikey
+      ./zen.nix
     ]
     ++ lib.optionals (host.name == "laptop") [
       ./batsignal.nix # battery level monitoring

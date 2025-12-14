@@ -34,6 +34,7 @@
       avizo-client --image-resource=brightness_$(value_threshold "$brightness")_dark --progress ''${brightness}
     fi
   '';
+  browser = "zen-twilight"; # Provided externally
 in {
   home.packages = with pkgs; [
     wl-clipboard
@@ -195,8 +196,8 @@ in {
           # Program shortcuts
           "$mod, return, exec, kitty"
           "$mod, E, exec, thunar"
-          "$mod, F, exec, firefox"
-          "CTRL SHIFT, P, exec, firefox -private-window"
+          "$mod, F, exec, ${browser}"
+          "CTRL SHIFT, P, exec, ${browser} -private-window"
 
           # Close active window
           "$mod, Q, killactive,"
