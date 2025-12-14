@@ -13,7 +13,6 @@ in {
       autostart = false;
 
       dns = ["10.0.200.1"];
-      mtu = 1280;
 
       address = [
         "10.0.200.${{
