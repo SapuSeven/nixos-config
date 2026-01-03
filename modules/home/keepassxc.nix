@@ -46,6 +46,7 @@ in {
       [Security]
       ClearClipboardTimeout=20
       EnableCopyOnDoubleClick=true
+      LockDatabaseIdle=false
       LockDatabaseScreenLock=false
     '';
   };
