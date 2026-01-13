@@ -85,7 +85,14 @@
     };
 
     # common specialArgs
-    mkSpecialArgs = host: {
+    mkSpecialArgs = host: cfg: {
+      pkgs = import nixpkgs {
+        system = cfg.system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+        };
+      };
       inherit inputs;
       outputs = self.outputs;
       host = hosts.${host} // {name = host;};
@@ -146,35 +153,19 @@
               else nixosModules host;
           }))
         hosts);
+
+    mkConfiguredSystem = builder: { host, cfg, modules }:
+      builder {
+        system = cfg.system;
+        specialArgs = mkSpecialArgs host cfg;
+        inherit modules;
+      };
   in {
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
     overlays = import ./overlays {inherit inputs;};
 
-    nixosConfigurations = mkConfigs "linux" (
-      {
-        host,
-        cfg,
-        modules,
-      }:
-        nixpkgs.lib.nixosSystem {
-          system = cfg.system;
-          specialArgs = mkSpecialArgs host;
-          inherit modules;
-        }
-    );
-
-    darwinConfigurations = mkConfigs "darwin" (
-      {
-        host,
-        cfg,
-        modules,
-      }:
-        darwin.lib.darwinSystem {
-          system = cfg.system;
-          specialArgs = mkSpecialArgs host;
-          inherit modules;
-        }
-    );
+    nixosConfigurations = mkConfigs "linux" (mkConfiguredSystem nixpkgs.lib.nixosSystem);
+    darwinConfigurations = mkConfigs "darwin" (mkConfiguredSystem darwin.lib.darwinSystem);
   };
 }

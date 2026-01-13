@@ -11,6 +11,11 @@
   home-manager = {
     extraSpecialArgs = {inherit system inputs outputs host;};
     backupFileExtension = "backup";
+    
+    # Use global nixpkgs with allow-unfree
+    useGlobalPkgs = true;
+    useUserPackages = true;
+
     users =
       {
         ${host.user} = {

@@ -14,6 +14,7 @@ in {
       ./packages.nix # other packages
       ./starship.nix # shell prompt
       ./syncthing.nix # file sync
+      ./vscode.nix # code editor
       ./zsh.nix # shell
     ]
     ++ lib.optionals isLinux [
@@ -38,7 +39,6 @@ in {
       ./teamspeak.nix # teamspeak
       ./theme.nix # theme
       ./deluge.nix # torrent client
-      ./vscode.nix # code editor
       ./waybar # status bar
       ./wofi.nix # launcher
       ./wlogout # logout menu

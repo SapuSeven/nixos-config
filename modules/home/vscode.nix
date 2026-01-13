@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }: {
   programs.vscode = {
@@ -19,6 +18,12 @@
           ms-vscode.cpptools
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "monkey-c";
+            publisher = "garmin";
+            version = "1.1.2";
+            sha256 = "sha256-+cZmPJsH6KYCm02s011QYIuzoBejFNfZaj3uYX9rbYQ=";
+          }
           {
             name = "platformio-ide";
             publisher = "platformio";
@@ -43,7 +48,7 @@
     };
   };
 
-  home.persistence."/nix/persist/home/paul".directories = [
+  persistence."/nix/persist/home/paul".directories = [
     ".platformio"
   ];
 }

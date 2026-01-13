@@ -20,10 +20,10 @@
       "hiddenbar"
       "raycast"
       "betterdisplay"
+      "mos"
 
       # dev
       "ghostty"
-      "visual-studio-code"
       "zed"
 
       # messaging

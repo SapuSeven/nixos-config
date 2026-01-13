@@ -18,8 +18,6 @@
     enable = false; # using determinate installer
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   # homebrew installation manager
   nix-homebrew = {
     user = host.user;
