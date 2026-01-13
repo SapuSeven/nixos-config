@@ -8,6 +8,10 @@
     profiles.default = {
       extensions = with pkgs.vscode-extensions;
         [
+          # theme
+          catppuccin.catppuccin-vsc
+          catppuccin.catppuccin-vsc-icons
+
           # nix language
           bbenoist.nix
           # nix-shell suport
