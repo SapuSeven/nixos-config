@@ -10,6 +10,7 @@ in {
     [
       ./wireguard.nix # vpn client
       ./persistence.nix # impermanence support module
+      ./system # system settings
     ]
     ++ lib.optionals isLinux [
       ./adb.nix # android development
@@ -28,7 +29,6 @@ in {
       ./samba.nix # file shares
       ./ssh.nix # ssh
       ./steam.nix # game store
-      ./system # system settings
       ./wayland.nix # de+wm
       ./yubikey.nix # security key
     ]

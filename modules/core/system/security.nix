@@ -1,68 +1,85 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    doas
-    doas-sudo-shim
-  ];
+{
+  lib,
+  pkgs,
+  host,
+  ...
+}: let
+  isLinux = lib.strings.hasInfix "linux" host.system;
+in
+  lib.mkMerge [
+    {
+      security.pki = {
+        certificateFiles = lib.filesystem.listFilesRecursive ./../../../certs;
+        installCACerts = true;
+      };
+    }
 
-  security = {
-    doas = {
-      enable = true;
-      extraRules = [
-        {
-          groups = ["wheel"];
-          keepEnv = true;
-          noPass = true;
-        }
+    (lib.optionalAttrs isLinux {
+      environment.systemPackages = with pkgs; [
+        doas
+        doas-sudo-shim
       ];
-    };
-    sudo.enable = false;
 
-    polkit = {
-      enable = true;
-      extraConfig = ''
-        polkit.addRule(function(action, subject) {
-          if ((action.id == "org.freedesktop.udisks2.filesystem-mount-system" ||
-               action.id == "org.freedesktop.udisks2.filesystem-mount") &&
-               subject.isInGroup("wheel")) {
-            return polkit.Result.YES;
-          }
-        });
-      '';
-    };
+      security = {
+        doas = {
+          enable = true;
+          extraRules = [
+            {
+              groups = ["wheel"];
+              keepEnv = true;
+              noPass = true;
+            }
+          ];
+        };
+        sudo.enable = false;
 
-    pki.certificateFiles = [../../../certs/LAN+Root+CA.crt];
+        polkit = {
+          enable = true;
+          extraConfig = ''
+            polkit.addRule(function(action, subject) {
+              if ((action.id == "org.freedesktop.udisks2.filesystem-mount-system" ||
+                   action.id == "org.freedesktop.udisks2.filesystem-mount") &&
+                   subject.isInGroup("wheel")) {
+                return polkit.Result.YES;
+              }
+            });
+          '';
+        };
 
-    pam = {
-      loginLimits = [
-        {
-          domain = "*";
-          item = "nofile";
-          type = "soft";
-          value = "32768";
-        }
-        {
-          domain = "*";
-          item = "nofile";
-          type = "hard";
-          value = "32768";
-        }
-      ];
-    };
-  };
+        pki.certificateFiles = [../../../certs/LAN+Root+CA.crt];
 
-  systemd.user.extraConfig = "DefaultLimitNOFILE=32768";
+        pam = {
+          loginLimits = [
+            {
+              domain = "*";
+              item = "nofile";
+              type = "soft";
+              value = "32768";
+            }
+            {
+              domain = "*";
+              item = "nofile";
+              type = "hard";
+              value = "32768";
+            }
+          ];
+        };
+      };
 
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    description = "Polkit-Gnome authentication agent";
-    wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
-    after = ["graphical-session.target"];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-  };
-}
+      systemd.user.extraConfig = "DefaultLimitNOFILE=32768";
+
+      systemd.user.services.polkit-gnome-authentication-agent-1 = {
+        description = "Polkit-Gnome authentication agent";
+        wantedBy = ["graphical-session.target"];
+        wants = ["graphical-session.target"];
+        after = ["graphical-session.target"];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
+    })
+  ]

@@ -47,4 +47,6 @@ in {
     enable = true;
     package = jdk;
   };
+
+  home.file.".jdk".source = "${jdk.home}";
 }
