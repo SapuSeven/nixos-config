@@ -5,9 +5,10 @@
   ...
 }: let
   isLinux = pkgs.stdenv.isLinux;
+  lazy = inputs.lazy-apps.packages.${pkgs.system}.lazy-app;
 in {
   home.packages = lib.optionals isLinux [
-    (inputs.lazy-apps.packages.${pkgs.system}.lazy-app.override {
+    (lazy.override {
       pkg = pkgs.blender;
       desktopItem = pkgs.makeDesktopItem {
         name = "blender";
@@ -20,5 +21,6 @@ in {
         mimeTypes = ["application/x-blender"];
       };
     })
+    (lazy.override { pkg = pkgs.unzip; })
   ];
 }
