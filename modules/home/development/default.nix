@@ -5,7 +5,7 @@
 }: {
   imports =
     [
-      ./common.nix # non-language-specific
+      ./direnv.nix # automatic .envrc setup
       ./java.nix # java
       ./nvim.nix # text editor
     ]

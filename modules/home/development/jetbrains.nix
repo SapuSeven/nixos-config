@@ -1,9 +1,10 @@
 {
-  config,
+  inputs,
   pkgs,
   host,
   ...
 }: let
+  lazy = inputs.lazy-apps.packages.${pkgs.system}.lazy-app;
   vmopts =
     if host == "desktop"
     then ''
@@ -14,16 +15,16 @@
 in {
   home = {
     packages = with pkgs.jetbrains; [
-      (idea-community.override {vmopts = vmopts;})
-      (rust-rover.override {vmopts = vmopts;})
-      (pycharm-community.override {vmopts = vmopts;})
-      (webstorm.override {vmopts = vmopts;})
-    ];
-
-    persistence."/nix/persist/home/paul".directories = [
-      ".config/JetBrains"
-      ".local/share/JetBrains"
-      ".java/.userPrefs"
+      (idea-oss.override {vmopts = vmopts;})
+      (lazy.override { pkg = (rust-rover.override {vmopts = vmopts;}); })
+      (lazy.override { pkg = (pycharm-oss.override {vmopts = vmopts;}); })
+      (lazy.override { pkg = (webstorm.override {vmopts = vmopts;}); })
     ];
   };
+
+  persistence.directories = [
+    ".config/JetBrains"
+    ".local/share/JetBrains"
+    ".java/.userPrefs"
+  ];
 }
