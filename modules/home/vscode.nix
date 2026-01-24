@@ -48,6 +48,7 @@
         "platformio-ide.autoOpenPlatformIOIniFile" = false;
         "platformio-ide.disablePIOHomeStartup" = true;
         "git.confirmSync" = false;
+        "update.mode" = "none";
       };
     };
   };

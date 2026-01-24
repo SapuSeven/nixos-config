@@ -25,6 +25,8 @@
       # dev
       "ghostty"
       "zed"
+      "inkscape"
+      "gimp"
 
       # messaging
       #"discord"
