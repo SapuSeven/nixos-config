@@ -16,6 +16,8 @@
 
     # Your nvf configuration goes here
     settings.vim = {
+      package = inputs.nvf.inputs.nixpkgs.legacyPackages.x86_64-linux.neovim-unwrapped;
+
       theme = {
         enable = true;
         name = "catppuccin";

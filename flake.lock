@@ -423,6 +423,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-nvf": {
+      "locked": {
+        "lastModified": 1767116409,
+        "narHash": "sha256-5vKw92l1GyTnjoLzEagJy5V5mDFck72LiQWZSOnSicw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "cad22e7d996aea55ecab064e84834289143e44a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "cad22e7d996aea55ecab064e84834289143e44a0",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1730741070,
@@ -494,7 +510,7 @@
         "mnw": "mnw",
         "ndg": "ndg",
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-nvf"
         ],
         "systems": "systems_2"
       },
@@ -549,6 +565,7 @@
         "lazy-apps": "lazy-apps",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-nvf": "nixpkgs-nvf",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nvf": "nvf",
         "zen-browser": "zen-browser"
