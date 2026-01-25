@@ -1,5 +1,5 @@
 {...}: {
-  home.persistence."/nix/persist/home/paul".files = [
+  home.persistence."/nix/persist".files = [
     ".local/share/recently-used.xbel"
   ];
 

@@ -22,6 +22,7 @@
     device = "none";
     fsType = "tmpfs";
     options = ["defaults" "size=24G" "mode=777"];
+    neededForBoot = true; # https://github.com/nix-community/impermanence/issues/298
   };
 
   fileSystems."/nix" = {

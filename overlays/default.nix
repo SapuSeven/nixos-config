@@ -1,13 +1,6 @@
-# This file defines overlays
-{inputs, ...}: {
-  # This one brings our custom packages from the 'pkgs' directory
-  additions = final: _prev: import ../pkgs final.pkgs;
-
-  # This one contains whatever you want to overlay
-  # You can change versions, add patches, set compilation flags, anything really.
-  # https://nixos.wiki/wiki/Overlays
+{inputs, config, ...}: {
   modifications = final: prev: {
-    catppuccin = prev.catppuccin.overrideAttrs (old: rec {
+    catppuccin = prev.catppuccin.overrideAttrs (old: {
       patches =
         (old.patches or [])
         ++ [
@@ -16,12 +9,15 @@
     });
   };
 
-  # When applied, the stable nixpkgs set (declared in the flake inputs) will
-  # be accessible through 'pkgs.nixpkgs-stable'
-  stable-packages = final: _prev: {
-    nixpkgs-stable = import inputs.nixpkgs-stable {
+  additions = final: _prev: import ../pkgs final.pkgs;
+
+  replacements = final: _prev: let
+    stable = import inputs.nixpkgs-stable {
       system = final.system;
-      config.allowUnfree = true;
+      inherit config;
     };
+  in {
+    pagmo2 = stable.pagmo2; # https://github.com/NixOS/nixpkgs/issues/480860
   };
 }
+

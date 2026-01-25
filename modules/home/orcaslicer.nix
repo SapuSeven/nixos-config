@@ -4,6 +4,6 @@
       orca-slicer
     ];
 
-    persistence."/nix/persist/home/paul".directories = [".config/OrcaSlicer"];
+    persistence."/nix/persist".directories = [".config/OrcaSlicer"];
   };
 }

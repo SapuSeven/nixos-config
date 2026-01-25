@@ -4,6 +4,6 @@
       freecad
     ];
 
-    persistence."/nix/persist/home/paul".directories = [".config/FreeCAD"];
+    persistence."/nix/persist".directories = [".config/FreeCAD"];
   };
 }

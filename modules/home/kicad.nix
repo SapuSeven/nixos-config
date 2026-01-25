@@ -1,10 +1,8 @@
 {
-  lib,
-  config,
   pkgs,
   ...
 }: let
-  kicad = pkgs.kicad.override {
+  kicad = pkgs.kicad-small.override {
     #addons = with pkgs.kicadAddons; [ kikit kikit-library ];
   };
 in {
@@ -24,10 +22,10 @@ in {
       url = "https://raw.githubusercontent.com/waterlilly-lilly/catppuccin-kicad/catppuccin-kicad/resources/icon.png";
       sha256 = "sha256:1lyk7l7yj0albw6m5738lfmf8wps4j9jpsylnfxa7pss72kqm3kg";
     };
-
-    persistence."/nix/persist/home/paul".directories = [
-      ".config/kicad"
-      ".local/share/kicad"
-    ];
   };
+
+  persistence.directories = [
+    ".config/kicad"
+    ".local/share/kicad"
+  ];
 }

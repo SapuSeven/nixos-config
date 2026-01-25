@@ -4,7 +4,7 @@
       ftb-app
     ];
 
-    persistence."/nix/persist/home/paul".directories = [
+    persistence."/nix/persist".directories = [
       ".ftba"
       ".config/FTB\ Electron\ App"
     ];

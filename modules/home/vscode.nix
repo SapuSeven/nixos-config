@@ -8,10 +8,6 @@
     profiles.default = {
       extensions = with pkgs.vscode-extensions;
         [
-          # theme
-          catppuccin.catppuccin-vsc
-          catppuccin.catppuccin-vsc-icons
-
           # nix language
           bbenoist.nix
           # nix-shell suport
@@ -36,11 +32,14 @@
           }
         ];
       userSettings = {
+        "window.titleBarStyle" = "custom";
         "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'SymbolsNerdFont', 'monospace', monospace";
-        "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font', 'SymbolsNerdFont'";
         "editor.fontSize" = 14;
         "editor.fontLigatures" = true;
         "editor.lineHeight" = 1.5;
+        "editor.semanticHighlighting.enabled" = true;
+        "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font', 'SymbolsNerdFont'";
+        "terminal.integrated.minimumContrastRatio" = 1;
         "workbench.colorTheme" = "Catppuccin Mocha";
         "workbench.iconTheme" = "catppuccin-mocha";
         "workbench.startupEditor" = "none";
@@ -53,7 +52,7 @@
     };
   };
 
-  persistence."/nix/persist/home/paul".directories = [
+  persistence."/nix/persist".directories = [
     ".platformio"
   ];
 }

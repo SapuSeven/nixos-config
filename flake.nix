@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     # See the '(un)stable-packages' overlay at 'overlays/default.nix'.
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
@@ -84,20 +84,6 @@
       };
     };
 
-    # common specialArgs
-    mkSpecialArgs = host: cfg: {
-      pkgs = import nixpkgs {
-        system = cfg.system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
-        };
-      };
-      inherit inputs;
-      outputs = self.outputs;
-      host = hosts.${host} // {name = host;};
-    };
-
     # Base modules common to both NixOS and Darwin
     baseModules = host: [
       ./nixos/host-${host}.nix
@@ -154,6 +140,19 @@
           }))
         hosts);
 
+    nixpkgsConfig = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+    };
+
+    # common specialArgs
+    mkSpecialArgs = host: cfg: {
+      inherit inputs nixpkgsConfig;
+      outputs = self.outputs;
+      #inherit (self) outputs;
+      host = hosts.${host} // {name = host;};
+    };
+
     mkConfiguredSystem = builder: { host, cfg, modules }:
       builder {
         system = cfg.system;
@@ -163,7 +162,10 @@
   in {
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-    overlays = import ./overlays {inherit inputs;};
+    overlays = import ./overlays {
+      inherit inputs;
+      config = nixpkgsConfig;
+    };
 
     nixosConfigurations = mkConfigs "linux" (mkConfiguredSystem nixpkgs.lib.nixosSystem);
     darwinConfigurations = mkConfigs "darwin" (mkConfiguredSystem darwin.lib.darwinSystem);

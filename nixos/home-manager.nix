@@ -11,11 +11,11 @@
   home-manager = {
     extraSpecialArgs = {inherit system inputs outputs host;};
     backupFileExtension = "backup";
-    
-    # Use global nixpkgs with allow-unfree
+
+    # Use global nixpkgs with config options (like allow-unfree)
     useGlobalPkgs = true;
     useUserPackages = true;
-
+ 
     users =
       {
         ${host.user} = {
@@ -29,7 +29,7 @@
         root = {
           imports = [
             ../home-manager/root.nix
-            ../modules/home/git.nix # include only Git module for doas nixos-rebuild to work properly
+            ../modules/home/git.nix # include only Git module for nixos-rebuild to work properly as root
           ];
         };
       };

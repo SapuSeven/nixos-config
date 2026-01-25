@@ -5,16 +5,9 @@
   config,
   pkgs,
   ...
-}: let
-  impermanence = builtins.fetchTarball {
-    url = "https://github.com/nix-community/impermanence/archive/master.tar.gz";
-    sha256 = "04l16szln2x0ajq2x799krb53ykvc6vm44x86ppy1jg9fr82161c";
-  };
-in {
+}: {
   # You can import other home-manager modules here
   imports = [
-    "${impermanence}/home-manager.nix"
-
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
 
@@ -23,19 +16,6 @@ in {
     inputs.catppuccin.homeModules.catppuccin
     inputs.zen-browser.homeModules.twilight
   ];
-
-  nixpkgs = {
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.stable-packages
-    ];
-    # Configure your nixpkgs instance
-    config = {
-      allowUnfree = true;
-    };
-  };
 
   home = {
     username = "paul";
@@ -47,8 +27,7 @@ in {
 
   services.udiskie.enable = true;
 
-  home.persistence."/nix/persist/home/paul" = {
-    allowOther = true;
+  home.persistence."/nix/persist" = {
     directories = [
       "Files"
       ".gnupg" # Keyring
@@ -56,7 +35,6 @@ in {
       ".config/keepassxc" # KeePassXC
       ".config/syncthing" # Syncthing
       ".config/TeamSpeak" # TeamSpeak
-      ".config/Google" # Android Studio config
       ".local/state/wireplumber" # Audio setup
     ];
     files = [".zsh_history"];

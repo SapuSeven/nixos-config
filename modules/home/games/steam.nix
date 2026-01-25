@@ -8,7 +8,7 @@ in {
   # This config is only here for persisted home directories.
   # The configuration of the actual Steam client installation is done in modules/core/steam.nix
 
-  home.persistence."/nix/persist/home/paul".directories = [
+  home.persistence."/nix/persist".directories = [
     ".local/share/Steam"
   ];
 

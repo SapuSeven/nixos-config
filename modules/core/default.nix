@@ -23,6 +23,7 @@ in {
       ./files.nix # file management
       ./hid.nix # hid compatibility
       ./httptoolkit.nix # http sniffer
+      ./legacy-linux.nix # legacy linux config
       ./nixos.nix # nixos-related config
       ./packages.nix # misc packages
       ./restic.nix # system backup

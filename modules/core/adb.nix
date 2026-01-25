@@ -1,5 +1,9 @@
 {pkgs, ...}: {
-  programs.adb.enable = true;
+  environment.systemPackages = with pkgs; [
+    android-tools
+  ];
+
+  # TODO: Still needed?
   services.udev.extraRules = let
     # nix-shell -p usbutils --run "lsusb"
     idVendor = "18d1";

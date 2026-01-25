@@ -1,21 +1,21 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   inputs,
   outputs,
   lib,
-  config,
   pkgs,
+  config,
+  nixpkgsConfig,
   ...
 }: {
+  ### This config is left over from configuration.nix - it should eventually be cleaned up and put in appropriate modules.
+
   nixpkgs = {
     # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
-      outputs.overlays.stable-packages
+      outputs.overlays.replacements
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -27,9 +27,11 @@
       #   });
       # })
     ];
+
+    config = nixpkgsConfig;
   };
 
-  nix = let
+ nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
     settings = {
@@ -47,14 +49,6 @@
     # Opinionated: make flake registry and nix path match flake inputs
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-  };
-
-  # Install firefox.
-  #programs.firefox.enable = true;
-
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    WLR_DRM_NO_MODIFIERS = "1";
   };
 
   environment.persistence."/nix/persist/system" = {
@@ -78,15 +72,6 @@
       #{ file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
     ];
   };
-
-  # TODO: Move to modular config
-  environment.persistence."/nix/persist".users.paul.directories = [
-    #".android"
-    ".gradle"
-    #".cache/Google"
-    #".config/Google"
-    #".local/share/Google"
-  ];
 
   # Styling
   catppuccin.enable = true;
@@ -133,12 +118,4 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
 }

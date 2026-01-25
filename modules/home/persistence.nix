@@ -5,7 +5,7 @@
   ...
 }: let
   isImpermanent = host.impermanent or false;
-  persistDir = "/nix/persist/home/${host.user}";
+  persistDir = "/nix/persist";
 in {
   options.persistence = lib.mkOption {
     type = lib.types.attrsOf (lib.types.listOf lib.types.str);

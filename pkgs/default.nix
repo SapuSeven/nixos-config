@@ -7,7 +7,6 @@ pkgs: {
   # Tools
   ondsel = pkgs.callPackage ./freecad/ondsel.nix {
     requests = pkgs.python311Packages.requests;
-    freecad = pkgs.nixpkgs-stable.freecad;
   };
   freedownloadmanager = pkgs.callPackage ./freedownloadmanager/fdm.nix {};
 }

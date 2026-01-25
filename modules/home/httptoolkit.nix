@@ -4,6 +4,6 @@
       httptoolkit
     ];
 
-    persistence."/nix/persist/home/paul".directories = [".config/httptoolkit"];
+    persistence."/nix/persist".directories = [".config/httptoolkit"];
   };
 }

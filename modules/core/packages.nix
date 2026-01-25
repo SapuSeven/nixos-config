@@ -11,7 +11,6 @@
     # essentials
     git
     kitty
-    xfce.thunar
 
     # usb and automount
     usbutils

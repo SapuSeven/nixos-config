@@ -20,7 +20,7 @@ in {
       })
     ];
 
-    persistence."/nix/persist/home/paul".files = [".cache/keepassxc/keepassxc.ini"];
+    persistence."/nix/persist".files = [".cache/keepassxc/keepassxc.ini"];
 
     file."${config.xdg.configHome}/keepassxc/keepassxc.ini".text = ''
       [General]

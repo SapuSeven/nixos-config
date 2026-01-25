@@ -1,7 +1,7 @@
 {pkgs, ...}: let
   wallpaper = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/zhichaoh/catppuccin/wallpapers/main/os/nix-black-4k.png";
-    sha256 = "7b54417798130689c6dfd8189b10af26e7fea993a2bb1799f4b4e384f401f6f9";
+    url = "https://github.com/zhichaoh/catppuccin-wallpapers/blob/main/os/nix-black-4k.png?raw=true";
+    sha256 = "sha256-HRZYeKDmfA53kb3fZxuNWvR8cE96tLrqPZhX4+z4lZA=";
   };
   #wallpaper = pkgs.fetchurl {
   #url = "https://hyprland.org/imgs/blog/contestWinners/end_4.png";

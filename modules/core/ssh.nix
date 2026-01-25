@@ -1,10 +1,11 @@
 {
-  lib,
-  pkgs,
+  config,
   ...
 }: let
   persistencePath = "/nix/persist/system";
 in {
+  age.secrets.nixbuild.file = ../../secrets/nixbuild.age;
+
   services.openssh = {
     enable = true;
     settings = {
@@ -19,6 +20,23 @@ in {
         type = "ed25519";
       }
     ];
+  };
+
+  programs.ssh = {
+    extraConfig = ''
+      Host eu.nixbuild.net
+        PubkeyAcceptedKeyTypes ssh-ed25519
+        ServerAliveInterval 60
+        IPQoS throughput
+        IdentityFile ${config.age.secrets.nixbuild.path}
+    '';
+
+    knownHosts = {
+      nixbuild = {
+        hostNames = [ "eu.nixbuild.net" ];
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
+      };
+    };
   };
 
   environment.persistence."${persistencePath}".files = [

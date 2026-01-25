@@ -4,7 +4,7 @@
     #  pamu2fcfg > ~/.config/Yubico/u2f_keys
     # To enroll additional Yubikeys:
     #  pamu2fcfg -n >> ~/.config/Yubico/u2f_keys
-    persistence."/nix/persist/home/paul".directories = [
+    persistence."/nix/persist".directories = [
       ".config/Yubico"
     ];
   };

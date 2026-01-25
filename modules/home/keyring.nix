@@ -7,7 +7,7 @@
       seahorse # Provides graphical keyring manager
     ];
 
-    persistence."/nix/persist/home/paul".directories = [
+    persistence."/nix/persist".directories = [
       ".local/share/keyrings"
     ];
   };

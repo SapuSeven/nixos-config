@@ -8,6 +8,7 @@ in {
   # Services
   "samba.age".publicKeys = users ++ systems;
   "restic-persist.age".publicKeys = users ++ systems;
+  "nixbuild.age".publicKeys = users ++ systems;
 
   # Users
   "users-paul.age".publicKeys = [paul] ++ systems; # Login Password

@@ -7,14 +7,14 @@
   dataDir =
     if host == "desktop"
     then "/run/media/paul/Thicc/Games/Minecraft/MultiMC"
-    else "/home/paul/Files/Games/Minecraft";
+    else "/Files/Games/Minecraft";
 in {
   home = {
     packages = with pkgs; [
       prismlauncher
     ];
 
-    persistence."/nix/persist/home/paul" = {
+    persistence."/nix/persist" = {
       directories = [
         ".local/share/PrismLauncher/assets"
         ".local/share/PrismLauncher/icons"
@@ -50,7 +50,7 @@ in {
       InstanceDir=${dataDir}/instances
       CentralModsDir=mods
       IconsDir=icons
-      DownloadsDir=/home/paul/Downloads
+      DownloadsDir=/Downloads
       DownloadsDirWatchRecursive=false
 
       ; Console

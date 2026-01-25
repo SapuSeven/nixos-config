@@ -4,7 +4,7 @@
       obsidian
     ];
 
-    persistence."/nix/persist/home/paul".directories = [
+    persistence."/nix/persist".directories = [
       ".config/obsidian"
     ];
   };
