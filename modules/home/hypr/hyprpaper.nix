@@ -8,29 +8,29 @@
     REPO_URL=${wallpapers}
     TEMP_DIR=$(mktemp -d)
 
-    echo "[Wallpaper Picker] Fetching repository structure..."
-    ${pkgs.git}/bin/git clone --quiet --depth 1 --filter=blob:none --no-checkout "$REPO_URL" "$TEMP_DIR"
+    echo "Fetching repository structure..."
+    ${pkgs.git}/bin/git clone --depth 1 --filter=blob:none --no-checkout "$REPO_URL" "$TEMP_DIR"
 
     cd "$TEMP_DIR"
 
-    echo "[Wallpaper Picker] Listing available images..."
+    echo "Listing available images..."
     IMAGES=$(${pkgs.git}/bin/git ls-tree -r --name-only HEAD | grep -E '\.(jpg|jpeg|png)$')
 
     if [ -z "$IMAGES" ]; then
-      echo "[Wallpaper Picker] Error: No images found in repository."
+      echo "Error: No images found in repository."
       exit 1
     fi
 
     SELECTED_IMAGE=$(echo "$IMAGES" | shuf -n 1)
-    echo "[Wallpaper Picker] Selected: $SELECTED_IMAGE"
+    echo "Selected: $SELECTED_IMAGE"
 
-    echo "[Wallpaper Picker] Downloading image..."
-    ${pkgs.git}/bin/git checkout HEAD -- "$SELECTED_IMAGE" > /dev/null 2>&1
+    echo "Downloading image..."
+    ${pkgs.git}/bin/git checkout HEAD -- "$SELECTED_IMAGE"
 
-    echo "[Wallpaper Picker] Setting wallpaper..."
+    echo "Setting wallpaper..."
     ${pkgs.hyprland}/bin/hyprctl hyprpaper wallpaper ",$TEMP_DIR/$SELECTED_IMAGE"
 
-    echo "[Wallpaper Picker] Done."
+    echo "Done."
   '';
 in {
   services.hyprpaper = {
@@ -49,11 +49,14 @@ in {
   systemd.user.services.wallpaper-picker = {
     Unit = {
       Description = "Wallpaper picker script";
-      After = ["hyprpaper.service"];
+      After = ["hyprpaper.service" "network-online.target"];
+      Wants = ["network-online.target"];
     };
     Service = {
       Type = "oneshot";
       ExecStart = "${wallpaperPicker}/bin/wallpaper-picker-random";
+      Restart = "on-failure";
+      RestartSec = 5;
     };
     Install = {
       WantedBy = ["default.target"];

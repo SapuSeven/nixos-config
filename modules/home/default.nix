@@ -21,7 +21,7 @@ in {
       ./avizo.nix # osd
       ./editor.nix # text editor
       ./files.nix # file management
-      ./firefox.nix # browser
+      #./firefox.nix # browser, replaced by zen
       ./freecad.nix # 3d modeling
       ./games # games
       ./httptoolkit.nix # http sniffer
@@ -44,7 +44,7 @@ in {
       ./wlogout # logout menu
       ./wluma.nix # backlight brightness control
       ./yubikey.nix # yubikey
-      ./zen.nix
+      ./zen.nix # browser
     ]
     ++ lib.optionals (host.name == "laptop") [
       ./batsignal.nix # battery level monitoring
