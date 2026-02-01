@@ -15,7 +15,7 @@ in {
         buildInputs = [pkgs.makeWrapper];
         postBuild = ''
           wrapProgram $out/bin/keepassxc \
-            --run "touch ~/.mozilla/native-messaging-hosts/org.keepassxc.keepassxc_browser.json" # This enables the connection to the KeePassXC Firefox extension
+            --run "mkdir -p .mozilla/native-messaging-hosts && touch ~/.mozilla/native-messaging-hosts/org.keepassxc.keepassxc_browser.json" # This enables the connection to the KeePassXC Firefox extension
         '';
       })
     ];
