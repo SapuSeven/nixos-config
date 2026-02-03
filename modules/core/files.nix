@@ -23,7 +23,6 @@
     ffmpegthumbnailer # video files
     freetype # font files
     libgsf # .odf
-    f3d # .glTF, .stl, .step, .ply, .obj, .fbx, ...
 
     # Other utilities
     xarchiver

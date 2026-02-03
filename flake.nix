@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-nvf.url = "github:NixOS/nixpkgs/cad22e7d996aea55ecab064e84834289143e44a0";
     # See the '(un)stable-packages' overlay at 'overlays/default.nix'.
 
     alejandra = {
@@ -24,10 +23,9 @@
     };
 
     # nvim
-    # Pinned to specific nixpkgs version, see https://github.com/NotAShelf/nvf/issues/1312#issuecomment-3708175539
     nvf = {
       url = "github:NotAShelf/nvf/v0.8";
-      inputs.nixpkgs.follows = "nixpkgs-nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Secrets

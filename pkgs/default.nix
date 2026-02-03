@@ -5,8 +5,8 @@ pkgs: {
   ftb-app = pkgs.callPackage ./ftb-app {};
 
   # Tools
-  ondsel = pkgs.callPackage ./freecad/ondsel.nix {
-    requests = pkgs.python311Packages.requests;
-  };
+#  ondsel = pkgs.callPackage ./freecad/ondsel.nix {
+#    requests = pkgs.python311Packages.requests;
+#  };
   freedownloadmanager = pkgs.callPackage ./freedownloadmanager/fdm.nix {};
 }

@@ -3,21 +3,18 @@
   pkgs,
   ...
 }: {
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-
   imports = [
     inputs.nvf.homeManagerModules.default
+    ./autocmds.nix
+    ./keymaps.nix
+    ./options.nix
   ];
 
   programs.nvf = {
     enable = true;
+    defaultEditor = true;
 
-    # Your nvf configuration goes here
     settings.vim = {
-      package = inputs.nvf.inputs.nixpkgs.legacyPackages.x86_64-linux.neovim-unwrapped;
-
       theme = {
         enable = true;
         name = "catppuccin";
@@ -39,15 +36,6 @@
       terminal = {
         toggleterm.enable = true;
       };
-
-      keymaps = [
-        {
-          mode = "n";
-          key = ";";
-          action = ":";
-          silent = false;
-        }
-      ];
 
       lsp = {
         enable = true;

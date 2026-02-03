@@ -170,14 +170,14 @@ in {
         "3, horizontal, workspace"
       ];
 
-      windowrulev2 = [
+      windowrule = [
         # Fixes for Jetbrains IDEs - see https://github.com/hyprwm/Hyprland/issues/4257
-        "nofocus, class:^(.*jetbrains.*)$, title:^(win.*)$, floating:1" # Fix tooltips (always have a title of `win<id>`)
-        "nofocus, class:^(.*jetbrains.*)$, title:^\\s$" # fix tab dragging (always have a single space character as their title)
+        "no_focus on, match:class ^(.*jetbrains.*)$, match:title ^(win.*)$, match:float 1" # Fix tooltips (always have a title of `win<id>`)
+        "no_focus on, match:class ^(.*jetbrains.*)$, match:title ^\\s$" # fix tab dragging (always have a single space character as their title)
 
-        "float, class:udiskie"
-        "float, class:thunar, title:File Operation Progress"
-        "float, class:thunar, title:^(Rename \".*\")$"
+        "float on, match:class udiskie"
+        "float on, match:class thunar, match:title File Operation Progress"
+        "float on, match:class thunar, match:title ^(Rename \".*\")$"
       ];
 
       exec = [

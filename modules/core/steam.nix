@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  programs.gamemode.enable = true;
+
   programs.steam = {
     enable = true;
     package = pkgs.steam.override {
@@ -7,7 +9,7 @@
       };
     };
 
-    #remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remoteplay
-    #dedicatedServer.openFirewall = true; # Open ports in the firewall for steam server
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remoteplay
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for steam server
   };
 }
