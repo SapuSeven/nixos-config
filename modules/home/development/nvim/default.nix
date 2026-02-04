@@ -62,7 +62,7 @@
       statusline.lualine.enable = true; # status line
       autocomplete.nvim-cmp.enable = true; # fancy autocomplete
       autopairs.nvim-autopairs.enable = true; # automatic bracket pairs
-      treesitter.enable = true;
+      #treesitter.enable = true;
 
       languages = {
         nix.enable = true;

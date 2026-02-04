@@ -18,6 +18,7 @@ in {
       ./zsh.nix # shell
     ]
     ++ lib.optionals isLinux [
+      ./ags.nix # desktop shell
       ./avizo.nix # osd
       ./editor.nix # text editor
       ./files.nix # file management
