@@ -78,8 +78,8 @@ in {
         ]
         else [
           "1, monitor:DP-1, default:true"
-          "2, monitor:DP-2"
-          "3, monitor:HDMI-A-1"
+          "2, monitor:HDMI-A-1"
+          "3, monitor:DP-2"
         ];
 
       general = {
@@ -178,6 +178,8 @@ in {
         "float on, match:class udiskie"
         "float on, match:class thunar, match:title File Operation Progress"
         "float on, match:class thunar, match:title ^(Rename \".*\")$"
+
+        "fullscreen on, match:class ^steam_app_.*"
       ];
 
       exec = [

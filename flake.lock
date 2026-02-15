@@ -25,7 +25,10 @@
     },
     "ags": {
       "inputs": {
-        "astal": "astal",
+        "astal": [
+          "ags-bar",
+          "astal"
+        ],
         "nixpkgs": [
           "ags-bar",
           "nixpkgs"
@@ -34,13 +37,13 @@
       "locked": {
         "lastModified": 1764289441,
         "narHash": "sha256-ak+lgFiYE5PHByN1/BRkO5JP498hno6Ix24C1Qf/vec=",
-        "owner": "aylur",
+        "owner": "Aylur",
         "repo": "ags",
         "rev": "e169694390548dfd38ff40f1ef2163d6c3ffe3ea",
         "type": "github"
       },
       "original": {
-        "owner": "aylur",
+        "owner": "Aylur",
         "repo": "ags",
         "type": "github"
       }
@@ -48,14 +51,15 @@
     "ags-bar": {
       "inputs": {
         "ags": "ags",
+        "astal": "astal",
         "flake-utils": "flake-utils",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1770201615,
-        "narHash": "sha256-vMtDNPRN6DLNgZ0Y/Bn7jv+5Lm+kmabPr1W2orusKXM=",
+        "lastModified": 1770339858,
+        "narHash": "sha256-nTVRHL+fQR7Mn5yjtQUsqR95drZdCVu0cioAEMyi8/E=",
         "path": "/home/paul/Files/nix-flakes/ags-bar",
         "type": "path"
       },
@@ -91,20 +95,19 @@
       "inputs": {
         "nixpkgs": [
           "ags-bar",
-          "ags",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1764173295,
-        "narHash": "sha256-Jh4VtPcK2Ov+RTcV9FtyQRsxiJmXFQGfqX6jjM7/mgc=",
-        "owner": "aylur",
+        "lastModified": 1769774308,
+        "narHash": "sha256-8Ve6VdUpcYbl8bS5oyDwVnnNobyPxdPmUHGgSDyOazQ=",
+        "owner": "Aylur",
         "repo": "astal",
-        "rev": "7d1fac8a4b2a14954843a978d2ddde86168c75ef",
+        "rev": "eb235f8813bdea2a4a38ac228f2efc4e2a8a90af",
         "type": "github"
       },
       "original": {
-        "owner": "aylur",
+        "owner": "Aylur",
         "repo": "astal",
         "type": "github"
       }
