@@ -12,7 +12,7 @@ in {
 
   persistence.directories = [
     ".android"
-    #".gradle"
+    ".gradle/caches"
     ".cache/Google"
     ".config/Google"
     ".config/github-copilot"

@@ -23,7 +23,7 @@ in {
       ./editor.nix # text editor
       ./files.nix # file management
       #./firefox.nix # browser, replaced by zen
-#      ./freecad.nix # 3d modeling
+      ./freecad.nix # 3d modeling
       ./games # games
       ./httptoolkit.nix # http sniffer
       ./hypr # hypr*

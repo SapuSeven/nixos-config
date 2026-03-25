@@ -75,6 +75,6 @@
   };
 
   persistence.directories = [
-    ".zen/default"
+    ".config/zen/default"
   ];
 }
