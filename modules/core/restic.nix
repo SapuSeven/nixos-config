@@ -34,7 +34,7 @@
       paths = [
         "/nix/persist"
       ];
-      repository = "/mnt/Backup/nixos-$host/persist";
+      repository = "/mnt/Backup/nixos-${host.name}/persist";
 
       passwordFile = config.age.secrets.restic-persist.path;
       user = "restic";
