@@ -16,9 +16,9 @@ in {
   home = {
     packages = with pkgs.jetbrains; [
       (idea-oss.override {vmopts = vmopts;})
-      (lazy.override { pkg = (rust-rover.override {vmopts = vmopts;}); })
-      (lazy.override { pkg = (pycharm-oss.override {vmopts = vmopts;}); })
-      (lazy.override { pkg = (webstorm.override {vmopts = vmopts;}); })
+      (lazy.override {pkg = rust-rover.override {vmopts = vmopts;};})
+      (lazy.override {pkg = pycharm-oss.override {vmopts = vmopts;};})
+      (lazy.override {pkg = webstorm.override {vmopts = vmopts;};})
     ];
   };
 

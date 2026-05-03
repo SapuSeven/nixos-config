@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   kicad = pkgs.kicad-small.override {
     #addons = with pkgs.kicadAddons; [ kikit kikit-library ];
   };

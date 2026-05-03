@@ -11,7 +11,7 @@
       pkgs.xdg-desktop-portal-gtk
     ];
     config = {
-      common.default = [ "gtk" ];
+      common.default = ["gtk"];
       hyprland.default = [
         "gtk"
         "hyprland"
@@ -24,7 +24,7 @@
       enable = true;
       withUWSM = true;
       xwayland.enable = true;
-   };
+    };
 
     uwsm = {
       enable = true;

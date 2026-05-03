@@ -5,9 +5,9 @@
 }: let
   jdk = pkgs.openjdk17;
   dataDir =
-    if host == "desktop"
-    then "/run/media/paul/Thicc/Games/Minecraft/MultiMC"
-    else "/Files/Games/Minecraft";
+    if host.name == "desktop"
+    then "/run/media/paul/Thicc/Games/Minecraft/Prism"
+    else ".";
 in {
   home = {
     packages = with pkgs; [

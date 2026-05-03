@@ -1,17 +1,16 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   programs.nvf.settings.vim = {
-    augroups = [ { name = "highlight-yank"; } ];
+    augroups = [{name = "highlight-yank";}];
 
     autocmds = [
       {
-        event = [ "FileType" ];
-        pattern = [ "nix" ];
+        event = ["FileType"];
+        pattern = ["nix"];
         command = "setlocal shiftwidth=2 softtabstop=2 expandtab";
         desc = "Set 2-space-indentation for nix files";
       }
       {
-        event = [ "FileType" ];
+        event = ["FileType"];
         pattern = [
           "tex"
           "markdown"
@@ -21,7 +20,7 @@
         desc = "Auto break lines in tex and md files.";
       }
       {
-        event = [ "TextYankPost" ];
+        event = ["TextYankPost"];
         group = "highlight-yank";
         callback = lib.generators.mkLuaInline ''
           function()

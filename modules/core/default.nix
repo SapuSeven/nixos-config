@@ -17,6 +17,7 @@ in {
       ./agenix.nix # secrets management
       ./audio.nix # audio devices
       ./bluetooth.nix # bluetooth
+      ./compatibility.nix # legacy application compatibility
       ./cups # printing
       ./dlna.nix # media sharing
       ./dm.nix # display manager

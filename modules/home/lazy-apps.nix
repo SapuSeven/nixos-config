@@ -21,6 +21,6 @@ in {
         mimeTypes = ["application/x-blender"];
       };
     })
-    (lazy.override { pkg = pkgs.unzip; })
+    (lazy.override {pkg = pkgs.unzip;})
   ];
 }

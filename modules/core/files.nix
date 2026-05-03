@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.thunar = {
     enable = true;
 
@@ -10,7 +7,6 @@
       thunar-volman
     ];
   };
-
 
   programs.xfconf.enable = true;
 

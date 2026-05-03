@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  imports = [ inputs.ags-bar.homeManagerModules.default ];
+  imports = [inputs.ags-bar.homeManagerModules.default];
 
   programs.ags-bar = {
     enable = true;

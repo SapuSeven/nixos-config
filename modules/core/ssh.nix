@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}: let
+{config, ...}: let
   persistencePath = "/nix/persist/system";
 in {
   age.secrets.nixbuild.file = ../../secrets/nixbuild.age;
@@ -33,7 +30,7 @@ in {
 
     knownHosts = {
       nixbuild = {
-        hostNames = [ "eu.nixbuild.net" ];
+        hostNames = ["eu.nixbuild.net"];
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
       };
     };

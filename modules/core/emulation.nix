@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
@@ -7,6 +10,5 @@
     dnsmasq
   ];
 
-  users.users.paul.extraGroups = [ "libvirtd" ];
+  users.users.paul.extraGroups = ["libvirtd"];
 }
-

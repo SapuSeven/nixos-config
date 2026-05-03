@@ -4,5 +4,7 @@
     daemonCPUSchedPolicy = "idle"; # the idle policy may greatly improve responsiveness of a system performing expensive builds
     daemonIOSchedClass = "idle"; #
     daemonIOSchedPriority = 7; # N/A: With "idle", priorities are not used in scheduling decisions. range 0 (high) to 7 (low). default 4.
+
+    settings.substituters = ["https://cache.nixos.org"];
   };
 }

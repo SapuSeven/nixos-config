@@ -31,7 +31,7 @@
     config = nixpkgsConfig;
   };
 
- nix = let
+  nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
     settings = {
@@ -81,20 +81,6 @@
   users.defaultUserShell = pkgs.zsh;
 
   programs.fuse.userAllowOther = true;
-
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    # Add any missing dynamic libraries for unpackaged programs
-    # here, NOT in environment.systemPackages
-    pulseaudio
-    libx11
-    libxext
-    libxinerama
-    libxcursor
-    libxrandr
-    vulkan-loader
-  ];
-
   programs.ssh.startAgent = true;
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -4,11 +4,12 @@
   ...
 }: {
   imports =
-    lib.optionals (host == "desktop") [
-      (import ./ftb-app.nix)
+    [
+      ./standalone.nix
+      ./steam.nix
+      ./minecraft.nix
     ]
-    ++ [
-      (import ./steam.nix)
-      (import ./minecraft.nix)
+    ++ lib.optionals (host == "desktop") [
+      ./ftb-app.nix
     ];
 }

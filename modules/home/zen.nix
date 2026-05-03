@@ -69,7 +69,8 @@
           repo = "zen-browser";
           rev = "main";
           sha256 = "sha256-5A57Lyctq497SSph7B+ucuEyF1gGVTsuI3zuBItGfg4=";
-        } + "/themes/Mocha/Mauve/userChrome.css"
+        }
+        + "/themes/Mocha/Mauve/userChrome.css"
       );
     };
   };
