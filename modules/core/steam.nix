@@ -4,6 +4,10 @@
   programs.steam = {
     enable = true;
     package = pkgs.steam.override {
+      extraLibraries = pkgs': with pkgs'; [
+        libGLU
+        libtinfo
+      ];
       extraEnv = {
         STEAM_FORCE_DESKTOPUI_SCALING = 1.5;
       };

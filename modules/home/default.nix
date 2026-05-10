@@ -34,6 +34,7 @@ in {
       ./kicad.nix # kicad eda
       ./libreoffice.nix # office suite
       ./mako.nix # notifications
+      ./musescore.nix # sheet music notation
       #./nicotine.nix # soulseek
       ./obsidian.nix # notes
       ./orcaslicer.nix # slicer

@@ -43,7 +43,7 @@
     # Allows hibernation with zfs and swapfile (can potentially lead to data corruption)
     zfs = {
       forceImportRoot = false;
-      allowHibernation = true;
+      unsafeAllowHibernation = true;
     };
   };
 
