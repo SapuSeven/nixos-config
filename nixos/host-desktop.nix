@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./hardware-configuration.desktop.nix
+    ./desktop/configuration.nix
   ];
 
   ### TODO: Host-specific config goes here

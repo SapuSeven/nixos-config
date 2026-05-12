@@ -1,20 +1,27 @@
 {
-  pkgs,
-  kernel ? pkgs.linuxPackages_latest.kernel,
-  patches ? [ ],
+  lib,
+  stdenv,
+  linuxPackages_latest,
+  kernel ? linuxPackages_latest.kernel,
+  patches ? [],
 }:
-pkgs.stdenv.mkDerivation {
+stdenv.mkDerivation {
   pname = "amdgpu-kernel-module";
-  inherit (kernel) src version postPatch nativeBuildInputs modDirVersion;
+  inherit (kernel) src version postPatch nativeBuildInputs;
 
-  patches = kernel.patches or [ ] ++ patches;
+  patches = kernel.patches ++ patches;
+
+  kernel_dev = kernel.dev;
+  kernelVersion = kernel.modDirVersion;
 
   modulePath = "drivers/gpu/drm/amd/amdgpu";
 
   buildPhase = ''
-    BUILT_KERNEL=${kernel.dev}/lib/modules/$modDirVersion/build
+    BUILT_KERNEL=$kernel_dev/lib/modules/$kernelVersion/build
 
-    cp $BUILT_KERNEL/Module.symvers $BUILT_KERNEL/.config ${kernel.dev}/vmlinux ./
+    cp $BUILT_KERNEL/Module.symvers .
+    cp $BUILT_KERNEL/.config        .
+    cp $kernel_dev/vmlinux          .
 
     make "-j$NIX_BUILD_CORES" modules_prepare
     make "-j$NIX_BUILD_CORES" M=$modulePath modules
@@ -25,12 +32,12 @@ pkgs.stdenv.mkDerivation {
       INSTALL_MOD_PATH="$out" \
       XZ="xz -T$NIX_BUILD_CORES" \
       M="$modulePath" \
-      INSTALL_MOD_STRIP=1 \
       modules_install
   '';
 
   meta = {
-    description = "AMDGPU kernel module";
-    license = pkgs.lib.licenses.gpl2Only;
+    description = "amdgpu kernel module";
+    license = lib.licenses.gpl3;
   };
 }
+
