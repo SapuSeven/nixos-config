@@ -44,6 +44,11 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
+
+    # Handled by NixOS module
+    package = null;
+    portalPackage = null;
+    
     settings = {
       debug = {
         disable_logs = false;

@@ -1,23 +1,23 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
+  xdg.autostart.enable = true;
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     xdgOpenUsePortal = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
     ];
     config = {
-      common.default = ["gtk"];
       hyprland.default = [
-        "gtk"
         "hyprland"
+        "gtk"
       ];
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    xdg-desktop-portal-hyprland
+  ];
 
   programs = {
     hyprland = {
@@ -41,6 +41,7 @@
   # Enable the X11 windowing system (for XWayland).
   services.xserver = {
     enable = true;
+    updateDbusEnvironment = true;
 
     # Enable display manager.
     #services.xserver.displayManager.gdm.enable = true;
