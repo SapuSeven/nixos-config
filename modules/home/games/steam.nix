@@ -10,6 +10,7 @@ in {
 
   home.persistence."/nix/persist".directories = [
     ".local/share/Steam"
+    ".cache/mesa_shader_cache"
   ];
 
   xdg.desktopEntries = lib.mkIf nvidiaOffloadEnabled {
