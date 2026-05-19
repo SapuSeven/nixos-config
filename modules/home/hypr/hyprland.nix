@@ -184,7 +184,8 @@ in {
         "float on, match:class thunar, match:title File Operation Progress"
         "float on, match:class thunar, match:title ^(Rename \".*\")$"
 
-        "fullscreen on, match:class ^steam_app_.*"
+        # Keep Terraria in fullscreen on focus loss
+        "fullscreen_state 3, match:fullscreen_state_client [1-3], match:initial_title ^(Terraria)$"
       ];
 
       exec = [
