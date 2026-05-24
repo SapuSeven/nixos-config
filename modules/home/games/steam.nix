@@ -10,6 +10,7 @@ in {
 
   home.persistence."/nix/persist".directories = [
     ".local/share/Steam"
+    ".local/share/Terraria"
     ".cache/mesa_shader_cache"
   ];
 
