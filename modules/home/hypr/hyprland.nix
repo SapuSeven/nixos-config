@@ -44,6 +44,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = false; # Conflicts with UWSM
 
     # Handled by NixOS module
     package = null;
@@ -158,7 +159,6 @@ in {
 
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-        pseudotile = "yes"; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds sectio>
         preserve_split = "yes"; # you probably want this
       };
 

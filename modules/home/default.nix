@@ -42,6 +42,7 @@ in {
       ./theme.nix # theme
       ./deluge.nix # torrent client
       ./waybar # status bar
+      ./wine.nix # windows compatibility
       ./wofi.nix # launcher
       ./wlogout # logout menu
       ./wluma.nix # backlight brightness control

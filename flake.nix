@@ -22,6 +22,10 @@
       url = "github:nix-community/impermanence";
     };
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
+
     # nvim
     nvf = {
       url = "github:NotAShelf/nvf/v0.8";
