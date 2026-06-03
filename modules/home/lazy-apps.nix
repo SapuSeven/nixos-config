@@ -7,10 +7,10 @@
   isLinux = pkgs.stdenv.isLinux;
   lazy = inputs.lazy-apps.packages.${pkgs.system}.lazy-app;
 in {
-  home.packages = lib.optionals isLinux [
+  home.packages = with pkgs; lib.optionals isLinux [
     (lazy.override {
-      pkg = pkgs.blender;
-      desktopItem = pkgs.makeDesktopItem {
+      pkg = blender;
+      desktopItem = makeDesktopItem {
         name = "blender";
         exec = "blender %f";
         icon = "blender";
@@ -21,6 +21,17 @@ in {
         mimeTypes = ["application/x-blender"];
       };
     })
-    (lazy.override {pkg = pkgs.unzip;})
+    (lazy.override { pkg = just; })
+    (lazy.override { pkg = ansible; })
+    (lazy.override { pkg = btop; })
+    (lazy.override { pkg = rar; })
+    (lazy.override { pkg = unzip; })
+    (lazy.override { pkg = python3; })
+    (lazy.override { pkg = esphome; })
+    (lazy.override { pkg = unzip; })
+    (lazy.override {
+      pkg = dnsutils;
+      exe = "nslookup";
+    })
   ];
 }
