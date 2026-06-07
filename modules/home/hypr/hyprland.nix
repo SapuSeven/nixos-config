@@ -257,11 +257,6 @@ in {
           # Power button
           ", XF86PowerOff, exec, wlogout"
 
-          # Mako
-          "Ctrl, Space, exec, makoctl dismiss"
-          "Ctrl Shift, Space, exec, makoctl dismiss -a"
-          "Ctrl Shift LAlt, Space, exec, makoctl restore"
-
           # Clipboard
           "$mod, V, exec, cliphist list | wofi -S dmenu | cliphist decode | wl-copy"
         ]
@@ -295,6 +290,14 @@ in {
         # Move/resize windows with mod + LMB/RMB and dragging
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
+      ];
+      
+      # non-consuming (events will get passed to the active window)
+      bindn = [
+        # Mako
+        "Ctrl, Space, exec, makoctl dismiss"
+        "Ctrl Shift, Space, exec, makoctl dismiss -a"
+        "Ctrl Shift LAlt, Space, exec, makoctl restore"
       ];
     };
   };
