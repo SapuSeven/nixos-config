@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   host,
   ...
@@ -35,6 +36,40 @@
     fi
   '';
   browser = "zen-twilight"; # Provided externally
+
+  # Hyprland config utils
+  lua = lib.generators.mkLuaInline;
+  dsp = {
+    exec = cmd: lua ''hl.dsp.exec_cmd("${cmd}")'';
+    close = lua "hl.dsp.window.close()";
+    exit = lua "hl.dsp.exit()";
+    float = lua ''hl.dsp.window.float({ action = "toggle" })'';
+    fullscreen = lua "hl.dsp.window.fullscreen()";
+    pseudo = lua "hl.dsp.window.pseudo()";
+    layout = msg: lua ''hl.dsp.layout("${msg}")'';
+    focus = dir: lua ''hl.dsp.focus({ direction = "${dir}" })'';
+    move = dir: lua ''hl.dsp.window.move({ direction = "${dir}" })'';
+    swap = dir: lua ''hl.dsp.window.swap({ direction = "${dir}" })'';
+    toggleSpecial = name: lua ''hl.dsp.workspace.toggle_special("${name}")'';
+    moveToSpecial = name: lua ''hl.dsp.window.move({ workspace = "special:${name}" })'';
+    moveWorkspace = dir: lua ''hl.dsp.workspace.move({ monitor = "${dir}" })'';
+    focusWorkspace = ws: lua ''hl.dsp.focus({ workspace = "${toString ws}" })'';
+    moveToWorkspace = ws: lua ''hl.dsp.window.move({ workspace = "${toString ws}" })'';
+    drag = lua "hl.dsp.window.drag()";
+    resize = lua "hl.dsp.window.resize()";
+    sendshortcut = mod: key: lua ''hl.dsp.send_shortcut({ mods = "${mod}", key = "${key}" })'';
+  };
+
+  bind = keys: dispatcher: { _args = [keys dispatcher]; };
+  bindOpts = keys: dispatcher: opts: { _args = [keys dispatcher opts]; };
+
+  workspaceBinds = lib.concatMap (i:
+      let key = toString (lib.mod i 10);
+      in [
+        (bind "SUPER + ${key}" (dsp.focusWorkspace i))
+        (bind "SUPER + SHIFT + ${key}" (dsp.moveToWorkspace i))
+      ]
+    ) (lib.range 1 10);
 in {
   home.packages = with pkgs; [
     wl-clipboard
@@ -51,70 +86,129 @@ in {
     portalPackage = null;
     
     settings = {
-      debug = {
-        disable_logs = false;
+      mod = {
+        _var = "SUPER";
       };
-
-      ecosystem = {
-        no_update_news = true;
-        no_donation_nag = true;
-      };
-
-      "$mod" = "SUPER";
 
       monitor =
         if host == "laptop"
         then [
-          "eDP-1,preferred,0x0,1.25,mirror,HDMI-A-1"
+          {
+            output = "eDP-1";
+            mode = "preferred";
+            position = "0x0";
+            scale = 1.25;
+            mirror = "HDMI-A-1";
+          }
         ]
         else [
-          "desc:Dell Inc. DELL S2721QS DVG9M43,highres,1920x0,1.875"
-          "desc:Ancor Communications Inc VG248 H4LMQS170852,preferred,0x0,1"
-          "desc:Hewlett Packard LA2205 3CQ9461SLN,preferred,3968x0,1,transform,1"
+          {
+            output = "desc:Dell Inc. DELL S2721QS DVG9M43";
+            mode = "highres";
+            position = "1920x0";
+            scale = 1.875;
+          }
+          {
+            output = "desc:Ancor Communications Inc VG248 H4LMQS170852";
+            mode = "preferred";
+            position = "0x0";
+            scale = 1;
+          }
+          {
+            output = "desc:Hewlett Packard LA2205 3CQ9461SLN";
+            mode = "preferred";
+            position = "3968x0";
+            scale = 1;
+            transform = 1;
+          }
         ];
 
-      xwayland = {
-        force_zero_scaling = true;
-      };
+      config = {
+        general = {
+          gaps_in = 2;
+          gaps_out = 8;
+          border_size = 2;
+          col = {
+            active_border = (lua ''"0xee" .. colors.accentAlpha'');
+            inactive_border = (lua ''"0xee" .. colors.surface0Alpha'');
+          };
+        };
 
-      workspace =
-        if host == "laptop"
-        then [
-          "1, monitor:eDP-1, default:true"
-        ]
-        else [
-          "1, monitor:DP-1, default:true"
-          "2, monitor:HDMI-A-1"
-          "3, monitor:DP-2"
-        ];
+        decoration = {
+          rounding = 4;
 
-      general = {
-        gaps_in = 2;
-        gaps_out = 8;
-        border_size = 2;
-        "col.active_border" = "0xee$accentAlpha";
-        "col.inactive_border" = "0xee$surface0Alpha";
+          blur = {
+            enabled = true;
+            size = 3;
+            passes = 1;
+          };
 
-        layout = "dwindle";
-      };
+          shadow = {
+            enabled = true;
+            range = 8;
+            render_power = 3;
+            color = (lua ''"0x88" .. colors.accentAlpha'');
+            color_inactive = "0x00000000";
+          };
+        };
 
-      misc = {
-        disable_hyprland_logo = true;
-        disable_splash_rendering = true;
-        background_color = "$base";
-      };
+        animations = {
+          enabled = true;
+        };
 
-      input = {
-        kb_layout = "us";
-        kb_options = "compose:ralt";
-        numlock_by_default = true;
-        mouse_refocus = false;
+        dwindle = {
+          preserve_split = true;
+        };
 
-        touchpad = {
-          scroll_factor = 0.5;
-          natural_scroll = true;
+        ecosystem = {
+          no_update_news = true;
+          no_donation_nag = true;
+        };
+
+        xwayland = {
+          force_zero_scaling = true;
+        };
+
+        misc = {
+          force_default_wallpaper = -1;
+          disable_hyprland_logo = true;
+          disable_splash_rendering = true;
+          background_color = (lua ''colors.base'');
+        };
+
+        input = {
+          kb_layout = "us";
+          kb_options = "compose:ralt";
+          numlock_by_default = true;
+          mouse_refocus = false;
+
+          touchpad = {
+            scroll_factor = 0.5;
+            natural_scroll = true;
+          };
         };
       };
+
+      workspace_rule =
+        if host == "laptop"
+        then [{
+          workspace = "1";
+          monitor = "eDP-1";
+          default = true;
+        }]
+        else [{
+          workspace = "1";
+          monitor = "DP-1";
+          default = true;
+        }
+        {
+          workspace = "2";
+          monitor = "HDMI-A-1";
+        }
+        {
+          workspace = "3";
+          monitor = "DP-2";
+        }];
 
       device =
         [
@@ -139,166 +233,160 @@ in {
           "razer-razer-viper-v3-pro-mouse"
         ];
 
-      decoration = {
-        rounding = 4;
+      gesture = [{
+        fingers = 3;
+        direction = "horizontal";
+        action = "workspace";
+      }];
 
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
-        };
+      animation = [{
+        leaf = "global";
+        enabled = true;
+        speed = 3;
+        bezier = "default";
+      }];
 
-        shadow = {
-          enabled = true;
-          range = 8;
-          render_power = 3;
-          color = "0x88$accentAlpha";
-          color_inactive = "0x00000000";
-        };
-      };
-
-      dwindle = {
-        # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-        preserve_split = "yes"; # you probably want this
-      };
-
-      master = {
-        # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-        new_status = "master";
-      };
-
-      animation = [
-        "global,1,3,default"
-      ];
-
-      gesture = [
-        "3, horizontal, workspace"
-      ];
-
-      windowrule = [
+      window_rule = [
         # Fixes for Jetbrains IDEs - see https://github.com/hyprwm/Hyprland/issues/4257
-        "no_focus on, match:class ^(.*jetbrains.*)$, match:title ^(win.*)$, match:float 1" # Fix tooltips (always have a title of `win<id>`)
-        "no_focus on, match:class ^(.*jetbrains.*)$, match:title ^\\s$" # fix tab dragging (always have a single space character as their title)
+        {
+          # Fix tooltips (always have a title of `win<id>`)
+          match = {
+            class = "^(.*jetbrains.*)$";
+            title = "^(win.*)$";
+            float = true;
+          };
+          no_focus = true;
+        }
+        {
+          # fix tab dragging (always have a single space character as their title)
+          match = {
+            class = "^(.*jetbrains.*)$";
+            title = "^\\s$";
+          };
+          no_focus = true;
+        }
 
-        "float on, match:class udiskie"
-        "float on, match:class thunar, match:title File Operation Progress"
-        "float on, match:class thunar, match:title ^(Rename \".*\")$"
+        {
+          match = {
+            class = "udiskie";
+          };
+          float = true;
+        }
+        {
+          match = {
+            class = "thunar";
+            title = "File Operation Progress";
+          };
+          float = true;
+        }
+        {
+          match = {
+            class = "thunar";
+            title = "^(Rename \".*\")$";
+          };
+          float = true;
+        }
+        {
+          match = {
+            class = "thunar";
+            title = "^(Rename \".*\")$";
+          };
+          float = true;
+        }
 
-        # Keep Terraria in fullscreen on focus loss
-        "fullscreen_state 3, match:fullscreen_state_client [1-3], match:initial_title ^(Terraria)$"
+        {
+          # Keep Terraria in fullscreen on focus loss
+          match = {
+            fullscreen_state_client = "[1-3]";
+            initial_title = "^(Terraria)$";
+          };
+          fullscreen_state = 3;
+        }
       ];
 
-      exec = [
-        "xrdb -merge \"$HOME/.Xresources\""
-      ];
+      on = {
+        _args = [
+          "hyprland.start"
+          (lib.generators.mkLuaInline ''
+            function()
+              ${lib.concatMapStringsSep "\n" (cmd: "hl.exec_cmd(\"${cmd}\")") [
+                "uwsm finalize"
+                "wl-paste --type text --watch cliphist store"
+                "wl-paste --type image --watch cliphist store"
+                "avizo-service"
+                "xrdb -merge \\\"$HOME/.Xresources\\\""
+              ]}
+            end
+          '')
+        ];
+      };
 
-      exec-once = [
-        "uwsm finalize"
-        "wl-paste --type text --watch cliphist store"
-        "wl-paste --type image --watch cliphist store"
-        "avizo-service"
-      ];
+      bind = [
+        # ── Program shortcuts ──────────────────────────────────────
+        (bind "SUPER + RETURN" (dsp.exec "kitty"))
+        (bind "SUPER + E" (dsp.exec "thunar"))
+        (bind "SUPER + F" (dsp.exec "${browser}"))
+        (bind "CTRL + SHIFT + P" (dsp.exec "${browser} -private-window"))
 
-      bind =
-        [
-          # Program shortcuts
-          "$mod, return, exec, kitty"
-          "$mod, E, exec, thunar"
-          "$mod, F, exec, ${browser}"
-          "CTRL SHIFT, P, exec, ${browser} -private-window"
+        # ── Close active window ───────────────────────────────────
+        (bind "SUPER + Q" dsp.close)
 
-          # Close active window
-          "$mod, Q, killactive,"
+        # ── Open menu ─────────────────────────────────────────────
+        (bind "SUPER + D" (dsp.exec "wofi --show drun"))
 
-          # Open menu
-          "$mod, D, exec, wofi --show drun"
+        # ── Float / fullscreen ─────────────────────────────────────
+        (bind "SUPER + SPACE" dsp.float)
+        (bind "SUPER + SHIFT + F" dsp.fullscreen)
 
-          # Resize windows
-          "$mod, space, togglefloating,"
-          "$mod SHIFT, F, fullscreen"
+        # ── Move focus with SUPER + arrow keys ───────────────────────
+        (bind "SUPER + LEFT"  (dsp.focus "left"))
+        (bind "SUPER + RIGHT" (dsp.focus "right"))
+        (bind "SUPER + UP"    (dsp.focus "up"))
+        (bind "SUPER + DOWN"  (dsp.focus "down"))
 
-          # Move focus with mod + arrow keys
-          "$mod, left, movefocus, l"
-          "$mod, right, movefocus, r"
-          "$mod, up, movefocus, u"
-          "$mod, down, movefocus, d"
+        # ── Move windows with SUPER + shift + arrow keys ─────────────
+        (bind "SUPER + SHIFT + LEFT"  (dsp.move "left"))
+        (bind "SUPER + SHIFT + RIGHT" (dsp.move "right"))
+        (bind "SUPER + SHIFT + UP"    (dsp.move "up"))
+        (bind "SUPER + SHIFT + DOWN"  (dsp.move "down"))
 
-          # Move windows with mod + shift + arrow keys
-          "$mod SHIFT, left, movewindow, l"
-          "$mod SHIFT, right, movewindow, r"
-          "$mod SHIFT, up, movewindow, u"
-          "$mod SHIFT, down, movewindow, d"
+        # ── Scroll through workspaces with SUPER + scroll ────────────
+        (bind "SUPER + mouse_down" (dsp.focusWorkspace "e+1"))
+        (bind "SUPER + mouse_up" (dsp.focusWorkspace "e-1"))
 
-          # Scroll through existing workspaces with mod + scroll
-          "$mod, mouse_down, workspace, e+1"
-          "$mod, mouse_up, workspace, e-1"
+        # ── Move workspaces between monitors ────────────────────────
+        (bind "SUPER + CTRL + LEFT"  (dsp.moveWorkspace "left"))
+        (bind "SUPER + CTRL + RIGHT" (dsp.moveWorkspace "right"))
 
-          # Move workspaces
-          "$mod CTRL, left, movecurrentworkspacetomonitor, l"
-          "$mod CTRL, right, movecurrentworkspacetomonitor, r"
+        # ── Hyprlock / exit ────────────────────────────────────────
+        (bind "SUPER + TAB"      (dsp.exec "hyprlock"))
+        (bind "SUPER + SHIFT + E" dsp.exit)
 
-          # Hypr-Utils
-          "$mod, Tab, exec, hyprlock"
+        # ── Media controls ──────────────────────────────────────────
+        (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume @ 5%+ && ${scripts}/bin/osd volume") { locked = true; repeating = true; })
+        (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @ 5%- && ${scripts}/bin/osd volume") { locked = true; repeating = true; })
+        (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @ toggle && ${scripts}/bin/osd volume") { locked = true; })
+        (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute u/DEFAULT_AUDIO_SOURCE@ toggle && ${scripts}/bin/osd volume") { locked = true; })
+        (bind "XF86AudioPlay"    (dsp.exec "playerctl play-pause"))
+        (bind "XF86AudioStop"    (dsp.exec "playerctl stop"))
+        (bind "XF86AudioNext"    (dsp.exec "playerctl next"))
+        (bind "XF86AudioPrev"    (dsp.exec "playerctl previous"))
 
-          # Exit hyprland
-          "$mod SHIFT, E, exit"
+        # ── Power button ───────────────────────────────────────────
+        (bind "XF86PowerOff" (dsp.exec "wlogout"))
 
-          # Media controls
-          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${scripts}/bin/osd volume"
-          ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ${scripts}/bin/osd volume"
-          ", XF86AudioPlay, exec, playerctl play-pause"
-          ", XF86AudioStop, exec, playerctl stop"
-          ", XF86AudioNext, exec, playerctl next"
-          ", XF86AudioPrev, exec, playerctl previous"
+        # ── Clipboard ─────────────────────────────────────────────
+        (bind "SUPER + V" (dsp.exec "cliphist list | wofi -S dmenu | cliphist decode | wl-copy"))
 
-          # Touchpad controls
-          #", XF86TouchpadToggle, exec, touchpad-toggle.sh"
+        # ── Notifications ─────────────────────────────────────────
+        (bindOpts "CTRL + SPACE"                 (dsp.exec "makoctl dismiss")    { non_consuming = true; })
+        (bindOpts "CTRL + SHIFT + SPACE"         (dsp.exec "makoctl dismiss -a") { non_consuming = true; })
+        (bindOpts "CTRL + SHIFT + ALT_L + SPACE"  (dsp.exec "makoctl restore")    { non_consuming = true; })
 
-          # Power button
-          ", XF86PowerOff, exec, wlogout"
-
-          # Clipboard
-          "$mod, V, exec, cliphist list | wofi -S dmenu | cliphist decode | wl-copy"
-        ]
-        ++ (
-          # workspaces
-          # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-          builtins.concatLists (builtins.genList (
-              x: let
-                ws = let
-                  c = (x + 1) / 10;
-                in
-                  builtins.toString (x + 1 - (c * 10));
-              in [
-                "$mod, ${ws}, workspace, ${toString (x + 1)}"
-                "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-              ]
-            )
-            10)
-        );
-
-      # will repeat when held
-      binde = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && ${scripts}/bin/osd volume"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ${scripts}/bin/osd volume"
-        ", XF86MonBrightnessUp, exec, brightnessctl s 10%+ && ${scripts}/bin/osd brightness"
-        ", XF86MonBrightnessDown, exec, brightnessctl s 10%- && ${scripts}/bin/osd brightness"
-      ];
-
-      # mouse binds
-      bindm = [
-        # Move/resize windows with mod + LMB/RMB and dragging
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-      ];
-      
-      # non-consuming (events will get passed to the active window)
-      bindn = [
-        # Mako
-        "Ctrl, Space, exec, makoctl dismiss"
-        "Ctrl Shift, Space, exec, makoctl dismiss -a"
-        "Ctrl Shift LAlt, Space, exec, makoctl restore"
-      ];
+        # ── Mouse binds ──────────────────────────────────────────────────
+        (bindOpts "SUPER + mouse:272" dsp.drag { mouse = true; })
+        (bindOpts "SUPER + mouse:273" dsp.resize { mouse = true; })
+      ] ++ workspaceBinds;
     };
   };
 }

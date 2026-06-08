@@ -26,9 +26,9 @@ in {
     (lazy.override { pkg = btop; })
     (lazy.override { pkg = rar; })
     (lazy.override { pkg = unzip; })
-    (lazy.override { pkg = python3; })
     (lazy.override { pkg = esphome; })
     (lazy.override { pkg = unzip; })
+    (lazy.override { pkg = ncdu; })
     (lazy.override {
       pkg = dnsutils;
       exe = "nslookup";
