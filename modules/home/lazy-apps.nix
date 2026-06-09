@@ -21,6 +21,7 @@ in {
         mimeTypes = ["application/x-blender"];
       };
     })
+    (lazy.override { pkg = jq; })
     (lazy.override { pkg = just; })
     (lazy.override { pkg = ansible; })
     (lazy.override { pkg = btop; })

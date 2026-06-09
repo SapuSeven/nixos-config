@@ -1,7 +1,5 @@
 {...}: {
   imports = [
-    ./configuration.nix
-    ./hardware-configuration.laptop.nix
-    #../modules/core
+    ./laptop/configuration.nix
   ];
 }

@@ -6,7 +6,7 @@
 }: let
   lazy = inputs.lazy-apps.packages.${pkgs.system}.lazy-app;
   vmopts =
-    if host == "desktop"
+    if host.name == "desktop" # TODO: Check for a "hidpi" fact
     then ''
       -Dsun.java2d.uiScale=2
       -Dsun.java2d.metal=false
