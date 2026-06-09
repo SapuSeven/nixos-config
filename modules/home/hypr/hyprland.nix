@@ -60,6 +60,7 @@
     sendshortcut = mod: key: lua ''hl.dsp.send_shortcut({ mods = "${mod}", key = "${key}" })'';
   };
 
+  mod = "SUPER";
   bind = keys: dispatcher: { _args = [keys dispatcher]; };
   bindOpts = keys: dispatcher: opts: { _args = [keys dispatcher opts]; };
 
@@ -322,70 +323,74 @@ in {
       };
 
       bind = [
-        # ── Program shortcuts ──────────────────────────────────────
-        (bind "SUPER + RETURN" (dsp.exec "kitty"))
-        (bind "SUPER + E" (dsp.exec "thunar"))
-        (bind "SUPER + F" (dsp.exec "${browser}"))
+        # Program shortcuts
+        (bind "${mod} + RETURN" (dsp.exec "kitty"))
+        (bind "${mod} + E" (dsp.exec "thunar"))
+        (bind "${mod} + F" (dsp.exec "${browser}"))
         (bind "CTRL + SHIFT + P" (dsp.exec "${browser} -private-window"))
 
-        # ── Close active window ───────────────────────────────────
-        (bind "SUPER + Q" dsp.close)
+        # Close active window
+        (bind "${mod} + Q" dsp.close)
 
-        # ── Open menu ─────────────────────────────────────────────
-        (bind "SUPER + D" (dsp.exec "wofi --show drun"))
+        # Open menu
+        (bind "${mod} + D" (dsp.exec "wofi --show drun"))
 
-        # ── Float / fullscreen ─────────────────────────────────────
-        (bind "SUPER + SPACE" dsp.float)
-        (bind "SUPER + SHIFT + F" dsp.fullscreen)
+        # Float / fullscreen
+        (bind "${mod} + SPACE" dsp.float)
+        (bind "${mod} + SHIFT + F" dsp.fullscreen)
 
-        # ── Move focus with SUPER + arrow keys ───────────────────────
-        (bind "SUPER + LEFT"  (dsp.focus "left"))
-        (bind "SUPER + RIGHT" (dsp.focus "right"))
-        (bind "SUPER + UP"    (dsp.focus "up"))
-        (bind "SUPER + DOWN"  (dsp.focus "down"))
+        # Move focus with ${mod} + arrow keys
+        (bind "${mod} + LEFT"  (dsp.focus "left"))
+        (bind "${mod} + RIGHT" (dsp.focus "right"))
+        (bind "${mod} + UP"    (dsp.focus "up"))
+        (bind "${mod} + DOWN"  (dsp.focus "down"))
 
-        # ── Move windows with SUPER + shift + arrow keys ─────────────
-        (bind "SUPER + SHIFT + LEFT"  (dsp.move "left"))
-        (bind "SUPER + SHIFT + RIGHT" (dsp.move "right"))
-        (bind "SUPER + SHIFT + UP"    (dsp.move "up"))
-        (bind "SUPER + SHIFT + DOWN"  (dsp.move "down"))
+        # Move windows with ${mod} + shift + arrow keys
+        (bind "${mod} + SHIFT + LEFT"  (dsp.move "left"))
+        (bind "${mod} + SHIFT + RIGHT" (dsp.move "right"))
+        (bind "${mod} + SHIFT + UP"    (dsp.move "up"))
+        (bind "${mod} + SHIFT + DOWN"  (dsp.move "down"))
 
-        # ── Scroll through workspaces with SUPER + scroll ────────────
-        (bind "SUPER + mouse_down" (dsp.focusWorkspace "e+1"))
-        (bind "SUPER + mouse_up" (dsp.focusWorkspace "e-1"))
+        # Scroll through workspaces with ${mod} + scroll
+        (bind "${mod} + mouse_down" (dsp.focusWorkspace "e+1"))
+        (bind "${mod} + mouse_up" (dsp.focusWorkspace "e-1"))
 
-        # ── Move workspaces between monitors ────────────────────────
-        (bind "SUPER + CTRL + LEFT"  (dsp.moveWorkspace "left"))
-        (bind "SUPER + CTRL + RIGHT" (dsp.moveWorkspace "right"))
+        # Move workspaces between monitors
+        (bind "${mod} + CTRL + LEFT"  (dsp.moveWorkspace "left"))
+        (bind "${mod} + CTRL + RIGHT" (dsp.moveWorkspace "right"))
 
-        # ── Hyprlock / exit ────────────────────────────────────────
-        (bind "SUPER + TAB"      (dsp.exec "hyprlock"))
-        (bind "SUPER + SHIFT + E" dsp.exit)
+        # Hyprlock / exit
+        (bind "${mod} + TAB" (dsp.exec "hyprlock"))
+        (bind "${mod} + SHIFT + E" dsp.exit)
 
-        # ── Media controls ──────────────────────────────────────────
-        (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume @ 5%+ && ${scripts}/bin/osd volume") { locked = true; repeating = true; })
-        (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @ 5%- && ${scripts}/bin/osd volume") { locked = true; repeating = true; })
+        # Media controls
+        (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && ${scripts}/bin/osd volume") { locked = true; repeating = true; })
+        (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ${scripts}/bin/osd volume") { locked = true; repeating = true; })
         (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @ toggle && ${scripts}/bin/osd volume") { locked = true; })
         (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute u/DEFAULT_AUDIO_SOURCE@ toggle && ${scripts}/bin/osd volume") { locked = true; })
-        (bind "XF86AudioPlay"    (dsp.exec "playerctl play-pause"))
-        (bind "XF86AudioStop"    (dsp.exec "playerctl stop"))
-        (bind "XF86AudioNext"    (dsp.exec "playerctl next"))
-        (bind "XF86AudioPrev"    (dsp.exec "playerctl previous"))
+        (bind "XF86AudioPlay" (dsp.exec "playerctl play-pause"))
+        (bind "XF86AudioStop" (dsp.exec "playerctl stop"))
+        (bind "XF86AudioNext" (dsp.exec "playerctl next"))
+        (bind "XF86AudioPrev" (dsp.exec "playerctl previous"))
 
-        # ── Power button ───────────────────────────────────────────
+        # Brightness
+        (bindOpts "XF86MonBrightnessUp" (dsp.exec "brightnessctl s 10%+ && ${scripts}/bin/osd brightness") { locked = true; repeating = true; })
+        (bindOpts "XF86MonBrightnessDown" (dsp.exec "brightnessctl s 10%- && ${scripts}/bin/osd brightness") { locked = true; repeating = true; })
+
+        # Power button
         (bind "XF86PowerOff" (dsp.exec "wlogout"))
 
-        # ── Clipboard ─────────────────────────────────────────────
-        (bind "SUPER + V" (dsp.exec "cliphist list | wofi -S dmenu | cliphist decode | wl-copy"))
+        # Clipboard
+        (bind "${mod} + V" (dsp.exec "cliphist list | wofi -S dmenu | cliphist decode | wl-copy"))
 
-        # ── Notifications ─────────────────────────────────────────
+        # Notifications
         (bindOpts "CTRL + SPACE"                 (dsp.exec "makoctl dismiss")    { non_consuming = true; })
         (bindOpts "CTRL + SHIFT + SPACE"         (dsp.exec "makoctl dismiss -a") { non_consuming = true; })
-        (bindOpts "CTRL + SHIFT + ALT_L + SPACE"  (dsp.exec "makoctl restore")    { non_consuming = true; })
+        (bindOpts "CTRL + SHIFT + ALT_L + SPACE" (dsp.exec "makoctl restore")    { non_consuming = true; })
 
-        # ── Mouse binds ──────────────────────────────────────────────────
-        (bindOpts "SUPER + mouse:272" dsp.drag { mouse = true; })
-        (bindOpts "SUPER + mouse:273" dsp.resize { mouse = true; })
+        # Mouse binds
+        (bindOpts "${mod} + mouse:272" dsp.drag { mouse = true; })
+        (bindOpts "${mod} + mouse:273" dsp.resize { mouse = true; })
       ] ++ workspaceBinds;
     };
   };
