@@ -817,17 +817,17 @@
         "pre-commit-hooks": "pre-commit-hooks_2"
       },
       "locked": {
-        "lastModified": 1752585957,
-        "narHash": "sha256-ogQo/MMNSIM4U4VQMieIrpLhjkgSbev3VR24foJ/h/U=",
-        "owner": "SapuSeven",
-        "repo": "nix-lazy-apps",
-        "rev": "3c3ce5001e24b6c12496a5920eee28a96f8d49d6",
-        "type": "github"
+        "lastModified": 1764660538,
+        "narHash": "sha256-kEWb9Hc2OxdLhJ1pRdW7zRZ57Mul3/Jpy3vyhQ8Yq6o=",
+        "owner": "~rycee",
+        "repo": "lazy-apps",
+        "rev": "4ddc92c77213f8ed3ddef1868f4a19002afa728a",
+        "type": "sourcehut"
       },
       "original": {
-        "owner": "SapuSeven",
-        "repo": "nix-lazy-apps",
-        "type": "github"
+        "owner": "~rycee",
+        "repo": "lazy-apps",
+        "type": "sourcehut"
       }
     },
     "mnw": {

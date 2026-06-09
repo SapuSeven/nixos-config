@@ -51,7 +51,8 @@
 
     # Lazy Apps
     lazy-apps = {
-      url = "github:SapuSeven/nix-lazy-apps";
+      #url = "github:SapuSeven/nix-lazy-apps";
+      url = "sourcehut:~rycee/lazy-apps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

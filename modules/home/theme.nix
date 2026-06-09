@@ -17,44 +17,14 @@
     rev = "d03125088f4fe9b7ec44aa8d3e2f0c42abcdb7a1";
     sha256 = "sha256-ELpzK2vx7O/GFwGzdTrYQa7mvGQDxCzJoW3QRkCUcao=";
   };
-  ## Gradience has been discontinued
-  #  gradiencePreset = pkgs.fetchurl {
-  #    url = "https://raw.githubusercontent.com/GradienceTeam/Community/next/official/catppuccin-mocha.json";
-  #    hash = "sha256-4/RVQF6irDueswEXWtmn2CCmyN7VQtQPrDAeg45cTPk=";
-  #  };
-  #  gradienceBuild = pkgs.stdenv.mkDerivation {
-  #    name = "gradience-build";
-  #    phases = [
-  #      "buildPhase"
-  #      "installPhase"
-  #    ];
-  #    nativeBuildInputs = [pkgs.gradience];
-  #    buildPhase = ''
-  #      shopt -s nullglob
-  #      export HOME=$TMPDIR
-  #      mkdir -p $HOME/.config/presets
-  #      gradience-cli apply -p ${gradiencePreset} --gtk both
-  #    '';
-  #    installPhase = ''
-  #      mkdir -p $out
-  #      cp -r .config/gtk-4.0 $out/
-  #      cp -r .config/gtk-3.0 $out/
-  #    '';
-  #  };
 
   cursor-pkg = pkgs.bibata-cursors;
 in {
   catppuccin = {
     enable = true;
+    autoEnable = true;
     flavor = flavor;
     accent = "mauve";
-
-    hyprland.enable = true;
-
-    #    gtk = {
-    #      enable = false;
-    #      icon.enable = true;
-    #    };
   };
 
   xresources.properties = {

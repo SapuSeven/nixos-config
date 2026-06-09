@@ -5,7 +5,7 @@
   ...
 }: let
   isLinux = pkgs.stdenv.isLinux;
-  lazy = inputs.lazy-apps.packages.${pkgs.system}.lazy-app;
+  lazy = inputs.lazy-apps.packages.${pkgs.stdenv.hostPlatform.system}.lazy-app;
 in {
   home.packages = with pkgs; lib.optionals isLinux [
     (lazy.override {

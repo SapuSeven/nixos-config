@@ -51,31 +51,6 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-  environment.persistence."/nix/persist/system" = {
-    hideMounts = true;
-    directories = [
-      "/var/log"
-      "/var/lib/bluetooth"
-      "/var/lib/nixos"
-      "/var/lib/systemd/coredump"
-      "/var/lib/systemd/backlight" # Persistent backlight brightness
-      "/etc/nixos"
-      {
-        directory = "/var/lib/colord";
-        user = "colord";
-        group = "colord";
-        mode = "u=rwx,g=rx,o=";
-      }
-    ];
-    files = [
-      "/etc/machine-id"
-      #{ file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
-    ];
-  };
-
-  # Styling
-  catppuccin.enable = true;
-
   # Enable shell
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
@@ -91,17 +66,6 @@
     enableSSHSupport = false;
   };
 
-  # List services that you want to enable:
-
   # Enable automount
   services.udisks2.enable = true;
-
-  # Enable services
-  #services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 }

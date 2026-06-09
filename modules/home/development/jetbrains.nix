@@ -4,7 +4,7 @@
   host,
   ...
 }: let
-  lazy = inputs.lazy-apps.packages.${pkgs.system}.lazy-app;
+  lazy = inputs.lazy-apps.packages.${pkgs.stdenv.hostPlatform.system}.lazy-app;
   vmopts =
     if host.name == "desktop" # TODO: Check for a "hidpi" fact
     then ''
