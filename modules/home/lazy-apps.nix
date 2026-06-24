@@ -21,6 +21,17 @@ in {
         mimeTypes = ["application/x-blender"];
       };
     })
+    (lazy.override {
+      pkg = chromium;
+      desktopItem = makeDesktopItem {
+        name = "chromium";
+        exec = "chromium %f";
+        icon = "chromium";
+        desktopName = "Chromium";
+        genericName = "Web Browser";
+        categories = ["Network" "WebBrowser"];
+      };
+    })
     (lazy.override { pkg = jq; })
     (lazy.override { pkg = just; })
     (lazy.override { pkg = ansible; })

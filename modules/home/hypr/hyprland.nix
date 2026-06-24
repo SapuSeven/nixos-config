@@ -275,21 +275,14 @@ in {
         }
         {
           match = {
-            class = "thunar";
+            class = "Thunar";
             title = "File Operation Progress";
           };
           float = true;
         }
         {
           match = {
-            class = "thunar";
-            title = "^(Rename \".*\")$";
-          };
-          float = true;
-        }
-        {
-          match = {
-            class = "thunar";
+            class = "Thunar";
             title = "^(Rename \".*\")$";
           };
           float = true;
@@ -326,6 +319,7 @@ in {
         # Program shortcuts
         (bind "${mod} + RETURN" (dsp.exec "kitty"))
         (bind "${mod} + E" (dsp.exec "thunar"))
+        (bind "${mod} + S" (dsp.exec "steam"))
         (bind "${mod} + F" (dsp.exec "${browser}"))
         (bind "CTRL + SHIFT + P" (dsp.exec "${browser} -private-window"))
 

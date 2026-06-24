@@ -6,5 +6,15 @@
     daemonIOSchedPriority = 7; # N/A: With "idle", priorities are not used in scheduling decisions. range 0 (high) to 7 (low). default 4.
 
     settings.substituters = ["https://cache.nixos.org"];
+
+    distributedBuilds = true;
+    buildMachines = [
+      {
+        hostName = "eu.nixbuild.net";
+        system = "x86_64-linux";
+        maxJobs = 100;
+        supportedFeatures = [ "benchmark" "big-parallel" ];
+      }
+    ];
   };
 }

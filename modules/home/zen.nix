@@ -40,7 +40,7 @@
         "browser.translations.neverTranslateLanguages" = "de"; # No need
         "privacy.clearOnShutdown.history" = false; # We want to save history on exit
         "devtools.chrome.enabled" = true; # Allow executing JS in the dev console
-        "general.autoScroll" = true;
+        "general.autoScroll" = false;
         "browser.fixup.domainsuffixwhitelist.lan" = true; # Add .lan as a recognized TLD
         "browser.sessionstore.restore_pinned_tabs_on_demand" = false; # Load pinned and essential tabs immediately on start
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # Add userChrome.css support

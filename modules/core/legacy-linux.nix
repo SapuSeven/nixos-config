@@ -68,4 +68,9 @@
 
   # Enable automount
   services.udisks2.enable = true;
+
+  catppuccin = {
+    enable = true;
+    autoEnable = true;
+  };
 }
