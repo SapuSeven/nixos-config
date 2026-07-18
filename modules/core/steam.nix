@@ -8,7 +8,7 @@
         with pkgs'; [
           libGLU
           libtinfo
-          libsForQt5.qt5.qtmultimedia
+          qt5.qtmultimedia
         ];
       extraEnv = {
         STEAM_FORCE_DESKTOPUI_SCALING = 1.5;

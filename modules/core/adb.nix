@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, host, ...}: {
   environment.systemPackages = with pkgs; [
     android-tools
   ];
@@ -14,7 +14,7 @@
     SUBSYSTEM=="usb", ATTR{idVendor}=="${idVendor}", ATTR{idProduct}=="${idProduct}", SYMLINK+="android_fastboot"
   '';
 
-  users.users.paul.extraGroups = [
+  users.users.${host.user}.extraGroups = [
     "adbusers"
     "kvm"
   ];

@@ -113,12 +113,12 @@
     hosts = {
       desktop = {
         system = "x86_64-linux";
-        user = "paul";
+        user = "alina";
         impermanent = true;
       };
       laptop = {
         system = "x86_64-linux";
-        user = "paul";
+        user = "alina";
         impermanent = true;
       };
       macbook = {

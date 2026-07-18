@@ -66,10 +66,10 @@ in
         };
       };
 
-      systemd.user.extraConfig = ''
-        DefaultLimitNOFILE=32768"
-        DefaultEnvironment="PATH=/run/current-system/sw/bin"
-      '';
+      systemd.user.settings.Manager = {
+        DefaultLimitNOFILE = 32768;
+        DefaultEnvironment = "PATH=/run/current-system/sw/bin";
+      };
 
       systemd.user.services.polkit-gnome-authentication-agent-1 = {
         description = "Polkit-Gnome authentication agent";

@@ -1,10 +1,13 @@
-{config, ...}: {
-  age.secrets.users-paul.file = ../../../secrets/users-paul.age;
+{config, host, ...}: let
+  usersecret =  "users-${host.user}";
+in {
+  age.secrets.${usersecret}.file = ../../../secrets/${usersecret}.age;
 
-  users.users.paul = {
+  users.users.${host.user} = {
+    uid = 1000;
     isNormalUser = true;
-    description = "Paul";
-    hashedPasswordFile = config.age.secrets.users-paul.path;
+    description = host.user;
+    hashedPasswordFile = config.age.secrets.${usersecret}.path;
     extraGroups = ["networkmanager" "wheel" "dialout"];
   };
 

@@ -6,7 +6,7 @@
   jdk = pkgs.openjdk17;
   dataDir =
     if host.name == "desktop"
-    then "/run/media/paul/Thicc/Games/Minecraft/Prism"
+    then "/run/media/${host.user}/Thicc/Games/Minecraft/Prism"
     else ".";
 in {
   home = {

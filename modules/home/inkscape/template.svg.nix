@@ -1,4 +1,5 @@
 {
+  author,
   type,
   width,
   height,
@@ -29,7 +30,7 @@
          inkscape:document-units="${unit}" />
       <inkscape:templateinfo>
         <inkscape:name>${type} ${toString width}x${toString height}${unit}</inkscape:name>
-        <inkscape:author>Paul</inkscape:author>
+        <inkscape:author>${author}</inkscape:author>
         <inkscape:date>2024-07-30</inkscape:date>
       </inkscape:templateinfo>
     </svg>

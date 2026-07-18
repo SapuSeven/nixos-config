@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, host, ...}: {
   hardware.openrazer = {
     enable = true;
     batteryNotifier = {
@@ -13,7 +13,5 @@
     razer-cli
   ];
 
-  users.users.paul = {
-    extraGroups = ["openrazer"];
-  };
+  users.users.${host.user}.extraGroups = ["openrazer"];
 }

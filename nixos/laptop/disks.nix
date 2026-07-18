@@ -1,11 +1,11 @@
-{...}: {
+{host, ...}: {
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
     options = ["defaults" "size=12G" "mode=755"];
   };
 
-  fileSystems."/home/paul" = {
+  fileSystems."/home/${host.user}" = {
     device = "none";
     fsType = "tmpfs";
     options = ["defaults" "size=8G" "mode=777"];

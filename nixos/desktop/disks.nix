@@ -1,11 +1,11 @@
-{...}: {
+{host, ...}: {
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
     options = ["defaults" "size=12G" "mode=755"];
   };
 
-  fileSystems."/home/paul" = {
+  fileSystems."/home/${host.user}" = {
     device = "none";
     fsType = "tmpfs";
     options = ["defaults" "size=24G" "mode=777"];
@@ -24,12 +24,12 @@
   };
 
   # Extra data partitions
-  fileSystems."/run/media/paul/Thicc" = {
+  fileSystems."/run/media/${host.user}/Thicc" = {
     device = "/dev/disk/by-uuid/C808BEE708BED3A2";
     fsType = "ntfs";
   };
 
-  fileSystems."/run/media/paul/Speed" = {
+  fileSystems."/run/media/${host.user}/Speed" = {
     device = "/dev/disk/by-uuid/77DC81AE32D5864F";
     fsType = "ntfs";
   };

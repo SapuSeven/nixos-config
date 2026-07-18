@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, host, ...}: {
   # Enable display manager.
   services.displayManager = {
     sddm = {
@@ -8,7 +8,7 @@
 
     autoLogin = {
       enable = true;
-      user = "paul";
+      user = host.user;
     };
   };
 }
