@@ -10,8 +10,6 @@
           arrterian.nix-env-selector
           # python
           ms-python.python
-          # C/C++
-          ms-vscode.cpptools
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
