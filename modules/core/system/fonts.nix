@@ -5,6 +5,7 @@
       noto-fonts-color-emoji
       nerd-fonts.jetbrains-mono
       corefonts # Microsoft Fonts
+      vollkorn # for Obsidian
     ];
     fontconfig = {
       enable = true;

@@ -41,6 +41,7 @@ in {
     (lazy.override { pkg = esphome; })
     (lazy.override { pkg = unzip; })
     (lazy.override { pkg = ncdu; })
+    (lazy.override { pkg = yt-dlp; })
     (lazy.override {
       pkg = dnsutils;
       exe = "nslookup";
