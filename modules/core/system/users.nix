@@ -1,5 +1,9 @@
-{config, host, ...}: let
-  usersecret =  "users-${host.user}";
+{
+  config,
+  host,
+  ...
+}: let
+  usersecret = "users-${host.user}";
 in {
   age.secrets.${usersecret}.file = ../../../secrets/${usersecret}.age;
 

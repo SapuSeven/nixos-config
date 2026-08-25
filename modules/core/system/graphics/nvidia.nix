@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}: {
+{config, ...}: {
   # Hardware acceleration / OpenGL
   hardware.graphics = {
     enable = true;

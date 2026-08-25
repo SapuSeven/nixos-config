@@ -1,4 +1,8 @@
-{inputs, config, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   modifications = final: prev: {
     catppuccin = prev.catppuccin.overrideAttrs (old: {
       patches =
@@ -20,4 +24,3 @@
     pagmo2 = stable.pagmo2; # https://github.com/NixOS/nixpkgs/issues/480860
   };
 }
-

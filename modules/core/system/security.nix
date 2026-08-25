@@ -49,6 +49,7 @@ in
         pki.certificateFiles = [../../../certs/LAN+Root+CA.crt];
 
         pam = {
+          services.veila = {};
           loginLimits = [
             {
               domain = "*";

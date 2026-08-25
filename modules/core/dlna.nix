@@ -1,4 +1,8 @@
-{pkgs, host, ...}: {
+{
+  pkgs,
+  host,
+  ...
+}: {
   services.minidlna = {
     enable = true;
     openFirewall = true;

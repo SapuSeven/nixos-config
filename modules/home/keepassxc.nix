@@ -12,7 +12,6 @@
   secretName = "keepass-${db}";
   passwordFile = config.age.secrets.${secretName}.path;
 
-  
   keepassxc-wrapped = pkgs.symlinkJoin {
     name = "keepassxc";
     paths = [keepassxc];

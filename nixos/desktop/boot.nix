@@ -15,7 +15,6 @@
       kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "dm-thin-pool"];
     };
 
-    
     kernel.sysctl."kernel.sysrq" = 1;
 
     kernelModules = ["kvm-amd"];

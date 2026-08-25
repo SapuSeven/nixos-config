@@ -1,4 +1,8 @@
-{pkgs, host, ...}: {
+{
+  pkgs,
+  host,
+  ...
+}: {
   # Enable display manager.
   services.displayManager = {
     sddm = {

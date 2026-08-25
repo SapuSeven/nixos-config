@@ -15,7 +15,7 @@
     # Use global nixpkgs with config options (like allow-unfree)
     useGlobalPkgs = true;
     useUserPackages = true;
- 
+
     users =
       {
         ${host.user} = {

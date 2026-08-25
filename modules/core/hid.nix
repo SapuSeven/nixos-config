@@ -1,4 +1,8 @@
-{pkgs, host, ...}: {
+{
+  pkgs,
+  host,
+  ...
+}: {
   hardware.openrazer = {
     enable = true;
     batteryNotifier = {

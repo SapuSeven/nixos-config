@@ -1,5 +1,9 @@
-{inputs, pkgs, ...}: {
-  imports = [ inputs.hyprland.nixosModules.default ];
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  imports = [inputs.hyprland.nixosModules.default];
 
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
@@ -33,7 +37,7 @@
       portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
-  
+
     uwsm = {
       enable = true;
       waylandCompositors = {

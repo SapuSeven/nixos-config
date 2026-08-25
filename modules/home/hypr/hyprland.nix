@@ -61,16 +61,17 @@
   };
 
   mod = "SUPER";
-  bind = keys: dispatcher: { _args = [keys dispatcher]; };
-  bindOpts = keys: dispatcher: opts: { _args = [keys dispatcher opts]; };
+  bind = keys: dispatcher: {_args = [keys dispatcher];};
+  bindOpts = keys: dispatcher: opts: {_args = [keys dispatcher opts];};
 
-  workspaceBinds = lib.concatMap (i:
-      let key = toString (lib.mod i 10);
-      in [
-        (bind "SUPER + ${key}" (dsp.focusWorkspace i))
-        (bind "SUPER + SHIFT + ${key}" (dsp.moveToWorkspace i))
-      ]
-    ) (lib.range 1 10);
+  workspaceBinds = lib.concatMap (
+    i: let
+      key = toString (lib.mod i 10);
+    in [
+      (bind "SUPER + ${key}" (dsp.focusWorkspace i))
+      (bind "SUPER + SHIFT + ${key}" (dsp.moveToWorkspace i))
+    ]
+  ) (lib.range 1 10);
 in {
   home.packages = with pkgs; [
     wl-clipboard
@@ -85,7 +86,7 @@ in {
     # Handled by NixOS module
     package = null;
     portalPackage = null;
-    
+
     settings = {
       mod = {
         _var = "SUPER";
@@ -130,8 +131,8 @@ in {
           gaps_out = 8;
           border_size = 2;
           col = {
-            active_border = (lua ''"0xee" .. colors.accentAlpha'');
-            inactive_border = (lua ''"0xee" .. colors.surface0Alpha'');
+            active_border = lua ''"0xee" .. colors.accentAlpha'';
+            inactive_border = lua ''"0xee" .. colors.surface0Alpha'';
           };
         };
 
@@ -148,7 +149,7 @@ in {
             enabled = true;
             range = 8;
             render_power = 3;
-            color = (lua ''"0x88" .. colors.accentAlpha'');
+            color = lua ''"0x88" .. colors.accentAlpha'';
             color_inactive = "0x00000000";
           };
         };
@@ -174,7 +175,7 @@ in {
           force_default_wallpaper = -1;
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
-          background_color = (lua ''colors.base'');
+          background_color = lua ''colors.base'';
         };
 
         input = {
@@ -192,24 +193,28 @@ in {
 
       workspace_rule =
         if host == "laptop"
-        then [{
-          workspace = "1";
-          monitor = "eDP-1";
-          default = true;
-        }]
-        else [{
-          workspace = "1";
-          monitor = "DP-1";
-          default = true;
-        }
-        {
-          workspace = "2";
-          monitor = "HDMI-A-1";
-        }
-        {
-          workspace = "3";
-          monitor = "DP-2";
-        }];
+        then [
+          {
+            workspace = "1";
+            monitor = "eDP-1";
+            default = true;
+          }
+        ]
+        else [
+          {
+            workspace = "1";
+            monitor = "DP-1";
+            default = true;
+          }
+          {
+            workspace = "2";
+            monitor = "HDMI-A-1";
+          }
+          {
+            workspace = "3";
+            monitor = "DP-2";
+          }
+        ];
 
       device =
         [
@@ -234,18 +239,22 @@ in {
           "razer-razer-viper-v3-pro-mouse"
         ];
 
-      gesture = [{
-        fingers = 3;
-        direction = "horizontal";
-        action = "workspace";
-      }];
+      gesture = [
+        {
+          fingers = 3;
+          direction = "horizontal";
+          action = "workspace";
+        }
+      ];
 
-      animation = [{
-        leaf = "global";
-        enabled = true;
-        speed = 3;
-        bezier = "default";
-      }];
+      animation = [
+        {
+          leaf = "global";
+          enabled = true;
+          speed = 3;
+          bezier = "default";
+        }
+      ];
 
       window_rule = [
         # Fixes for Jetbrains IDEs - see https://github.com/hyprwm/Hyprland/issues/4257
@@ -304,88 +313,102 @@ in {
           (lib.generators.mkLuaInline ''
             function()
               ${lib.concatMapStringsSep "\n" (cmd: "hl.exec_cmd(\"${cmd}\")") [
-                "uwsm finalize"
-                "wl-paste --type text --watch cliphist store"
-                "wl-paste --type image --watch cliphist store"
-                "avizo-service"
-                "xrdb -merge \\\"$HOME/.Xresources\\\""
-              ]}
+              "uwsm finalize"
+              "wl-paste --type text --watch cliphist store"
+              "wl-paste --type image --watch cliphist store"
+              "avizo-service"
+              "xrdb -merge \\\"$HOME/.Xresources\\\""
+            ]}
             end
           '')
         ];
       };
 
-      bind = [
-        # Program shortcuts
-        (bind "${mod} + RETURN" (dsp.exec "kitty"))
-        (bind "${mod} + E" (dsp.exec "thunar"))
-        (bind "${mod} + S" (dsp.exec "steam"))
-        (bind "${mod} + F" (dsp.exec "${browser}"))
-        (bind "CTRL + SHIFT + P" (dsp.exec "${browser} -private-window"))
+      bind =
+        [
+          # Program shortcuts
+          (bind "${mod} + RETURN" (dsp.exec "kitty"))
+          (bind "${mod} + E" (dsp.exec "thunar"))
+          (bind "${mod} + S" (dsp.exec "steam"))
+          (bind "${mod} + F" (dsp.exec "${browser}"))
+          (bind "CTRL + SHIFT + P" (dsp.exec "${browser} -private-window"))
 
-        # Close active window
-        (bind "${mod} + Q" dsp.close)
+          # Close active window
+          (bind "${mod} + Q" dsp.close)
 
-        # Open menu
-        (bind "${mod} + D" (dsp.exec "wofi --show drun"))
+          # Open menu
+          (bind "${mod} + D" (dsp.exec "wofi --show drun"))
 
-        # Float / fullscreen
-        (bind "${mod} + SPACE" dsp.float)
-        (bind "${mod} + SHIFT + F" dsp.fullscreen)
+          # Float / fullscreen
+          (bind "${mod} + SPACE" dsp.float)
+          (bind "${mod} + SHIFT + F" dsp.fullscreen)
 
-        # Move focus with ${mod} + arrow keys
-        (bind "${mod} + LEFT"  (dsp.focus "left"))
-        (bind "${mod} + RIGHT" (dsp.focus "right"))
-        (bind "${mod} + UP"    (dsp.focus "up"))
-        (bind "${mod} + DOWN"  (dsp.focus "down"))
+          # Move focus with ${mod} + arrow keys
+          (bind "${mod} + LEFT" (dsp.focus "left"))
+          (bind "${mod} + RIGHT" (dsp.focus "right"))
+          (bind "${mod} + UP" (dsp.focus "up"))
+          (bind "${mod} + DOWN" (dsp.focus "down"))
 
-        # Move windows with ${mod} + shift + arrow keys
-        (bind "${mod} + SHIFT + LEFT"  (dsp.move "left"))
-        (bind "${mod} + SHIFT + RIGHT" (dsp.move "right"))
-        (bind "${mod} + SHIFT + UP"    (dsp.move "up"))
-        (bind "${mod} + SHIFT + DOWN"  (dsp.move "down"))
+          # Move windows with ${mod} + shift + arrow keys
+          (bind "${mod} + SHIFT + LEFT" (dsp.move "left"))
+          (bind "${mod} + SHIFT + RIGHT" (dsp.move "right"))
+          (bind "${mod} + SHIFT + UP" (dsp.move "up"))
+          (bind "${mod} + SHIFT + DOWN" (dsp.move "down"))
 
-        # Scroll through workspaces with ${mod} + scroll
-        (bind "${mod} + mouse_down" (dsp.focusWorkspace "e+1"))
-        (bind "${mod} + mouse_up" (dsp.focusWorkspace "e-1"))
+          # Scroll through workspaces with ${mod} + scroll
+          (bind "${mod} + mouse_down" (dsp.focusWorkspace "e+1"))
+          (bind "${mod} + mouse_up" (dsp.focusWorkspace "e-1"))
 
-        # Move workspaces between monitors
-        (bind "${mod} + CTRL + LEFT"  (dsp.moveWorkspace "left"))
-        (bind "${mod} + CTRL + RIGHT" (dsp.moveWorkspace "right"))
+          # Move workspaces between monitors
+          (bind "${mod} + CTRL + LEFT" (dsp.moveWorkspace "left"))
+          (bind "${mod} + CTRL + RIGHT" (dsp.moveWorkspace "right"))
 
-        # Hyprlock / exit
-        (bind "${mod} + TAB" (dsp.exec "hyprlock"))
-        (bind "${mod} + SHIFT + E" dsp.exit)
+          # Hyprlock / exit
+          (bind "${mod} + TAB" (dsp.exec "hyprlock"))
+          (bind "${mod} + SHIFT + E" dsp.exit)
 
-        # Media controls
-        (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && ${scripts}/bin/osd volume") { locked = true; repeating = true; })
-        (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ${scripts}/bin/osd volume") { locked = true; repeating = true; })
-        (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @ toggle && ${scripts}/bin/osd volume") { locked = true; })
-        (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute u/DEFAULT_AUDIO_SOURCE@ toggle && ${scripts}/bin/osd volume") { locked = true; })
-        (bind "XF86AudioPlay" (dsp.exec "playerctl play-pause"))
-        (bind "XF86AudioStop" (dsp.exec "playerctl stop"))
-        (bind "XF86AudioNext" (dsp.exec "playerctl next"))
-        (bind "XF86AudioPrev" (dsp.exec "playerctl previous"))
+          # Media controls
+          (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && ${scripts}/bin/osd volume") {
+            locked = true;
+            repeating = true;
+          })
+          (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ${scripts}/bin/osd volume") {
+            locked = true;
+            repeating = true;
+          })
+          (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @ toggle && ${scripts}/bin/osd volume") {locked = true;})
+          (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute u/DEFAULT_AUDIO_SOURCE@ toggle && ${scripts}/bin/osd volume") {locked = true;})
+          (bind "XF86AudioPlay" (dsp.exec "playerctl play-pause"))
+          (bind "XF86AudioStop" (dsp.exec "playerctl stop"))
+          (bind "XF86AudioNext" (dsp.exec "playerctl next"))
+          (bind "XF86AudioPrev" (dsp.exec "playerctl previous"))
 
-        # Brightness
-        (bindOpts "XF86MonBrightnessUp" (dsp.exec "brightnessctl s 10%+ && ${scripts}/bin/osd brightness") { locked = true; repeating = true; })
-        (bindOpts "XF86MonBrightnessDown" (dsp.exec "brightnessctl s 10%- && ${scripts}/bin/osd brightness") { locked = true; repeating = true; })
+          # Brightness
+          (bindOpts "XF86MonBrightnessUp" (dsp.exec "brightnessctl s 10%+ && ${scripts}/bin/osd brightness") {
+            locked = true;
+            repeating = true;
+          })
+          (bindOpts "XF86MonBrightnessDown" (dsp.exec "brightnessctl s 10%- && ${scripts}/bin/osd brightness") {
+            locked = true;
+            repeating = true;
+          })
 
-        # Power button
-        (bind "XF86PowerOff" (dsp.exec "wlogout"))
+          # Power button
+          (bind "XF86PowerOff" (dsp.exec "wlogout"))
 
-        # Clipboard
-        (bind "${mod} + V" (dsp.exec "cliphist list | wofi -S dmenu | cliphist decode | wl-copy"))
+          # Clipboard
+          (bind "${mod} + V" (dsp.exec "cliphist list | wofi -S dmenu | cliphist decode | wl-copy"))
 
-        # Notifications
-        (bindOpts "CTRL + SPACE"                 (dsp.exec "makoctl dismiss")    { non_consuming = true; })
-        (bindOpts "CTRL + SHIFT + SPACE"         (dsp.exec "makoctl dismiss -a") { non_consuming = true; })
-        (bindOpts "CTRL + SHIFT + ALT_L + SPACE" (dsp.exec "makoctl restore")    { non_consuming = true; })
+          # Notifications
+          (bindOpts "CTRL + SPACE" (dsp.exec "makoctl dismiss") {non_consuming = true;})
+          (bindOpts "CTRL + SHIFT + SPACE" (dsp.exec "makoctl dismiss -a") {non_consuming = true;})
+          (bindOpts "CTRL + SHIFT + ALT_L + SPACE" (dsp.exec "makoctl restore") {non_consuming = true;})
 
-        # Mouse binds
-        (bindOpts "${mod} + mouse:272" dsp.drag { mouse = true; })
-        (bindOpts "${mod} + mouse:273" dsp.resize { mouse = true; })
-      ] ++ workspaceBinds;
+          # Mouse binds
+          (bindOpts "${mod} + mouse:272" dsp.drag {mouse = true;})
+          (bindOpts "${mod} + mouse:273" dsp.resize {mouse = true;})
+        ]
+        ++ workspaceBinds;
     };
   };
 }

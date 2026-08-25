@@ -18,4 +18,3 @@
 
   services.avahi.enable = true;
 }
-
