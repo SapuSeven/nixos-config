@@ -14,9 +14,10 @@ in {
     enable = true;
     settings = {
       general = {
-        lock_cmd = "pidof hyprlock || hyprlock";
+        lock_cmd = "veila lock --wait-ready";
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";
+        inhibit_sleep = 3;
       };
 
       listener =

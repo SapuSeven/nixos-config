@@ -20,6 +20,7 @@ in {
     ++ lib.optionals isLinux [
       ./ags.nix # desktop shell
       ./avizo.nix # osd
+      ./deluge.nix # torrent client
       ./editor.nix # text editor
       ./files.nix # file management
       #./firefox.nix # browser, replaced by zen
@@ -40,7 +41,7 @@ in {
       ./orcaslicer.nix # slicer
       ./teamspeak.nix # teamspeak
       ./theme.nix # theme
-      ./deluge.nix # torrent client
+      ./veila.nix # lock screen
       ./waybar # status bar
       ./wine.nix # windows compatibility
       ./wofi.nix # launcher

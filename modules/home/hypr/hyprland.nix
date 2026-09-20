@@ -364,7 +364,7 @@ in {
           (bind "${mod} + CTRL + RIGHT" (dsp.moveWorkspace "right"))
 
           # Hyprlock / exit
-          (bind "${mod} + TAB" (dsp.exec "hyprlock"))
+          (bind "${mod} + TAB" (dsp.exec "veila lock"))
           (bind "${mod} + SHIFT + E" dsp.exit)
 
           # Media controls

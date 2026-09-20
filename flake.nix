@@ -76,8 +76,13 @@
 
     # ags
     ags-bar = {
-      url = "path:/home/paul/Files/nix-flakes/ags-bar";
+      url = "path:/home/alina/Files/nix-flakes/ags-bar";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    veila = {
+      url = "github:naurissteins/Veila";
+      inputs.veila.url = "github:naurissteins/Veila";
     };
 
     # Styling

@@ -30,7 +30,6 @@
       ".config/TeamSpeak" # TeamSpeak
       ".local/state/wireplumber" # Audio setup
     ];
-    files = [".zsh_history"];
   };
 
   # Nicely reload system units when changing configs

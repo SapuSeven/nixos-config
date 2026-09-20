@@ -1,7 +1,6 @@
 # Focus issue after unlocking:
 # https://github.com/hyprwm/hyprlock/issues/347
 {
-  config,
   pkgs,
   ...
 }: let
@@ -13,7 +12,7 @@ in {
   catppuccin.hyprlock.useDefaultConfig = false; # Theme will still be included - this just removes the default widgets
 
   programs.hyprlock = {
-    enable = true;
+    enable = false; # currently using Veila
     settings = {
       general = {
         disable_loading_bar = true;

@@ -22,6 +22,7 @@ in {
       ./dlna.nix # media sharing
       ./dm.nix # display manager
       ./emulation.nix # emulation
+      ./esphome.nix # esphome build server
       ./files.nix # file management
       ./hid.nix # hid compatibility
       ./httptoolkit.nix # http sniffer

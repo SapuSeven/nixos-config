@@ -6,9 +6,15 @@
     service.enable = true;
     settings = {
       theme = "catppuccin";
+      fingerprint.enabled = true;
+      lock = {
+        screenOffSeconds = 10;
+        suspendSeconds = 300;
+        skipSuspendWhileMediaPlaying = true;
+      };
     };
     idle = {
-      enable = true;
+      enable = false;
       lockAfter = 300;
       lockBeforeSleep = true;
     };
