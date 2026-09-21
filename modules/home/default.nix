@@ -38,6 +38,7 @@ in {
       ./musescore.nix # sheet music notation
       #./nicotine.nix # soulseek
       ./obsidian.nix # notes
+      ./openscad.nix # scripted 3d modeling
       ./orcaslicer.nix # slicer
       ./teamspeak.nix # teamspeak
       ./theme.nix # theme
