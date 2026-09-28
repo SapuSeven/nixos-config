@@ -1,16 +1,17 @@
 {
   config,
-  host,
   ...
 }: let
-  usersecret = "users-${host.user}";
+  user = config.hostConfig.primaryUser;
+  usersecret = "users-${user}";
 in {
   age.secrets.${usersecret}.file = ../../../secrets/${usersecret}.age;
 
-  users.users.${host.user} = {
+  users.users.${user} = {
     uid = 1000;
     isNormalUser = true;
-    description = host.user;
+    description = user;
+    home = "/home/${user}";
     hashedPasswordFile = config.age.secrets.${usersecret}.path;
     extraGroups = ["networkmanager" "wheel" "dialout"];
   };

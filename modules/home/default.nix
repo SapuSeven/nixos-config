@@ -37,6 +37,7 @@ in {
       ./mako.nix # notifications
       ./musescore.nix # sheet music notation
       #./nicotine.nix # soulseek
+      ./niri.nix # niri
       ./obsidian.nix # notes
       ./openscad.nix # scripted 3d modeling
       ./orcaslicer.nix # slicer

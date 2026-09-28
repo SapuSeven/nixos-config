@@ -1,7 +1,7 @@
 {
+  lib,
   config,
   pkgs,
-  host,
   ...
 }: {
   virtualisation.libvirtd.enable = true;
@@ -11,5 +11,7 @@
     dnsmasq
   ];
 
-  users.users.${host.user}.extraGroups = ["libvirtd"];
+  users.users = lib.genAttrs config.hostConfig.users (user: {
+   extraGroups = [ "libvirtd" ];
+  });
 }

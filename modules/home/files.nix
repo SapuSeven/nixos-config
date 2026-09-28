@@ -1,8 +1,4 @@
 {...}: {
-  home.persistence."/nix/persist".files = [
-    ".local/share/recently-used.xbel"
-  ];
-
   xdg = {
     mimeApps = {
       enable = true;

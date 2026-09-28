@@ -82,7 +82,7 @@
 
     veila = {
       url = "github:naurissteins/Veila";
-      inputs.veila.url = "github:naurissteins/Veila";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Styling
@@ -108,9 +108,9 @@
   } @ inputs: let
     systems = [
       "x86_64-linux"
-      "aarch64-linux"
-      "x86_64-darwin"
-      "aarch64-darwin"
+      #"aarch64-linux"
+      #"x86_64-darwin"
+      #"aarch64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
@@ -118,26 +118,22 @@
     hosts = {
       desktop = {
         system = "x86_64-linux";
-        user = "alina";
+        users = [ "alina" ];
         impermanent = true;
       };
-      laptop = {
-        system = "x86_64-linux";
-        user = "alina";
-        impermanent = true;
-      };
-      macbook = {
-        system = "aarch64-darwin";
-        user = "paul.kratochwill";
-        impermanent = false;
-      };
+      #laptop = {
+      #  system = "x86_64-linux";
+      #};
+      #macbook = {
+      #  system = "aarch64-darwin";
+      #};
     };
 
     # Base modules common to both NixOS and Darwin
     baseModules = host: [
-      ./nixos/host-${host}.nix
+      ./modules/nixos
+      ./hosts/${host}
       ./modules/core
-      ./nixos/home-manager.nix
     ];
 
     # System-specific modules
@@ -198,7 +194,6 @@
     mkSpecialArgs = host: cfg: {
       inherit inputs nixpkgsConfig;
       outputs = self.outputs;
-      #inherit (self) outputs;
       host = hosts.${host} // {name = host;};
     };
 

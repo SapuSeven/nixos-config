@@ -7,7 +7,7 @@
   home.packages = with pkgs;
     [
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       qimgv # image viewer
       mpv # video player
 
@@ -18,7 +18,7 @@
       stm32cubemx
       #freedownloadmanager
     ]
-    ++ lib.optionals pkgs.stdenv.isDarwin [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
       azure-cli
     ];
 }

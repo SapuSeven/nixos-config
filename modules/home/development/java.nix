@@ -16,7 +16,7 @@
     buildInputs = [jdk];
     buildCommand = let
       cacerts =
-        if pkgs.stdenv.isDarwin
+        if pkgs.stdenv.hostPlatform.isDarwin
         then "${jdk}/lib/security/cacerts"
         else "${jdk}/lib/openjdk/lib/security/cacerts";
     in ''

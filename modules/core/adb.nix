@@ -1,6 +1,7 @@
 {
+  lib,
   pkgs,
-  host,
+  config,
   ...
 }: {
   environment.systemPackages = with pkgs; [
@@ -18,8 +19,7 @@
     SUBSYSTEM=="usb", ATTR{idVendor}=="${idVendor}", ATTR{idProduct}=="${idProduct}", SYMLINK+="android_fastboot"
   '';
 
-  users.users.${host.user}.extraGroups = [
-    "adbusers"
-    "kvm"
-  ];
+  users.users = lib.genAttrs config.hostConfig.users (user: {
+   extraGroups = [ "adbusers" "kvm" ];
+  });
 }

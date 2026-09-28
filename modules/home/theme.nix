@@ -1,12 +1,8 @@
 {
-  config,
   pkgs,
-  lib,
   host,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
-  cfg = config.overworld.home.catppuccin;
   flavor = "mocha";
   accent = "mauve";
   shade = "dark";
@@ -24,7 +20,7 @@ in {
     enable = true;
     autoEnable = true;
     flavor = flavor;
-    accent = "mauve";
+    accent = accent;
   };
 
   xresources.properties = {
@@ -81,6 +77,7 @@ in {
   };
 
   home.pointerCursor = {
+    enable = true;
     gtk.enable = true;
     x11.enable = true;
     package = cursor-pkg;

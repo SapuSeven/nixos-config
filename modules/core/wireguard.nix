@@ -4,7 +4,7 @@
   ...
 }: let
   wireguardKeyDir =
-    if pkgs.stdenv.isDarwin
+    if pkgs.stdenv.hostPlatform.isDarwin
     then "/var/root/.wg"
     else "/root/.wg";
 in {

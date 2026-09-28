@@ -1,6 +1,5 @@
 {
-  pkgs,
-  host,
+  config,
   ...
 }: {
   services.minidlna = {
@@ -9,7 +8,7 @@
     settings = {
       inotify = "yes";
       media_dir = [
-        "V,/run/media/${host.user}/Thicc/Videos/"
+        "V,/run/media/${config.hostConfig.primaryUser}/Thicc/Videos/"
       ];
     };
   };

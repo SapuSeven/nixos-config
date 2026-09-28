@@ -4,7 +4,7 @@
   inputs,
   ...
 }: let
-  isLinux = pkgs.stdenv.isLinux;
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
   lazy = inputs.lazy-apps.packages.${pkgs.stdenv.hostPlatform.system}.lazy-app;
 in {
   home.packages = with pkgs;

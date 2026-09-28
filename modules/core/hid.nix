@@ -1,6 +1,7 @@
 {
+  lib,
   pkgs,
-  host,
+  config,
   ...
 }: {
   hardware.openrazer = {
@@ -17,5 +18,7 @@
     razer-cli
   ];
 
-  users.users.${host.user}.extraGroups = ["openrazer"];
+  users.users = lib.genAttrs config.hostConfig.users (user: {
+    extraGroups = [ "openrazer" ];
+  });
 }
