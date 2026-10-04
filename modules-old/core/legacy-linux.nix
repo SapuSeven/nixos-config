@@ -59,7 +59,6 @@
   users.defaultUserShell = pkgs.zsh;
 
   programs.fuse.userAllowOther = true;
-  programs.ssh.startAgent = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
