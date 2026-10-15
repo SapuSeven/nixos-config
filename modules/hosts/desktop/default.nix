@@ -1,10 +1,11 @@
-{inputs, ...}: {
-  flake.nixosConfigurations.desktop = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [
-      inputs.self.modules.nixos.hostDesktop
-    ];
-  };
+{}
+#{inputs, ...}: {
+#  flake.nixosConfigurations.desktop = inputs.nixpkgs.lib.nixosSystem {
+#    system = "x86_64-linux";
+#    modules = [
+#      inputs.self.modules.nixos.hostDesktop
+#    ];
+#  };
 
   #hostConfig = {
  #   monitors = [
@@ -37,4 +38,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   #system.stateVersion = "23.05";
-}
+#}

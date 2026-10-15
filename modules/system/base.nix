@@ -3,7 +3,7 @@
   ...
 }:
 {
-  flake.modules.nixos.base =
+  flake.modules.nixos.system-base =
     { pkgs, ... }:
     {
       nixpkgs.overlays = [
@@ -15,7 +15,6 @@
         })
       ];
       nixpkgs.config.allowUnfree = true;
-      system.stateVersion = "23.05";
 
       nix.settings = {
         substituters = [
@@ -47,5 +46,16 @@
         warn-dirty = false
         keep-outputs = true
       '';
+
+      system.stateVersion = "23.05";
     };
+
+  flake.modules.homeManager.system-base = {config, pkgs, lib, ...}: {
+    home.homeDirectory =
+      if pkgs.stdenv.hostPlatform.isDarwin then
+        (lib.mkForce "/Users/${config.home.username}")
+      else
+        "/home/${config.home.username}";
+    home.stateVersion = "23.05";
+  };
 }

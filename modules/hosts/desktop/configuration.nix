@@ -1,19 +1,16 @@
 {inputs, ...}: {
-  flake.modules.nixos.hostDesktop = {config, lib, ...}: {
-    imports = with inputs.self.modules.nixos; [
-      hostDesktopBoot
-      hostDesktopDisks
-      hostDesktopNetworking
+  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "desktop";
 
-      base
-      #desktop
+  flake.modules.nixos.host-desktop = {config, lib, ...}: {
+    imports = with inputs.self.modules.nixos; [
+      system-desktop
+      home-manager
 
       impermanence
     ];
 
     persistence.enable = true;
 
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
     services.lvm.boot.thin.enable = true;
@@ -22,5 +19,7 @@
       reportPath = ./facter.json;
       detected.dhcp.enable = false;
     };
+
+    host = {};
   };
 }

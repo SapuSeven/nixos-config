@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.hostDesktopDisks = {config, lib, pkgs, ...}: {
+  flake.modules.nixos.host-desktop = {config, lib, pkgs, ...}: {
     fileSystems = {
       "/" = {
         device = "none";

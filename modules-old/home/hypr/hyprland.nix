@@ -284,7 +284,7 @@ in {
         }
         {
           match = {
-            class = "Thunar";
+            class = "[Tt]hunar";
             title = "File Operation Progress";
           };
           float = true;

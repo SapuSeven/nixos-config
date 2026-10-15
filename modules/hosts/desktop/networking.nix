@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.hostDesktopNetworking = {lib, ...}: {
+  flake.modules.nixos.host-desktop = {lib, ...}: {
     networking = {
       useDHCP = lib.mkDefault true;
 

@@ -10,11 +10,11 @@
   }: let
     cfg = config.persistence;
   in {
-    imports = [
-      inputs.impermanence.nixosModules.impermanence
-    ];
+    imports = [ inputs.impermanence.nixosModules.impermanence ];
 
     config = lib.mkIf cfg.enable {
+      home-manager.sharedModules = [ inputs.self.modules.homeManager.impermanence ];
+
       environment.persistence."${cfg.persistDir}" = {
         hideMounts = true;
         # TODO: Remove those default values
@@ -43,6 +43,40 @@
       };
     };
    
+    options.persistence = {
+      enable = lib.mkEnableOption "Enable persistence";
+
+      persistDir = lib.mkOption {
+        type = lib.types.str;
+        description = "Path for persisted files";
+        default = "/nix/persist";
+      };
+
+      files = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        description = "List of files to persist";
+        default = [];
+      };
+
+      directories = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        description = "List of directories to persist";
+        default = [];
+      };
+    };
+  };
+
+  flake.modules.homeManager.impermanence = {lib, config, ...}:
+  let
+    cfg = config.persistence;
+  in {
+    config = lib.mkIf cfg.enable {
+      home.persistence."${cfg.persistDir}" = {
+        directories = cfg.directories;
+        files = cfg.files;
+      };
+    };
+
     options.persistence = {
       enable = lib.mkEnableOption "Enable persistence";
 

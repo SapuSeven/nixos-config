@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.hostDesktopBoot = {lib, ...}: {
+  flake.modules.nixos.host-desktop = {lib, ...}: {
     boot = {
       initrd = {
         systemd.enable = true;
