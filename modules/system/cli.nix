@@ -3,7 +3,7 @@
     imports = with inputs.self.modules.nixos; [
       system-default
 
-      #ssh
+      ssh
       #firmware
       #cli-tools
     ];

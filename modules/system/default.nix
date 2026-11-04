@@ -1,16 +1,16 @@
 {
-  inputs,
+  self,
   lib,
   ...
 }:
 {
   flake.modules.nixos.system-default = {
     imports =
-      with inputs.self.modules.nixos;
+      with self.modules.nixos;
       [
         system-base
         home-manager
-        #secrets
+        secrets
       ];
 
     options.host = {
@@ -23,7 +23,7 @@
 
   flake.modules.darwin.system-default = {
     imports =
-      with inputs.self.modules.darwin;
+      with self.modules.darwin;
       [
         system-base
         #determinate
@@ -42,7 +42,7 @@
 
   flake.modules.homeManager.system-default = {
     imports =
-      with inputs.self.modules.homeManager;
+      with self.modules.homeManager;
       [
         system-base
         #secrets
