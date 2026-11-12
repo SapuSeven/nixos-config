@@ -14,5 +14,6 @@
     impermanence.url = "github:nix-community/impermanence";
     import-tree.url = "github:vic/import-tree";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    zen.url = "github:0xc000022070/zen-browser-flake";
   };
 }

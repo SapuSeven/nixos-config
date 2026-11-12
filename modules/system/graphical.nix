@@ -31,7 +31,7 @@ let
     };
   };
 in {
-  flake.modules.nixos.system-desktop = {
+  flake.modules.nixos.system-graphical = {
     imports = with self.modules.nixos; [
       system-cli
 
@@ -54,16 +54,17 @@ in {
     };
   };
 
-  flake.modules.darwin.system-desktop = {
+  flake.modules.darwin.system-graphical = {
     imports = with self.modules.darwin; [
       system-cli
     ];
   };
 
-  flake.modules.homeManager.system-desktop = {
+  flake.modules.homeManager.system-graphical = {
     imports = with self.modules.homeManager; [
       system-cli
-      #browser
+
+      browser
       #office
     ];
   };

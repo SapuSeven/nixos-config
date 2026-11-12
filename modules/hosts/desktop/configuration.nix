@@ -3,7 +3,7 @@
 
   flake.modules.nixos.host-desktop = {config, lib, ...}: {
     imports = with inputs.self.modules.nixos; [
-      system-desktop
+      system-graphical
       home-manager
 
       impermanence

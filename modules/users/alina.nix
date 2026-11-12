@@ -20,7 +20,7 @@ in {
 
       homeManager.${username} = { pkgs, ... }: {
         imports = with self.modules.homeManager; [
-          system-desktop
+          system-graphical
         ];
       };
     }
