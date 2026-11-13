@@ -3,13 +3,20 @@
 
   flake.modules.nixos.host-laptop = {config, lib, ...}: {
     imports = with inputs.self.modules.nixos; [
-      system-graphical
+      system-cli
       home-manager
 
       impermanence
     ];
 
     persistence.enable = true;
+
+    services.fwupd.enable = true;
+
+    hardware.cpu.intel = {
+      npu.enable = true;
+      updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    };
 
     host = {};
   };

@@ -5,10 +5,9 @@
 }:
 {
   flake.modules.nixos.host-laptop = {config, ...}: {
-    imports =
-      with inputs.self.modules.nixos;
-      with inputs.self.factory;
-      [ alina ];
+    imports = [
+      inputs.self.modules.nixos.alina
+    ];
 
     home-manager.users.alina = {};
   };

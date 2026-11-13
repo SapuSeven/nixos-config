@@ -5,6 +5,29 @@ More inspiration:
 https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles
 -> cool volume change popup
 
+# Installation
+
+On a new machine, boot into the NixOS installer and fetch the repository:
+```shell
+git clone git@github.com:SapuSeven/nixos-config.git
+cd nixos-config
+```
+If the configuration contains disk definitions using disko, run the following command to setup and install (will remove all data from the target disk!):
+```shell
+sudo nix --extra-experimental-features "nix-command flakes" \
+  run 'github:nix-community/disko/latest#disko-install' -- \
+  --flake .#[host] # replace with host configuration name
+  --disk main /dev/nvme0n1 # replace with main disk and/or supply more disks if configured
+```
+
+Afterwards, copy the nixos configuration to the persistent location on the newly formatted disk:
+```shell
+sudo mount -o subvol=persistent /dev/nvme0n1p4 /mnt
+sudo cp -r ./** /mnt/etc/nixos
+```
+
+# Maintenance
+
 ## Managing Secrets
 Secrets are defined as encrypted files in `./secrets`.
 Every secret has one or more public keys added to it in the configuration file.
