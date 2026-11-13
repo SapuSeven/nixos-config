@@ -9,7 +9,10 @@
       impermanence
     ];
 
-    persistence.enable = true;
+    persistence = {
+      enable = true;
+      persistDir = "/persistent";
+    };
 
     services.fwupd.enable = true;
 
