@@ -5,6 +5,7 @@
 
   inputs = {
     agenix.url = "github:ryantm/agenix";
+    disko.url = "github:nix-community/disko";
     flake-file.url = "github:vic/flake-file";
     flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {

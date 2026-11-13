@@ -15,6 +15,7 @@
     config = lib.mkIf cfg.enable {
       home-manager.sharedModules = [ inputs.self.modules.homeManager.impermanence ];
 
+      boot.tmp.cleanOnBoot = true;
       environment.persistence."${cfg.persistDir}" = {
         hideMounts = true;
         # TODO: Remove those default values
@@ -26,6 +27,7 @@
             "/var/lib/systemd/coredump"
             "/var/lib/systemd/backlight"
             "/etc/nixos"
+            "/tmp"
             {
               directory = "/var/lib/colord";
               user = "colord";
