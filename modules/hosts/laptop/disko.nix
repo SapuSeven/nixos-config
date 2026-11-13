@@ -7,6 +7,7 @@
     imports = [ inputs.disko.nixosModules.disko ];
 
     fileSystems."/nix".neededForBoot = true;
+    fileSystems."/persistent".neededForBoot = true;
 
     disko.devices = {
       nodev = {
@@ -20,19 +21,13 @@
       };
 
       disk.main = {
-        device = "/dev/nvme0n1";
         type = "disk";
+        device = "/dev/nvme0n1";
 
         content = {
           type = "gpt";
 
           partitions = {
-            boot = {
-              name = "boot";
-              size = "1M";
-              type = "EF02";
-            };
-
             esp = {
               name = "ESP";
               size = "1G";
@@ -55,22 +50,26 @@
             };
 
             root = {
-              name = "root";
               size = "100%";
 
               content = {
-                type = "btrfs";
-                extraArgs = ["-f"];
+                type = "luks";
+                name = "root";
 
-                subvolumes = {
-                  "/persistent" = {
-                    mountOptions = ["subvol=persistent" "noatime"];
-                    mountpoint = "/persistent";
-                  };
+                content = {
+                  type = "btrfs";
+                  extraArgs = ["-f"];
 
-                  "/nix" = {
-                    mountOptions = ["subvol=nix" "noatime"];
-                    mountpoint = "/nix";
+                  subvolumes = {
+                    "/persistent" = {
+                      mountOptions = ["subvol=persistent" "noatime"];
+                      mountpoint = "/persistent";
+                    };
+
+                    "/nix" = {
+                      mountOptions = ["subvol=nix" "noatime"];
+                      mountpoint = "/nix";
+                    };
                   };
                 };
               };
